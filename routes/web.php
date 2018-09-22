@@ -12,12 +12,12 @@
 */
 
 Route::get('/', 'SiteController@index');
-Route::get('/sign-up', 'SiteController@sign-up');
-Route::get('/news', 'SiteController@news');
-Route::get('/login', 'SiteController@login');
+// Route::get('/sign-up', 'SiteController@sign-up');
+// Route::get('/news', 'SiteController@news');
+// Route::get('/login', 'SiteController@login');
 
-Route::middleware('auth')->group(function() {
-  Route::get('/', 'DashboardController@index');
-  Route::get('/user', 'DashboardController@user');
-  Route::get('/user/{id}', 'DashboardController@user');
-});
+// Route::middleware('auth')->group(function() {
+//   Route::get('/', 'DashboardController@index');
+//   Route::get('/user', 'DashboardController@user');
+//   Route::get('/user/{id}', 'DashboardController@user');
+// });
