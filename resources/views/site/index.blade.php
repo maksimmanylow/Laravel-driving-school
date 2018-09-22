@@ -255,7 +255,7 @@
       <br>
       <div class="row justify-content-center">
 
-      @foreach ($Groups as $Group)
+      @forelse ($Groups as $Group)
         <div class="col-md-4">
             <div class="card text-center">
               <form action="/site/application" method="get">
@@ -288,7 +288,14 @@
               </form>
             </div>
           </div>
-    @endforeach
+    @empty
+      <div class="col-md-4">
+        <div class=" card">
+          <p>На данный момент нет открытых групп.</p>
+        </div>
+      </div>
+    @endforelse
+    
       </div>
     </div>
   </section>
