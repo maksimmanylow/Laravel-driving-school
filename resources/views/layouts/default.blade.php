@@ -6,13 +6,14 @@
   </head>
 
   <body id="page-top">
-    @env('production')
+
+    @if (env('APP_ENV' === 'production'))
       @include('counters.ya_counter');
       @include('counters.analyticstracking');
       @include('includes.vk_chat');
-    @endenv
+    @endif
 
-    @include('includes.navbar')
+    {{-- @include('includes.navbar') --}}
 
     @yield('content')
 

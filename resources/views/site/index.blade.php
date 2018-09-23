@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
 @section('title', 'Автошкола в Адмиралтейском районе у метро Технологический институт от университета "ВОЕНМЕХ"')
+@section('description', 'description sample')
+@section('keywords', 'keywords sample')
 
 @section('content')
   
@@ -295,7 +297,7 @@
         </div>
       </div>
     @endforelse
-    
+
       </div>
     </div>
   </section>
