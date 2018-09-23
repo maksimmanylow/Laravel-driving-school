@@ -10,21 +10,7 @@
   </div>
 </footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/popper/popper.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Plugin JavaScript -->
-<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="/vendor/scrollreveal/scrollreveal.min.js"></script>
-<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-<script src="/vendor/aos/aos.js"></script>
-<script src="/vendor/jquery.inputmask/inputmask/inputmask.js"></script>
-<script src="/vendor/jquery.inputmask/inputmask/inputmask.extensions.js"></script>
-<script src="/vendor/jquery.inputmask/inputmask/inputmask.phone.extensions.js"></script>
-<script src="/vendor/jquery.inputmask/inputmask/jquery.inputmask.js"></script>
-<!-- Custom scripts for this template -->
-<script src="/js/new.min.js"></script>
+<script type="text/javascript" src="{{ mix('/js/app.js') }}"></script>
 <!-- Hotjar Tracking Code for bstu-attc.ru -->
 <script>
   (function(h, o, t, j, a, r) {
