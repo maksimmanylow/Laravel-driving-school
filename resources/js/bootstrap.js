@@ -9,7 +9,6 @@ window.Popper = require("popper.js").default;
 
 try {
     window.$ = window.jQuery = require("jquery");
-
     require("bootstrap");
 } catch (e) {}
 
@@ -58,6 +57,9 @@ if (token) {
 
 // window.Vue = require("vue");
 window.AOS = require("aos");
-window.sr = require("scrollreveal");
+const ScrollReveal = require("scrollreveal");
+window.sr = ScrollReveal();
+// window.Inputmask = require("inputmask")($);
 require("inputmask");
-// window.Inputmask = require("jquery.inputmask");
+require("magnific-popup");
+require("jquery-ui");
