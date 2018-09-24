@@ -107,8 +107,8 @@
       <div class="row no-gutter popup-gallery-cars">
 
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/izmaylov.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/izmaylov.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/izmaylov.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/izmaylov.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -122,8 +122,8 @@
           </a>
         </div>
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/savinyh.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/savinyh.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/savinyh.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/savinyh.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -138,8 +138,8 @@
         </div>
 
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/vishnyakov.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/vishnyakov.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/vishnyakov.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/vishnyakov.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -154,8 +154,8 @@
         </div>
 
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/sigaev.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/sigaev.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/sigaev.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/sigaev.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -170,8 +170,8 @@
         </div>
 
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/vishnyakovav.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/vishnyakovav.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/vishnyakovav.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/vishnyakovav.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -186,8 +186,8 @@
         </div>
 
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="/img/team/fall-winter-2017/chechetkin.JPG">
-            <img class="img-fluid" src="/img/team/fall-winter-2017/chechetkin.JPG" alt="">
+          <a class="portfolio-box" href="/images/team/fall-winter-2017/chechetkin.JPG">
+            <img class="img-fluid" src="/images/team/fall-winter-2017/chechetkin.JPG" alt="">
             <div class="portfolio-box-caption">
               <div class="portfolio-box-caption-content">
                 <div class="project-category text-faded">
@@ -218,19 +218,19 @@
 
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="/img/platform/1.JPG" alt="First slide">
+                <img class="d-block w-100" src="/images/platform/1.JPG" alt="First slide">
               </div>
               <div class="carousel-item ">
-                <img class="d-block w-100" src="/img/platform/2.JPG" alt="Second slide">
+                <img class="d-block w-100" src="/images/platform/2.JPG" alt="Second slide">
               </div>
               <div class="carousel-item ">
-                <img class="d-block w-100" src="/img/platform/3.JPG" alt="Third slide">
+                <img class="d-block w-100" src="/images/platform/3.JPG" alt="Third slide">
               </div>
               <div class="carousel-item ">
-                <img class="d-block w-100" src="/img/platform/4.JPG" alt="Fourth slide">
+                <img class="d-block w-100" src="/images/platform/4.JPG" alt="Fourth slide">
               </div>
               <div class="carousel-item ">
-                <img class="d-block w-100" src="/img/platform/5.JPG" alt="Fifth slide">
+                <img class="d-block w-100" src="/images/platform/5.JPG" alt="Fifth slide">
               </div>
             </div>
 
@@ -406,14 +406,14 @@
 
         <div class="col-md-4">
           <div class="partner card text-center p-3">
-            <a href="http://megapolis-car.ru/" class="partner-logo"><img class="img-fluid sr-button" src="/img/logos/megapolis.png"></a>
+            <a href="http://megapolis-car.ru/" class="partner-logo"><img class="img-fluid sr-button" src="/images/logos/megapolis.png"></a>
             <div class="partner-title h3">Атошкола "Мегаполис"</div>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="partner card text-center p-3">
-            <a href="http://auto.igps.ru/" class="partner-logo"><img class="img-fluid sr-button" src="/img/logos/logo_ugps.png"></a>
+            <a href="http://auto.igps.ru/" class="partner-logo"><img class="img-fluid sr-button" src="/images/logos/logo_ugps.png"></a>
             <div class="partner-title h3">Государственная автошкола МЧС</div>
           </div>
         </div>
