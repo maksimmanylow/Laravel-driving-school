@@ -21,3 +21,7 @@ Route::get('/', 'SiteController@index');
 //   Route::get('/user', 'DashboardController@user');
 //   Route::get('/user/{id}', 'DashboardController@user');
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
