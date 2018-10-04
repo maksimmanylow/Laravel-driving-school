@@ -7,14 +7,16 @@
 
   <body id="page-top">
 
-    @if (env('APP_ENV' === 'production'))
+    {{-- @if (env('APP_ENV' === 'production')) --}}
+    @env('production')
       @include('counters.ya_counter');
       @include('counters.analyticstracking');
       @include('includes.vk_chat');
-    @endif
+    @endenv
+    {{-- @endif --}}
 
-    {{-- @include('includes.navbar') --}}
-
+    @include('includes.navbar')
+    
     @yield('content')
 
     @include('includes.footer')          
