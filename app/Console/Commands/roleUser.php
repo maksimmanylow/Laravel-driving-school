@@ -69,7 +69,7 @@ class userAddRole extends Command
             break;
           case "revoke":
             // check if user already has the role
-            if ($this->alreadyHasTheRole($User->id, $role)) {
+            if ($this->alreadyHasTheRole($User, $role)) {
               return;
             }
             // save new user's role
