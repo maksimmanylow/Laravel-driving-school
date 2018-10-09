@@ -15,3 +15,10 @@ mix.js("resources/js/app.js", "public/js")
     .sourceMaps()
     .version();
 mix.sass("resources/sass/app.scss", "public/css");
+
+// dashboard section
+
+mix.js("resources/js/dashboard.js", "public/js")
+    .sourceMaps()
+    .version();
+mix.sass("resources/sass/dashboard.scss", "public/css");
