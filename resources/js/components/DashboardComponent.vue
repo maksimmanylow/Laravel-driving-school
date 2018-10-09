@@ -6,7 +6,7 @@
                   <div class="card-header">Vue Dasboard Component</div>
 
                   <div class="card-body">
-                      
+                      <TableComponent />
                   </div>
               </div>
           </div>
@@ -15,9 +15,12 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+import TableComponent from './TableComponent'
+
+export default {
+  name: 'DashboardComponent',
+  components: {
+    TableComponent,
+  }
+}
 </script>
