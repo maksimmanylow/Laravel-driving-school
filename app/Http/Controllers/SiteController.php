@@ -18,4 +18,11 @@ class SiteController extends Controller
 
       return view('site.index', ['Groups' => $Groups]);
     }
+
+    public function groups()
+    {
+      $Groups = Group::where('status', '=', Group::STATUS_OPENED)->get();
+
+      return view('site.groups', ['Groups' => $Groups]);
+    }
 }
