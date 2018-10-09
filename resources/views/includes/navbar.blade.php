@@ -26,7 +26,7 @@
 
         <li class="nav-item">
 
-          @auth('admin')
+          {{-- @auth('admin')
           <a class="nav-link" href="/admin">Панель управления</a> 
           @endauth 
           @auth('user')
@@ -34,7 +34,7 @@
           @endauth 
           @guest('admin')
           <a class="nav-link" href="/site/login">Вход</a> 
-          @endguest
+          @endguest --}}
 
         </li>
       </ul>
