@@ -2,8 +2,8 @@
 <div>
   <TableGroupDropdownComponent />
   <table>
-    <TableHeadFilterComponent />
-    <TableBodyComponent />
+    <TableHeadFilterComponent :filters="filters" />
+    <TableBodyComponent :rows="rows" />
   </table>
 </div>
 </template>
@@ -19,6 +19,17 @@ export default {
     TableGroupDropdownComponent,
     TableHeadFilterComponent,
     TableBodyComponent,
+  },
+  data() {
+    return {
+      rows: [],
+      filters: [],
+    }
+  },
+  methods: {
+    filter () {
+      
+    }
   }
 }
 </script>

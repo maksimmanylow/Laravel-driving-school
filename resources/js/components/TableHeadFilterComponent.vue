@@ -10,7 +10,12 @@
 </template>
 
 <script>
+import BaseInputText from './BaseInputText';
+
 export default {
   name: 'TableHeadFilterComponent',
+  components: {
+    BaseInputText,
+  }
 }
 </script>

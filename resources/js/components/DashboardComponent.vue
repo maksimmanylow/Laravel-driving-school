@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TableComponent from './TableComponent'
+import TableComponent from './TableComponent';
 
 export default {
   name: 'DashboardComponent',
