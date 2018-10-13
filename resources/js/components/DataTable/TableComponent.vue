@@ -2,8 +2,8 @@
 <div>
   <TableGroupDropdownComponent />
   <table>
-    <TableHeadFilterComponent :filters="filters" />
-    <TableBodyComponent :rows="rows" />
+    <TableHeadFilterComponent :columns=columns />
+    <TableBodyComponent :rows=rows :columns=columns />
   </table>
 </div>
 </template>
@@ -12,6 +12,7 @@
 import TableGroupDropdownComponent from './TableGroupDropdownComponent'
 import TableHeadFilterComponent from './TableHeadFilterComponent'
 import TableBodyComponent from './TableBodyComponent'
+import axios from 'axios';
 
 export default {
   name: 'TableComponent',
@@ -20,8 +21,14 @@ export default {
     TableHeadFilterComponent,
     TableBodyComponent,
   },
+  props: {
+    data: Array,
+    columns: Array,
+    rows: Array,
+  },
   data() {
     return {
+      columns: [],
       rows: [],
       filters: [],
     }
@@ -30,6 +37,17 @@ export default {
     filter () {
       
     }
+  },
+  mounted() {
+    axios
+      .get('/api/users')
+      .then(response => {
+        this.columns = response.columns;
+        this.rows = response.users;
+      })
+    .catch(e => {
+      console.error(e)
+    });
   }
 }
 </script>
