@@ -22,3 +22,6 @@ use App\User;
 Route::get('/users', function () {
     return UserCollection::collection(User::all());
 });
+
+
+Route::apiResource('groups', 'GroupController');
