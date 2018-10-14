@@ -37,12 +37,10 @@
 </template>
 
 <script>
-  import BaseInputText  from './BaseInputText';
   import Modal  from './Modal';
 
   export default {
     components: {
-      BaseInputText,
       Modal
     },
     props: {
