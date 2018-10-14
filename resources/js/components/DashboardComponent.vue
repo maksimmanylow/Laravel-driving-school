@@ -1,7 +1,7 @@
 <template>
   <div>
     <NewUserModal :show="showUserModal" @close="showUserModal=false"/>
-    <NewGroupModal :show="showGroupModal" @close="showGroupModal=false"/>
+    <NewGroupModal :postURI="this.groupsApiURI" :show="showGroupModal" @close="showGroupModal=false"/>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
               <button id="show-modal" @click="showUserModal=true">Добавить учащегося</button>
-              <TableComponent :fetchURI="this.usersFetchURI"/>
+              <TableComponent :fetchURI="this.usersapiURI"/>
             </div>
           </div>
         </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
               <button id="show-modal" @click="showGroupModal=true">Добавить группу</button>
-              <TableComponent :fetchURI="this.groupsFetchURI"/>
+              <TableComponent :fetchURI="this.groupsApiURI"/>
             </div>
           </div>
         </div>
@@ -47,8 +47,8 @@ export default {
     return {
       showUserModal: false,
       showGroupModal: false,
-      usersFetchURI: "/api/users",
-      groupsFetchURI: "/api/groups"
+      usersApiURI: "/api/users",
+      groupsApiURI: "/api/groups"
     }
   },
 }

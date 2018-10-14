@@ -20,7 +20,7 @@
         <input
           required
           v-model="price"
-          type="text"
+          type="number"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Стоимость обучения"
@@ -31,7 +31,7 @@
         <input
           required
           v-model="priceForStudent"
-          type="text"
+          type="number"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Стоимость обучения для студентов"
@@ -126,7 +126,8 @@
       Multiselect
     },
     props: {
-      show: Boolean
+      show: Boolean,
+      postURI: String
     },
     data: () => ({
       name: null,
@@ -138,7 +139,8 @@
       weekdays: [],
       hoursStart: null,
       hoursFinish: null,
-      weekdaysOptions: ['Понедельник', 'Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']
+      weekdaysOptions: ['Понедельник', 'Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'],
+      errors: []
     }),
     methods: {
       close: function () {
@@ -153,7 +155,22 @@
         this.hoursFinish = null;
       },
       save: function() {
-        // send to server
+        const group = {
+          name: this.name,
+          price: this.price,
+          priceForStudent: this.priceForStudent,
+          category: this.category,
+          startDate: this.startDate,
+          examDate: this.examDate,
+          weekdays: this.weekdays,
+          hoursStart: this.hoursStart,
+          hoursFinish: this.hoursFinish,
+        };
+
+        axios.post(this.postURI, group)
+          .then(reposnse => {})
+          .catch(e => {this.errors.push(e)});
+
         this.close();
       }
     }
