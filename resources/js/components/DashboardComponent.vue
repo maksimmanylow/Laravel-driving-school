@@ -6,8 +6,8 @@
                   <div class="card-header">Vue Dasboard Component</div>
                   <div class="card-body">
                     <div  >
-                      <button id="show-modal" @click='showModal=true'>Show Modal</button>
-                      <Modal v-show="showModal" @close='showModal=false' />              
+                      <button id="show-modal" @click='showModal=true'>Добавить учащегося</button>
+                      <NewUserModal :show="showModal" @close='showModal=false' />
                     </div>
                     <TableComponent />
                   </div>
@@ -19,16 +19,16 @@
 
 <script>
 import TableComponent from './DataTable/TableComponent';
-import Modal from './Modal';
+import NewUserModal from './NewUserModal';
 
 export default {
   name: 'DashboardComponent',
   components: {
     TableComponent,
-    Modal
+    NewUserModal,
   },
   data () {
     return {showModal: false}
-  }
+  },
 }
 </script>
