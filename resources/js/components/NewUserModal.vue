@@ -1,7 +1,7 @@
 <template>
   <Modal @close="close" :show="show">
     <template slot="header">
-      <h1>Добавить нового учащегося</h1>
+      <h1>Добавить учащегося</h1>
     </template>
     <template slot="body">
       <div class="form-group">
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import Modal  from './Modal';
+  import Modal  from './Modal/Modal';
 
   export default {
     components: {

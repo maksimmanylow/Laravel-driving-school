@@ -1,46 +1,112 @@
 <template>
   <TwoColumnsModal @close="close" :show="show">
     <template slot="header">
-      <h1>Добавить новую группу</h1>
+      <h1>Добавить группу</h1>
     </template>
     <template slot="body-left">
       <div class="form-group">
         <label for="exampleInputEmail1">Название</label>
-        <input v-model="name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Название">
+        <input
+          required
+          v-model="name"
+          type="text"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Название"
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Стоимость обучения</label>
-        <input v-model="price" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Стоимость обучения">
+        <input
+          required
+          v-model="price"
+          type="text"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Стоимость обучения"
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Стоимость обучения для студентов</label>
-        <input v-model="priceforStudent" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Стоимость обучения для студентов">
+        <input
+          required
+          v-model="priceForStudent"
+          type="text"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Стоимость обучения для студентов"
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Категория</label>
-        <input v-model="category" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Категория">
+        <input
+          required
+          v-model="category"
+          type="text"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Категория"
+        >
       </div>
     </template>
     <template slot="body-right">
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
-        <input v-model="startDate" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Начало занятий">
+        <input
+          required
+          v-model="startDate"
+          type="date"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Начало занятий"
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
-        <input v-model="examDate" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Экзамен">
+        <input
+          v-model="examDate"
+          type="date"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Экзамен"
+        >
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Дни недели</label>
-        <input v-model="weekdays" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Дни недели">
+        <Multiselect
+          v-model="weekdays"
+          :options="weekdaysOptions"
+          :multiple="true"
+          :close-on-select="false"
+          :clear-on-select="false"
+          :preserve-search="true"
+          placeholder="Выберите дни недели"
+          label="Дни занятий"
+        />
+        <ul>
+          <li v-for="weekday in weekdays">{{weekday}}</li>
+        </ul>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятия</label>
-        <input v-model="hoursStart" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Начало занятия">
+        <input
+          required
+          v-model="hoursStart"
+          type="time"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Начало занятия"
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Конец занятия</label>
-        <input v-model="hoursFinish" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Конец занятия">
+        <input
+          required
+          v-model="hoursFinish"
+          type="time"
+          class="form-control"
+          aria-describedby="emailHelp"
+          placeholder="Конец занятия"
+        >
       </div>
     </template>
     <template slot="footer">
@@ -51,35 +117,47 @@
 </template>
 
 <script>
-  import TwoColumnsModal  from './TwoColumnsModal';
+  import TwoColumnsModal  from './Modal/TwoColumnsModal';
+  import Multiselect from 'vue-multiselect';
 
   export default {
     components: {
-      TwoColumnsModal
+      TwoColumnsModal,
+      Multiselect
     },
     props: {
       show: Boolean
     },
     data: () => ({
-      name: '',
-      surname: '',
-      phone: '',
-      email: '',
-      group: ''
+      name: null,
+      price: null,
+      priceForStudent: null,
+      category: null,
+      startDate: null,
+      examDate: null,
+      weekdays: [],
+      hoursStart: null,
+      hoursFinish: null,
+      weekdaysOptions: ['Понедельник', 'Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье']
     }),
     methods: {
       close: function () {
         this.$emit('close');
-        this.name = '';
-        this.surname = '';
-        this.phone = '';
-        this.email = '';
-        this.group = '';
+        this.name = null;
+        this.priceForStudent = null;
+        this.category = null;
+        this.startDate = null;
+        this.examDate = null;
+        this.weekdays = null;
+        this.hoursStart = null;
+        this.hoursFinish = null;
       },
       save: function() {
-        this.$emit('save');
+        // send to server
         this.close();
       }
     }
   }
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
