@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <NewUserModal :show="showModal" @close='showModal=false' />
   <div class="container-fluid">
       <div class="row justify-content-center">
           <div class="col-md-12">
@@ -7,13 +9,13 @@
                   <div class="card-body">
                     <div  >
                       <button id="show-modal" @click='showModal=true'>Добавить учащегося</button>
-                      <NewUserModal :show="showModal" @close='showModal=false' />
                     </div>
                     <TableComponent />
                   </div>
               </div>
           </div>
       </div>
+  </div>
   </div>
 </template>
 
