@@ -72,18 +72,15 @@
         >
       </div>
       <div class="form-group">
-        <Multiselect
+        <multiselect
           v-model="weekdays"
           :options="weekdaysOptions"
           :multiple="true"
           :close-on-select="false"
           :clear-on-select="false"
-          :preserve-search="true"
-          placeholder="Выберите дни недели"
-          label="Дни занятий"
         />
         <ul>
-          <li v-for="weekday in weekdays">{{weekday}}</li>
+          <li v-for="weekday in weekdays" :key="weekday" >{{weekday}}</li>
         </ul>
       </div>
       <div class="form-group">
