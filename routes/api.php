@@ -24,4 +24,4 @@ Route::get('/users', function () {
 });
 
 
-Route::apiResource('groups', 'GroupController');
+Route::apiResource('group', 'GroupController');

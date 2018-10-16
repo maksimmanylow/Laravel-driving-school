@@ -17,6 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('start_at');
+            $table->date('exam_date');
             $table->json('timetable');
             $table->time('hours_start_at');
             $table->time('hours_finish_at');

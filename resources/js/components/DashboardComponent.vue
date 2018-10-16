@@ -11,7 +11,7 @@
             </div>
             <div class="card-body">
               <button id="show-modal" @click="showUserModal=true">Добавить учащегося</button>
-              <TableComponent :fetchURI="this.usersapiURI"/>
+              <TableComponent :fetchURI="this.usersApiURI"/>
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default {
       showUserModal: false,
       showGroupModal: false,
       usersApiURI: "/api/users",
-      groupsApiURI: "/api/groups"
+      groupsApiURI: "/api/group"
     }
   },
 }

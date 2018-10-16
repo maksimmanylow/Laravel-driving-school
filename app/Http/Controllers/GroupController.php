@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\Group;
+use App\Group;
 use App\Http\Resources\GroupResource;
 
 class GroupController extends Controller
@@ -26,18 +26,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $group = Group::create([
-        'name' => $request->name,
-        'start_at' => $request->start_at,
-        'timetable' => $request->timetable,
-        'hours_start_at' => $request->hours_start_at,
-        'hours_finish_at' => $request->hours_finish_at,
-        'status' => $request->status,
-        'category' => $request->category,
-        'price' => $request->price,
-        'price_for_students' => $request->price_for_students,
-        'is_active' => $request->is_active,
-      ]);
+        $group = Group::create($request->all());
 
         return new GroupResource($group);
     }
@@ -62,18 +51,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $Group)
     {
-        $Group->update($request->only([
-        'name',
-        'start_at',
-        'timetable',
-        'hours_start_at',
-        'hours_finish_at',
-        'status',
-        'category',
-        'price',
-        'price_for_students',
-        'is_active'
-      ]));
+        $Group->update($request->all);
 
         return new GroupResource($Group);
     }
