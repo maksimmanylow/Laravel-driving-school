@@ -12009,46 +12009,6 @@ a.text-dark:focus {
   padding-left: 0;
 }
 
-.btn-default {
-  color: #fff;
-  background-color: #222222;
-  border-color: white;
-}
-
-.btn-default:hover {
-  color: #212529;
-  background-color: white;
-  border-color: #e6e5e5;
-}
-
-.btn-default:focus,
-.btn-default.focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
-}
-
-.btn-default.disabled,
-.btn-default:disabled {
-  color: #fff;
-  background-color: #222222;
-  border-color: white;
-}
-
-.btn-default:not(:disabled):not(.disabled):active,
-.btn-default:not(:disabled):not(.disabled).active,
-.show > .btn-default.dropdown-toggle {
-  color: #fff;
-  background-color: #090909;
-  border-color: #dfdfdf;
-}
-
-.btn-default:not(:disabled):not(.disabled):active:focus,
-.btn-default:not(:disabled):not(.disabled).active:focus,
-.show > .btn-default.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
-}
-
 .btn-gray {
   color: #212529;
   background-color: white;
@@ -12129,51 +12089,9 @@ a.text-dark:focus {
           box-shadow: 0 0 0 0.2rem rgba(255, 243, 0, 0.5);
 }
 
-.btn-primary {
-  color: #212529;
-  background-color: white;
-  border-color: #0095FF;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background-color: #0095FF;
-  border-color: #0077cc;
-}
-
-.btn-primary:focus,
-.btn-primary.focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 149, 255, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 149, 255, 0.5);
-}
-
-.btn-primary.disabled,
-.btn-primary:disabled {
-  color: #212529;
-  background-color: white;
-  border-color: #0095FF;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active,
-.btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
-  color: #212529;
-  background-color: #e6e5e5;
-  border-color: #0070bf;
-}
-
-.btn-primary:not(:disabled):not(.disabled):active:focus,
-.btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 149, 255, 0.5);
-          box-shadow: 0 0 0 0.2rem rgba(0, 149, 255, 0.5);
-}
-
 .btn {
   font-weight: 700;
-  text-transform: uppercase;
   border: none;
-  border-radius: 300px;
 }
 
 .btn-xl {

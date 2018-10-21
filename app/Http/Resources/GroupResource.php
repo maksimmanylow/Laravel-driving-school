@@ -15,6 +15,7 @@ class GroupResource extends JsonResource
     public function toArray($request)
     {
       return [
+        'id' => $this->id,
         'name' => $this->name,
         'start_at' => $this->start_at,
         'timetable' => $this->timetable,

@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('start_at');
-            $table->date('exam_date');
+            $table->date('exam_date')->nullable();
             $table->json('timetable');
             $table->time('hours_start_at');
             $table->time('hours_finish_at');
@@ -25,7 +25,7 @@ class CreateGroupsTable extends Migration
             $table->smallInteger('category');
             $table->smallInteger('price');
             $table->smallInteger('price_for_students');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

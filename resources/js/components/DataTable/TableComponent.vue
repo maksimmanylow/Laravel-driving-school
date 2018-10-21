@@ -34,15 +34,15 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(this.fetchURI)
-      .then(response => {
-        this.columns = response.columns;
-        this.rows = response.data;
-      })
-    .catch(e => {
-      console.error(e)
-    });
+    // axios
+    //   .get(this.fetchURI)
+    //   .then(response => {
+    //     this.columns = response.columns;
+    //     this.rows = response.data;
+    //   })
+    // .catch(e => {
+    //   console.error(e)
+    // });
   }
 }
 </script>

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <NewUserModal :show="showUserModal" @close="showUserModal=false"/>
-    <NewGroupModal :postURI="this.groupsApiURI" :show="showGroupModal" @close="showGroupModal=false"/>
+    <NewUserModal
+      :show="showUserModal"
+      @close="showUserModal=false"/>
+    <NewGroupModal
+      :show="showGroupModal"
+      @close="showGroupModal=false"/>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-md-6">
@@ -10,8 +14,10 @@
               <h3>Учащиеся</h3>
             </div>
             <div class="card-body">
-              <button id="show-modal" @click="showUserModal=true">Добавить учащегося</button>
-              <TableComponent :fetchURI="this.usersApiURI"/>
+              <button
+                class="btn btn-primary"
+                @click="showUserModal=true">Добавить учащегося</button>
+                <!-- <TableComponent :fetchURI="this.usersApiURI"/> -->
             </div>
           </div>
         </div>
@@ -21,8 +27,10 @@
               <h3>Группы</h3>
             </div>
             <div class="card-body">
-              <button id="show-modal" @click="showGroupModal=true">Добавить группу</button>
-              <TableComponent :fetchURI="this.groupsApiURI"/>
+              <button
+                class="btn btn-primary"
+                @click="showGroupModal=true">Добавить группу</button>
+                <!-- <TableComponent :fetchURI="this.groupsApiURI"/> -->
             </div>
           </div>
         </div>
@@ -32,24 +40,23 @@
 </template>
 
 <script>
-import TableComponent from './DataTable/TableComponent';
+// import TableComponent from './DataTable/TableComponent';
 import NewUserModal from './NewUserModal';
 import NewGroupModal from './NewGroupModal';
+import C from '../constants';
 
 export default {
-  name: 'DashboardComponent',
-  components: {
-    TableComponent,
-    NewUserModal,
-    NewGroupModal
-  },
-  data () {
-    return {
-      showUserModal: false,
-      showGroupModal: false,
-      usersApiURI: "/api/users",
-      groupsApiURI: "/api/group"
-    }
-  },
-}
+	name: 'DashboardComponent',
+	components: {
+		// TableComponent,
+		NewUserModal,
+		NewGroupModal
+	},
+	data () {
+		return {
+			showUserModal: false,
+			showGroupModal: false,
+		};
+	},
+};
 </script>

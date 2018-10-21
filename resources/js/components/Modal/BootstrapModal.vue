@@ -1,9 +1,16 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-show="show" @click="close">
+    <div
+      v-show="show"
+      class="modal-mask"
+      @click="close">
       <div class="modal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content" @click.stop>
+        <div
+          class="modal-dialog"
+          role="document">
+          <div
+            class="modal-content"
+            @click.stop>
             <div class="modal-header">
               <slot name="header">default header</slot>
             </div>
@@ -22,20 +29,20 @@
 
 <script>
 export default {
-    props: {
-      show: Boolean
-    },
-    mounted: function () {
-    document.addEventListener("keydown", (e) => {
-      if (this.show && e.keyCode == 27) {
-        this.close();
-        }
-    });
-    },
-    methods: {
-        close: function() {
-              this.$emit('close');
-        },
-  }
-}
+	props: {
+		show: {type: Boolean, default: false}
+	},
+	mounted: function () {
+		document.addEventListener('keydown', (e) => {
+			if (this.show && e.keyCode == 27) {
+				this.close();
+			}
+		});
+	},
+	methods: {
+		close: function() {
+			this.$emit('close');
+		},
+	}
+};
 </script>

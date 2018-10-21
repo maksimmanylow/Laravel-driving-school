@@ -8,10 +8,6 @@
   padding-left: 0;
 }
 
-.btn-default {
-  @include button-variant($gray-darker, white, white);
-}
-
 .btn-gray {
   @include button-variant(white, $gray, $gray);
 }
@@ -19,15 +15,10 @@
 .btn-yellow {
   @include button-variant (#222, $yellow, $yellow);
 }
-.btn-primary {
-  @include button-variant(white, $button-primary, $button-primary);
-}
 
 .btn {
   font-weight: 700;
-  text-transform: uppercase;
   border: none;
-  border-radius: 300px;
   // @include sans-serif-font;
 }
 
