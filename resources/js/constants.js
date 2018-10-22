@@ -21,7 +21,7 @@ const constants = {
 		value: 'BC'
 	}],
 	api: {
-		user: '/api/users',
+		user: '/api/user',
 		group: '/api/group'
 	}
 };
