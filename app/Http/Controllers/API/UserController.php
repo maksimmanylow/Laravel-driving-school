@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Group;
-use App\Http\Resources\GroupResource;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 
-class GroupController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return GroupResource::collection(Group::all());
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -26,46 +27,45 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $group = Group::create($request->all());
+      $User = User::create($request->all());
 
-        return new GroupResource($group);
+      return new UserResource($User);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $Group)
+    public function show(User $User)
     {
-        return new GroupResource($Group);
+        return new UserResource($User);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Group $Group)
+    public function update(Request $request, User $User)
     {
-        $Group->update($request->all);
+      $User->update($request->all);
 
-        return new GroupResource($Group);
+      return new UserResource($User);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(Group $Group)
+    public function destroy(User $User)
     {
-      $Group->delete();
+      $User->delete();
 
       return response()->json(null, 204);
     }

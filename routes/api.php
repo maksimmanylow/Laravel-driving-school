@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Resources\UserCollection;
-use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +17,6 @@ use App\User;
 //     return $request->user();
 // });
 
-Route::get('/users', function () {
-    return UserCollection::collection(User::all());
-});
 
-
-Route::apiResource('group', 'GroupController');
+Route::apiResource('group', 'API\GroupController');
+Route::apiResource('user', 'API\UserController');
