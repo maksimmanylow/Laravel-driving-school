@@ -1,0 +1,11 @@
+@import "variables.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "~vue-multiselect/dist/vue-multiselect.min.css";
+@import "bootstrap-overrides.scss";
+@import "modal.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900&subset=cyrillic');
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+ }

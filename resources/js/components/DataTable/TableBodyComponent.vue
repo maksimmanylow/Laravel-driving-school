@@ -1,17 +1,17 @@
 <template>
-     <tbody>
-        <tr v-for="row in rows" :key="row.id">
-          <td v-for="column in columns" >{{ row[column] }}</td>
-        </tr>
-    </tbody>
+  <tbody>
+    <tr
+      v-for="object in objects"
+      :key="object.id">
+      <td v-for="key in Object.keys(object)" >{{ object[key] }}</td>
+    </tr>
+  </tbody>
 </template>
 
 <script>
 export default {
-  name: 'TableComponent',
-  props: {
-    columns: Array,
-    rows: Array
-  }
-}
+	props: {
+		objects: Array,
+	}
+};
 </script>

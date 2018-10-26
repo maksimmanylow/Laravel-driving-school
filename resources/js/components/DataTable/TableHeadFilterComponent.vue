@@ -1,7 +1,9 @@
 <template>
   <thead>
     <tr>
-      <th v-for="column in columns">{{ column }}</th>
+      <th
+        v-for="(vaule, key) in object"
+        :key="key">{{ key }}</th>
     </tr>
   </thead>
 </template>
@@ -10,12 +12,11 @@
 import BaseInputText from '../BaseInputText';
 
 export default {
-  name: 'TableHeadFilterComponent',
-  components: {
-    BaseInputText,
-  },
-  params: {
-    columns: Array
-  }
-}
+	components: {
+		BaseInputText,
+	},
+	params: {
+		object: Object
+	}
+};
 </script>

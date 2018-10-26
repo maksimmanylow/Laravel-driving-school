@@ -1,4 +1,4 @@
-const mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,14 +11,14 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js")
-    .sourceMaps()
-    .version();
-mix.sass("resources/sass/app.scss", "public/css");
+mix.js('resources/js/app.js', 'public/js')
+	.sourceMaps()
+	.version();
+mix.sass('resources/sass/app/app.scss', 'public/css');
 
 // dashboard section
 
-mix.js("resources/js/dashboard.js", "public/js")
-    .sourceMaps()
-    .version();
-mix.sass("resources/sass/dashboard.scss", "public/css");
+mix.js('resources/js/dashboard.js', 'public/js')
+	.sourceMaps()
+	.version();
+mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css');

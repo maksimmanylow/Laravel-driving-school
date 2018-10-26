@@ -1,0 +1,104 @@
+@import "variables.scss";
+
+.modal {
+  &-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+  }
+  &-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &-container {
+    overflow: auto;
+    // margin: 2rem;
+    // padding: 20px 30px;
+    background-color: $theme-primary;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  &-header {
+    h3 {
+      margin: auto;
+    }
+    .close {
+      padding: 0;
+      margin: 0;
+    }
+    margin-top: 0;
+    // padding: none;
+    border: none;
+    color: $vue-light;
+  }
+  &-body {
+    // margin: 20px 0;
+  }
+  &-footer {
+    border: none;
+  }
+  &-default-button {
+    float: right;
+  }
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+}
+
+.button-default {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+}
+
+ .multiselect, .multiselect__tags, .multiselect__single, .multiselect__content, .multiselect__input {
+  background-color: $theme-secondary;
+  color: #fff;
+}
+
+.btn-add {
+  vertical-align: middle;
+  text-align: center;
+  line-height: 2rem;
+  cursor: pointer;
+  font-weight: 300;
+  font-size: 2rem;
+  background-color: #fff;
+  color: #000;
+  border-radius: 1rem;
+  width: 2rem;
+  height: 2rem;
+}

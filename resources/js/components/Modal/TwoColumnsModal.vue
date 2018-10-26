@@ -5,34 +5,40 @@
       class="modal-mask"
       @click="close">
       <div class="modal-wrapper">
-        <div
-          class="modal-container"
-          @click.stop>
-          <div class="modal-header">
-            <slot name="header">default header</slot>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-              @click="close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <slot name="body-left">default body</slot>
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <div class="col-md-8">
+              <div
+                class="modal-container"
+                @click.stop>
+                <div class="modal-header">
+                  <slot name="header">default header</slot>
+                  <!-- <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    @click="close">
+                    <span aria-hidden="true">&times;</span>
+                  </button> -->
                 </div>
-                <div class="col">
-                  <slot name="body-right">default body</slot>
+                <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col">
+                        <slot name="body-left">default body</slot>
+                      </div>
+                      <div class="col">
+                        <slot name="body-right">default body</slot>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <slot name="footer">default footer</slot>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <slot name="footer">default footer</slot>
           </div>
         </div>
       </div>

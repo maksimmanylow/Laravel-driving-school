@@ -5,7 +5,7 @@ header.masthead {
   min-height: auto;
   text-align: center;
   color: white;
-  background-image: url('../img/bg.jpg');
+  background-image: url('../../img/bg.jpg');
   background-position: center;
   @include background-cover;
   .header-content {
@@ -16,7 +16,7 @@ header.masthead {
     .header-content-inner {
       background: rgba(0,0,0, .6);
       padding: 2rem;
-      border-radius: 2px; 
+      border-radius: 2px;
       h1 {
         font-size: 30px;
         font-weight: 700;

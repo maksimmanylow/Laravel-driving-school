@@ -1,0 +1,77 @@
+@import "variables.scss";
+
+// Bootstrap overrides for this template
+.text-primary {
+  color: $theme-primary !important;
+}
+
+.no-gutter>[class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn-gray {
+  @include button-variant($gray, $gray);
+}
+
+.btn-yellow {
+  @include button-variant ($yellow, $yellow);
+}
+
+.btn-primary {
+  @include button-variant ($vue-dark, $vue-dark);
+}
+
+.btn-success {
+  @include button-variant ($vue-light-darker, $vue-light-darker);
+}
+
+.btn {
+  font-weight: 700;
+  // border: none;
+  // @include sans-serif-font;
+}
+
+.btn-xl {
+  padding: 15px 30px;
+}
+
+.form-control {
+  background-color: $theme-secondary;
+  color: #fff;
+  border: none;
+
+  &:focus {
+    background-color: $theme-secondary;
+    border: 1px solid $vue-light;
+    box-shadow: none;
+    color: #fff;
+    transition: unset;
+  }
+}
+
+.card {
+    border-radius: 1rem !important;
+    overflow: hidden;
+    &-header {
+      text-align: center;
+      background-color: $vue-light-darker;
+      color: white;
+      h3 {
+        display: inline-block;
+      }
+  }
+}
+
+.table th, .table td, .table thead th {
+  padding: 0.25rem;
+  vertical-align: middle;
+  border: none;
+  font-weight: 400;
+  color: white;//$gray-lighter;
+}
+
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: $gray-darker;
+}

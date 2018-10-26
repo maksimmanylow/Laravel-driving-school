@@ -2,35 +2,41 @@
   <div>
     <NewUserModal
       :show="showUserModal"
-      @close="showUserModal=false"/>
+      @close="showUserModal=false"
+      @userSaved="userSaved"
+    />
     <NewGroupModal
       :show="showGroupModal"
       @close="showGroupModal=false"/>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-header">
               <h3>Учащиеся</h3>
+              <span
+                class="btn-add float-right"
+                @click="showUserModal=true">
+                +
+              </span>
             </div>
             <div class="card-body">
-              <button
-                class="btn btn-primary"
-                @click="showUserModal=true">Добавить учащегося</button>
-                <!-- <TableComponent :fetchURI="this.usersApiURI"/> -->
+              <TableComponent :objects="users" />
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-header">
               <h3>Группы</h3>
+              <span
+                class="btn-add float-right"
+                @click="showGroupModal=true">
+                +
+              </span>
             </div>
             <div class="card-body">
-              <button
-                class="btn btn-primary"
-                @click="showGroupModal=true">Добавить группу</button>
-                <!-- <TableComponent :fetchURI="this.groupsApiURI"/> -->
+              <TableComponent :objects="groups" />
             </div>
           </div>
         </div>
@@ -43,12 +49,13 @@
 // import TableComponent from './DataTable/TableComponent';
 import NewUserModal from './NewUserModal';
 import NewGroupModal from './NewGroupModal';
+import TableComponent from './DataTable/TableComponent';
 import C from '../constants';
 
 export default {
 	name: 'DashboardComponent',
 	components: {
-		// TableComponent,
+		TableComponent,
 		NewUserModal,
 		NewGroupModal
 	},
@@ -56,7 +63,26 @@ export default {
 		return {
 			showUserModal: false,
 			showGroupModal: false,
+			users: null,
+			groups: null,
 		};
+	},
+	mounted: function () {
+		axios.get(C.api.user)
+			.then(reposnse => {
+				this.users = reposnse.data.data;
+			})
+			.catch(e => { this.errors.push(e); });
+		axios.get(C.api.group)
+			.then(reposnse => {
+				this.groups = reposnse.data.data;
+			})
+			.catch(e => { this.errors.push(e); });
+	},
+	methods: {
+		userSaved(response) {
+			console.log('userSaved fired');
+		},
 	},
 };
 </script>

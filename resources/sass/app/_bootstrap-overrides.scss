@@ -1,0 +1,49 @@
+// Bootstrap overrides for this template
+.text-primary {
+  color: $theme-primary !important;
+}
+
+.no-gutter>[class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn-gray {
+  @include button-variant($gray, $gray);
+}
+
+.btn-yellow {
+  @include button-variant ($yellow, $yellow);
+}
+
+// .btn-primary {
+//   @include button-variant ($vue-dark, $vue-dark);
+// }
+
+// .btn-success {
+//   @include button-variant ($vue-light, $vue-light);
+// }
+
+.btn {
+  font-weight: 700;
+  // border: none;
+  // @include sans-serif-font;
+}
+
+.btn-xl {
+  padding: 15px 30px;
+}
+
+// .form-control {
+//   background-color: $theme-secondary;
+//   color: #fff;
+//   border: none;
+
+//   &:focus {
+//     background-color: $theme-secondary;
+//     border: 1px solid $vue-light;
+//     box-shadow: none;
+//     color: #fff;
+//     transition: unset;
+//   }
+// }

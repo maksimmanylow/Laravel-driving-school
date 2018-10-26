@@ -3,7 +3,7 @@
     :show="show"
     @close="close">
     <template slot="header">
-      <h1>Добавить группу</h1>
+      <h3>Добавить группу</h3>
     </template>
     <template slot="body-left">
       <div class="form-group">
@@ -179,5 +179,3 @@ export default {
 	}
 };
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

@@ -3,7 +3,7 @@
     :show="show"
     @close="close">
     <template slot="header">
-      <h1>Добавить учащегося</h1>
+      <h3>Добавить учащегося</h3>
     </template>
     <template slot="body">
       <div class="form-group">
@@ -13,7 +13,7 @@
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
-          placeholder="Email">
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Имя</label>
@@ -23,7 +23,7 @@
           type="text"
           class="form-control"
           aria-describedby="emailHelp"
-          placeholder="Имя">
+        >
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
@@ -31,8 +31,7 @@
           v-model="user.surname"
           type="text"
           class="form-control"
-          aria-describedby="emailHelp"
-          placeholder="Фамилия">
+          aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Телефон</label>
@@ -40,14 +39,13 @@
           v-model="user.phone"
           :class="{'is-invalid': validationErrors.includes('phone')}"
           type="text"
-          class="form-control"
-          placeholder="Телефон">
+          class="form-control">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Группа</label>
         <select
-          v-model="user.group"
-          :class="{'is-invalid': validationErrors.includes('name')}"
+          v-model="user.group_id"
+          :class="{'is-invalid': validationErrors.includes('group_id')}"
           class="form-control form-control-sm">
           <option
             v-for="group in groups"
@@ -86,11 +84,11 @@ export default {
 		user: {
 			name: '',
 			surname: '',
-			phone: '',
+			phone: null,
 			email: '',
-			group: ''
+			group_id: null
 		},
-		required: ['name', 'phone', 'group'],
+		required: ['name', 'phone', 'group_id'],
 		validationErrors: [],
 		errors: [],
 		groups: [],
@@ -98,7 +96,6 @@ export default {
 	mounted: function () {
 		axios.get(C.api.group)
 			.then(reposnse => {
-				console.log('loaded groups');
 				this.groups = reposnse.data.data;//.map((group) => {
 				//   ...group,
 				//   timetable: JSON(group.timetable).decode()
@@ -121,12 +118,12 @@ export default {
 
 			axios.post(C.api.user, this.user)
 				.then(reposnse => {
-					console.log('saved');
-					this.close();        })
+					this.$emit('userSaved', response);
+					this.close();
+				})
 				.catch(e => { this.errors.push(e); });
 		},
 		validateNotEmpty: function (attributes) {
-			console.log(attributes);
 			this.validationErrors = [];
 			for (let key of attributes) {
 				if (!this.user[key] || this.user[key].length == 0) {
