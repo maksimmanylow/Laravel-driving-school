@@ -2261,11 +2261,6 @@ pre code {
   opacity: 1;
 }
 
-.form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
@@ -10672,11 +10667,13 @@ a.text-dark:focus {
 .card-header {
   text-align: center;
   background-color: #008155;
+  padding: .5rem;
   color: white;
 }
 
 .card-header h3 {
   display: inline-block;
+  margin: 0;
 }
 
 .table th,
@@ -10689,18 +10686,22 @@ a.text-dark:focus {
   color: white;
 }
 
+.table th {
+  font-size: 1.25rem;
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #222222;
 }
 
 .modal-mask {
-  position: absolute;
+  position: fixed;
   z-index: 9998;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   -webkit-transition: opacity .3s ease;

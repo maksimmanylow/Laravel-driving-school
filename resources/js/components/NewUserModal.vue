@@ -110,18 +110,19 @@ export default {
 			}
 			this.$emit('close');
 		},
-		save: function () {
+		save: async () => {
 			if (!this.validateNotEmpty(this.required)) {
 				console.info('validation errors');
 				return;
 			}
 
-			axios.post(C.api.user, this.user)
-				.then(reposnse => {
-					this.$emit('userSaved', response);
-					this.close();
-				})
-				.catch(e => { this.errors.push(e); });
+			let {data} = await axios.post(C.api.user, this.user);
+			if (data.status == 200) {
+				this.$emit('userSaved', response);
+				this.close();
+			} else {
+				this.errors.push(e);
+			}
 		},
 		validateNotEmpty: function (attributes) {
 			this.validationErrors = [];

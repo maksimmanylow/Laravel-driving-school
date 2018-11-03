@@ -22,15 +22,9 @@
 </template>
 
 <script>
-import TableHeadFilterComponent from './TableHeadFilterComponent';
-import TableBodyComponent from './TableBodyComponent';
 import axios from 'axios';
 
 export default {
-	components: {
-		TableHeadFilterComponent,
-		TableBodyComponent,
-	},
 	props: {
 		objects: { type: Array, default: () => [] },
 		// rows: { type: Array, default: () => [] },
