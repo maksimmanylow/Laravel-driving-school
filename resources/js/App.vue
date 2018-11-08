@@ -1,23 +1,31 @@
 <template>
   <div id="app">
     <Navbar>
-      <li class="nav-item">
-        <router-link
-          class="nav-link"
-          to="/">Пользователи</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link
-          class="nav-link"
-          to="/group">Группы</router-link>
-      </li>
+      <router-link
+        :to="{name: 'user'}"
+        tag="li"
+        class="nav-item"
+        active-class="active"
+      >
+        <a class="nav-link">Учащиеся</a>
+      </router-link>
+      <router-link
+        :to="{name: 'group'}"
+        tag="li"
+        class="nav-item"
+        active-class="active"
+      >
+        <a class="nav-link">Группы</a>
+      </router-link>
     </Navbar>
-    <router-view/>
+    <div class="router-view">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
+import Navbar from './components/Navbar.vue';
 
 export default {
 	components: {

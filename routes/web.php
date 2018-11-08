@@ -30,4 +30,4 @@ Route::get('/admin', 'HomeController@index')->middleware('admin');
 Route::get('/site/groups', 'SiteController@groups');
 
 // Route::prefix('dashboard')->group(function() {})
-Route::view('/dashboard', 'dashboard');
+Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');

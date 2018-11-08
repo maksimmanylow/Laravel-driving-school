@@ -10694,6 +10694,10 @@ a.text-dark:focus {
   background-color: #222222;
 }
 
+.is-invalid {
+  border-width: 1px;
+}
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -10804,5 +10808,9 @@ a.text-dark:focus {
 
 body {
   font-family: 'Roboto', sans-serif;
+}
+
+.router-view {
+  margin-top: 4rem;
 }
 

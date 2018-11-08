@@ -1,85 +1,92 @@
-import shop from '../../api/shop';
+import  API from '../../api/user';
 
 // initial state
-// shape: [{ id, quantity }]
 const state = {
-	items: [],
-	checkoutStatus: null
+	all: [],
+	modalShow: false,
+	errors: [],
+	model: {
+		value: {
+			id: null,
+			name: '',
+			surname: '',
+			phone: null,
+			email: '',
+			group_id: null
+		},
+		required: ['name', 'phone', 'group_id'],
+		validationErrors: [],
+	},
 };
 
 // getters
-const getters = {
-	cartProducts: (state, getters, rootState) => {
-		return state.items.map(({ id, quantity }) => {
-			const product = rootState.products.all.find(product => product.id === id);
-			return {
-				title: product.title,
-				price: product.price,
-				quantity
-			};
-		});
-	},
-
-	cartTotalPrice: (state, getters) => {
-		return getters.cartProducts.reduce((total, product) => {
-			return total + product.price * product.quantity;
-		}, 0);
-	}
-};
+const getters = {};
 
 // actions
 const actions = {
-	checkout ({ commit, state }, products) {
-		const savedCartItems = [...state.items];
-		commit('setCheckoutStatus', null);
-		// empty cart
-		commit('setCartItems', { items: [] });
-		shop.buyProducts(
-			products,
-			() => commit('setCheckoutStatus', 'successful'),
-			() => {
-				commit('setCheckoutStatus', 'failed');
-				// rollback to the cart saved before sending the request
-				commit('setCartItems', { items: savedCartItems });
+	async getAll ({ commit }) {
+		try {
+		  const {data, status} = await API.getAll();
+			if (status == 200) {
+				commit('setUsers', data.data);
 			}
-		);
-	},
-
-	addProductToCart ({ state, commit }, product) {
-		commit('setCheckoutStatus', null);
-		if (product.inventory > 0) {
-			const cartItem = state.items.find(item => item.id === product.id);
-			if (!cartItem) {
-				commit('pushProductToCart', { id: product.id });
-			} else {
-				commit('incrementItemQuantity', cartItem);
-			}
-			// remove 1 item from stock
-			commit('products/decrementProductInventory', { id: product.id }, { root: true });
+		} catch (error) {
+			mutations.addErrors(error);
 		}
-	}
+	},
+	async create ({commit}) {
+		if (!mutations.validateNotEmpty()) {
+			return;
+		}
+		try {
+		  const {data, status} = await API.create(state.model.value);
+			if (status == 200) {
+				commit('setUsers', [...state.all, state.model.value]);
+				commit('clearAndCloseModal');
+			}
+		} catch (error) {
+			mutations.addErrors(error);
+		}
+	},
+	async update ({commit}) {
+		const {data} = await API.update(state.model.value);
+		if (data.status == 200) {
+			commit('setUsers', data);
+		}
+	},
+	async delete ({commit}) {
+		const {data} = await API.delete(state.model.value);
+		if (data.status == 200) {
+			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
+		}
+	},
 };
 
 // mutations
 const mutations = {
-	pushProductToCart (state, { id }) {
-		state.items.push({
-			id,
-			quantity: 1
-		});
+	setUsers (state, users) {
+		state.all = users;
 	},
-
-	incrementItemQuantity (state, { id }) {
-		const cartItem = state.items.find(item => item.id === id);
-		cartItem.quantity++;
+	showModal(state, show) {
+		state.modalShow = show;
 	},
-
-	setCartItems (state, { items }) {
-		state.items = items;
+	addErrors(state, e) {
+		state.errors.push(e);
 	},
-
-	setCheckoutStatus (state, status) {
-		state.checkoutStatus = status;
+	validateNotEmpty() {
+		state.model.validationErrors = [];
+		for (let key of state.model.required) {
+			if (!state.model.value[key] || state.model.value[key].length == 0) {
+				state.model.validationErrors.push(key);
+			}
+		}
+		return state.model.validationErrors.length === 0;
+	},
+	clearAndCloseModal(state) {
+		for (var key in state.model.value) {
+			state.model.value[key] = null;
+		}
+		state.modalShow = false;
 	}
 };
 

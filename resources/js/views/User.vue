@@ -2,8 +2,7 @@
   <div>
     <NewUserModal
       :show="showUserModal"
-      @close="showUserModal=false"
-      @userSaved="userSaved"
+      @close="showModal(false)"
     />
     <div class="container">
       <div class="row justify-content-center">
@@ -13,7 +12,7 @@
               <h3>Учащиеся</h3>
               <span
                 class="btn-add float-right"
-                @click="showUserModal=true">
+                @click="showModal(true)">
                 +
               </span>
             </div>
@@ -29,37 +28,30 @@
 
 <script>
 // import TableComponent from './DataTable/TableComponent';
-import NewUserModal from './NewUserModal';
-import TableComponent from './DataTable/TableComponent';
-import C from '../constants';
+import NewUserModal from '../components/NewUserModal';
+import TableComponent from '../components/DataTable/TableComponent';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
 	components: {
 		TableComponent,
 		NewUserModal,
 	},
-	data () {
-		return {
-			showUserModal: false,
-			users: null,
-		};
-	},
-	mounted: function () {
-		axios.get(C.api.user)
-			.then(reposnse => {
-				this.users = reposnse.data.data;
-			})
-			.catch(e => { this.errors.push(e); });
-		axios.get(C.api.group)
-			.then(reposnse => {
-				this.groups = reposnse.data.data;
-			})
-			.catch(e => { this.errors.push(e); });
+	computed: mapState({
+		users: state => state.user.all,
+		showUserModal: state => state.user.modalShow,
+	}),
+	// watch: {
+	// 	// call again the method if the route changes
+	// 	'$route': 'fetchData'
+	// },
+	created () {
+		this.$store.dispatch('user/getAll');
 	},
 	methods: {
-		userSaved(response) {
-			console.log('userSaved fired');
-		},
-	},
+		...mapMutations('user', [
+			'showModal'
+		]),
+	}
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <Modal
-    :show="show"
-    @close="close">
+    :show="modalShow"
+    @close="clearAndCloseModal">
     <template slot="header">
       <h3>Добавить учащегося</h3>
     </template>
@@ -9,7 +9,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input
-          v-model="user.email"
+          v-model="model.email"
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
@@ -18,7 +18,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Имя</label>
         <input
-          v-model="user.name"
+          v-model="model.name"
           :class="{'is-invalid': validationErrors.includes('name')}"
           type="text"
           class="form-control"
@@ -28,7 +28,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
         <input
-          v-model="user.surname"
+          v-model="model.surname"
           type="text"
           class="form-control"
           aria-describedby="emailHelp">
@@ -36,7 +36,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Телефон</label>
         <input
-          v-model="user.phone"
+          v-model="model.phone"
           :class="{'is-invalid': validationErrors.includes('phone')}"
           type="text"
           class="form-control">
@@ -44,7 +44,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Группа</label>
         <select
-          v-model="user.group_id"
+          v-model="model.group_id"
           :class="{'is-invalid': validationErrors.includes('group_id')}"
           class="form-control form-control-sm">
           <option
@@ -60,79 +60,41 @@
     <template slot="footer">
       <span
         class="button-default"
-        @click="close">Отмена</span>
+        @click="clearAndCloseModal">Отмена</span>
       <button
         class="btn btn-success"
-        @click="save">Сохранить</button>
+        @click="create">Сохранить</button>
     </template>
   </Modal>
 </template>
 
 <script>
 import Modal  from './Modal/Modal';
-import C from '../constants';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
 	components: {
 		Modal
 	},
-	props: {
-		show: { type: Boolean, default: false }
-	},
-	data: () => ({
-		constants: C,
-		user: {
-			name: '',
-			surname: '',
-			phone: null,
-			email: '',
-			group_id: null
-		},
-		required: ['name', 'phone', 'group_id'],
-		validationErrors: [],
-		errors: [],
-		groups: [],
+	computed: mapState({
+		model: state => state.user.model.value,
+		validationErrors: state => state.user.model.validationErrors,
+		errors: state => state.user.errors,
+		modalShow: state => state.user.modalShow,
+		groups: state => state.group.all,
 	}),
-	mounted: function () {
-		axios.get(C.api.group)
-			.then(reposnse => {
-				this.groups = reposnse.data.data;//.map((group) => {
-				//   ...group,
-				//   timetable: JSON(group.timetable).decode()
-				// });
-			})
-			.catch(e => { this.errors.push(e); });
+	created () {
+		this.$store.dispatch('group/getAll');
 	},
 	methods: {
-		close: function () {
-			for (var key in this.user) {
-				this.user[key] = null;
-			}
-			this.$emit('close');
-		},
-		save: async () => {
-			if (!this.validateNotEmpty(this.required)) {
-				console.info('validation errors');
-				return;
-			}
-
-			let {data} = await axios.post(C.api.user, this.user);
-			if (data.status == 200) {
-				this.$emit('userSaved', response);
-				this.close();
-			} else {
-				this.errors.push(e);
-			}
-		},
-		validateNotEmpty: function (attributes) {
-			this.validationErrors = [];
-			for (let key of attributes) {
-				if (!this.user[key] || this.user[key].length == 0) {
-					this.validationErrors.push(key);
-				}
-			}
-			return this.validationErrors.length === 0;
-		}
+		...mapActions('user', [
+			'create',
+			'update',
+			'delete'
+		]),
+		...mapMutations('user', [
+			'clearAndCloseModal',
+		])
 	}
 };
 </script>
