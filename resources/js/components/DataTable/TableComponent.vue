@@ -1,28 +1,34 @@
 <template>
   <div v-if="objects && objects.length" >
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th
+    <div class="data-table">
+      <div class="data-table__head">
+        <div class="data-table__head-row">
+          <div
             v-for="(vaule, key) in objects[0]"
-            :key="key">{{ key }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
+            :key="key"
+            class="data-table__head-col">{{ key }}
+          </div>
+        </div>
+      </div>
+      <div class="data-table__body">
+        <div
           v-for="object in objects"
-          :key="object.id">
-          <td
+          :key="object.id"
+          class="data-table__body-row"
+          @click="update(object.id)">
+          <div
             v-for="(value, key) in object"
-            :key="key" >{{ value }}</td>
-        </tr>
-      </tbody>
-    </table>
+            :key="key"
+            class="data-table__body-col"
+          >{{ value }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
 	props: {
@@ -31,15 +37,10 @@ export default {
 		// columns: { type: Array, default: () =>[] },
 
 	},
-	data: function() {
-		return {
-			filters: [],
-		};
-	},
 	methods: {
-		filter () {
-
-		}
-	},
+		update: function(id) {
+			this.$emit('update', id);
+		},
+	}
 };
 </script>

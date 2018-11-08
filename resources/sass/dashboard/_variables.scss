@@ -20,8 +20,10 @@ $gray-lighter: lighten($gray-base, 93.5%) !default;
 
 // Gray and Brand Colors for use across theme
 $body-bg: $gray-darker; //rgb(38, 38, 38);
-$body-color: $gray-light; //#888;
+$body-color: #fff; //#888;
 $card-bg: $gray-dark;
+$data-table-head-bg: $gray-darker;
+$data-table-body-bg: $gray-dark;
 
 $theme-primary:   $gray-darker;
 $theme-secondary: $gray-dark;

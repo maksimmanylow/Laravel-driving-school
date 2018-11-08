@@ -5,6 +5,7 @@ import C from './constants';
 const state = {
 	all: [],
 	modalShow: false,
+	modalMode: null,
 	errors: [],
 	model: {
 		value: C.defaultGroup,
@@ -15,13 +16,27 @@ const state = {
 };
 
 // getters
-const getters = {};
+const getters = {
+	modalModeLabel: (state, getters, rootState) => {
+		switch (state.modalMode) {
+		case C.mode.CRAETE:
+			return 'Добавить';
+		case C.mode.UPDATE:
+			return 'Редактировать';
+		}
+	}
+};
 
 // actions
 const actions = {
-	async getAll ({ commit }) {
+	async getAll({
+		commit
+	}) {
 		try {
-		  const {data, status} = await API.getAll();
+			const {
+				data,
+				status
+			} = await API.getAll();
 			if (status == 200) {
 				commit('setGroups', data.data);
 			}
@@ -29,7 +44,24 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async create ({commit}) {
+	async get({
+		commit
+	}, id) {
+		try {
+			const {
+				data,
+				status
+			} = await API.get(id);
+			if (status == 200) {
+				commit('setModel', data.data);
+			}
+		} catch (error) {
+			mutations.addErrors(error);
+		}
+	},
+	async create({
+		commit
+	}) {
 		if (!mutations.validateNotEmpty()) {
 			return;
 		}
@@ -39,7 +71,10 @@ const actions = {
 		state.model.value.category = state.model.value.category.key;
 
 		try {
-		  const {data, status} = await API.create(state.model.value);
+			const {
+				data,
+				status
+			} = await API.create(state.model.value);
 			if (status == 200) {
 				commit('setUsers', [...state.all, state.model.value]);
 				commit('clearAndCloseModal');
@@ -48,14 +83,22 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async update ({commit}) {
-		const {data} = await API.update(state.model.value);
+	async update({
+		commit
+	}) {
+		const {
+			data
+		} = await API.update(state.model.value);
 		if (data.status == 200) {
 			commit('setUsers', data);
 		}
 	},
-	async delete ({commit}) {
-		const {data} = await API.delete(state.model.value);
+	async delete({
+		commit
+	}) {
+		const {
+			data
+		} = await API.delete(state.model.value);
 		if (data.status == 200) {
 			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
 		}
@@ -64,8 +107,26 @@ const actions = {
 
 // mutations
 const mutations = {
-	setGroups (state, groups) {
+	showUpdateModal(state, id) {
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
+		state.modalMode = C.mode.UPDATE;
+		state.modalShow = true;
+	},
+	showCreateModal(state, id) {
+		state.model.value = C.defaultGroup;
+		state.modalMode = C.mode.CRAETE;
+		state.modalShow = true;
+	},
+	setModelValue(state, id) {
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
+	},
+	setGroups(state, groups) {
 		state.all = groups;
+	},
+	setModel(state, value) {
+		state.model.value = value;
 	},
 	showModal(state, show) {
 		state.modalShow = show;
@@ -82,8 +143,7 @@ const mutations = {
 		}
 		return state.model.validationErrors.length === 0;
 	},
-	defaultAndCloseModal(state) {
-		state.model.value = C.defaultGroup;
+	closeModal(state) {
 		state.modalShow = false;
 	}
 };

@@ -1,4 +1,5 @@
 import  API from '../../api/user';
+import C from './constants';
 
 // initial state
 const state = {
@@ -6,14 +7,7 @@ const state = {
 	modalShow: false,
 	errors: [],
 	model: {
-		value: {
-			id: null,
-			name: '',
-			surname: '',
-			phone: null,
-			email: '',
-			group_id: null
-		},
+		value: C.defaultUser,
 		required: ['name', 'phone', 'group_id'],
 		validationErrors: [],
 	},
@@ -64,6 +58,19 @@ const actions = {
 
 // mutations
 const mutations = {
+	showUpdateModal (state, id) {
+		state.model.value = {...state.all.find(model => model.id == id)};
+		state.modalMode = C.mode.UPDATE;
+		state.modalShow = true;
+	},
+	showCreateModal (state, id) {
+		state.model.value = C.defaultUser;
+		state.modalMode = C.mode.CRAETE;
+		state.modalShow = true;
+	},
+	setModelValue (state, id) {
+		state.model.value = {...state.all.find(model => model.id == id)};
+	},
 	setUsers (state, users) {
 		state.all = users;
 	},
@@ -82,10 +89,10 @@ const mutations = {
 		}
 		return state.model.validationErrors.length === 0;
 	},
-	clearAndCloseModal(state) {
-		for (var key in state.model.value) {
-			state.model.value[key] = null;
-		}
+	closeModal(state) {
+		// for (var key in state.model.value) {
+		// 	state.model.value[key] = null;
+		// }
 		state.modalShow = false;
 	}
 };

@@ -1,0 +1,40 @@
+@import "variables.scss";
+
+.data-table {
+  margin: 1rem;
+  background-color: $data-table-body-bg;
+  user-select: none;
+
+  &__head-row {
+    // background-color: $data-table-head-bg;
+    display: flex;
+  }
+
+  &__body-row {
+    cursor: pointer;
+    display: flex;
+    padding: 0 1rem;
+
+    &:hover {
+      // border: 1px solid #00C683;
+      background-color: lighten($gray-base, 22%);
+      border-radius: 1rem;
+      border-color: rgba(3, 27, 78, .1);
+      box-shadow: 0 2px 4px rgba(3, 27, 78, .06);
+      position: relative;
+      // transform: scale(1.025);
+      z-index: 11;
+    }
+
+    // &:nth-child(even) {
+    //   background-color:
+    // }
+
+  }
+  &__body-col,
+  &__head-col {
+    padding: .25rem;
+    flex-basis: 20%;
+    text-align: center;
+  }
+}

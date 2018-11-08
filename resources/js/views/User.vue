@@ -1,9 +1,6 @@
 <template>
   <div>
-    <NewUserModal
-      :show="showUserModal"
-      @close="showModal(false)"
-    />
+    <UserModal />
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-12">
@@ -12,12 +9,14 @@
               <h3>Учащиеся</h3>
               <span
                 class="btn-add float-right"
-                @click="showModal(true)">
+                @click="showCreateModal">
                 +
               </span>
             </div>
             <div class="card-body">
-              <TableComponent :objects="users" />
+              <TableComponent
+                :objects="users"
+                @update="showUpdateModal" />
             </div>
           </div>
         </div>
@@ -28,18 +27,17 @@
 
 <script>
 // import TableComponent from './DataTable/TableComponent';
-import NewUserModal from '../components/NewUserModal';
+import UserModal from '../components/UserModal';
 import TableComponent from '../components/DataTable/TableComponent';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
 	components: {
 		TableComponent,
-		NewUserModal,
+		UserModal,
 	},
 	computed: mapState({
 		users: state => state.user.all,
-		showUserModal: state => state.user.modalShow,
 	}),
 	// watch: {
 	// 	// call again the method if the route changes
@@ -50,7 +48,8 @@ export default {
 	},
 	methods: {
 		...mapMutations('user', [
-			'showModal'
+			'showCreateModal',
+			'showUpdateModal',
 		]),
 	}
 };

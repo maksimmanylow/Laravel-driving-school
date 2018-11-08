@@ -1,4 +1,8 @@
 export default {
+	mode: {
+		CRAETE: 'create',
+		UPDATE: 'update'
+	},
 	weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
 	groupStatuses: [{
 		key: 1,
@@ -32,6 +36,15 @@ export default {
 			price: 25000,
 			price_for_students: 23000,
 			is_active: true,
+		};
+	},
+	get defaultUser() {
+		return {
+			name: null,
+			surname: null,
+			phone: null,
+			email: null,
+			group_id: null
 		};
 	},
 };

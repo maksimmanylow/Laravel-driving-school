@@ -1,9 +1,7 @@
 <template>
   <div>
-    <NewGroupModal
-      :show="modalShow"
-      @close="showModal(false)"/>
-    <div class="container">
+    <GroupModal />
+    <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="card">
@@ -11,12 +9,14 @@
               <h3>Группы</h3>
               <span
                 class="btn-add float-right"
-                @click="showModal(true)">
+                @click="showCreateModal">
                 +
               </span>
             </div>
             <div class="card-body">
-              <TableComponent :objects="groups" />
+              <TableComponent
+                :objects="groups"
+                @update="showUpdateModal" />
             </div>
           </div>
         </div>
@@ -27,25 +27,25 @@
 
 <script>
 // import TableComponent from './DataTable/TableComponent';
-import NewGroupModal from '../components/NewGroupModal';
+import GroupModal from '../components/GroupModal';
 import TableComponent from '../components/DataTable/TableComponent';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
 	components: {
 		TableComponent,
-		NewGroupModal
+		GroupModal
 	},
 	computed: mapState({
 		groups: state => state.group.all,
-		modalShow: state => state.group.modalShow,
 	}),
 	created () {
 		this.$store.dispatch('group/getAll');
 	},
 	methods: {
 		...mapMutations('group', [
-			'showModal'
+			'showCreateModal',
+			'showUpdateModal',
 		]),
 	}
 };
