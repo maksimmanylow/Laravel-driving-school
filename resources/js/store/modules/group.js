@@ -19,7 +19,7 @@ const state = {
 const getters = {
 	modalModeLabel: (state, getters, rootState) => {
 		switch (state.modalMode) {
-		case C.mode.CRAETE:
+		case C.mode.CREATE:
 			return 'Добавить';
 		case C.mode.UPDATE:
 			return 'Редактировать';
@@ -114,7 +114,7 @@ const mutations = {
 	},
 	showCreateModal(state) {
 		state.model.value = C.defaultGroup;
-		state.modalMode = C.mode.CRAETE;
+		state.modalMode = C.mode.CREATE;
 		state.modalShow = true;
 	},
 	setModelValue(state, id) {

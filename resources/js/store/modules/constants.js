@@ -1,6 +1,6 @@
 export default {
 	mode: {
-		CRAETE: 'create',
+		CREATE: 'create',
 		UPDATE: 'update'
 	},
 	weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],

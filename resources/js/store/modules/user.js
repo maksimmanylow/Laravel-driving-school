@@ -1,10 +1,11 @@
-import  API from '../../api/user';
+import API from '../../api/user';
 import C from './constants';
 
 // initial state
 const state = {
 	all: [],
 	modalShow: false,
+	modalMode: null,
 	errors: [],
 	model: {
 		value: C.defaultUser,
@@ -17,7 +18,7 @@ const state = {
 const getters = {
 	modalModeLabel: (state, getters, rootState) => {
 		switch (state.modalMode) {
-		case C.mode.CRAETE:
+		case C.mode.CREATE:
 			return 'Добавить';
 		case C.mode.UPDATE:
 			return 'Редактировать';
@@ -27,9 +28,14 @@ const getters = {
 
 // actions
 const actions = {
-	async getAll ({ commit }) {
+	async getAll({
+		commit
+	}) {
 		try {
-		  const {data, status} = await API.getAll();
+			const {
+				data,
+				status
+			} = await API.getAll();
 			if (status == 200) {
 				commit('setUsers', data.data);
 			}
@@ -37,12 +43,17 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async create ({commit}) {
+	async create({
+		commit
+	}) {
 		if (!mutations.validateNotEmpty()) {
 			return;
 		}
 		try {
-		  const {data, status} = await API.create(state.model.value);
+			const {
+				data,
+				status
+			} = await API.create(state.model.value);
 			if (status == 200) {
 				commit('setUsers', [...state.all, state.model.value]);
 				commit('clearAndCloseModal');
@@ -51,14 +62,22 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async update ({commit}) {
-		const {data} = await API.update(state.model.value);
+	async update({
+		commit
+	}) {
+		const {
+			data
+		} = await API.update(state.model.value);
 		if (data.status == 200) {
 			commit('setUsers', data);
 		}
 	},
-	async delete ({commit}) {
-		const {data} = await API.delete(state.model.value);
+	async delete({
+		commit
+	}) {
+		const {
+			data
+		} = await API.delete(state.model.value);
 		if (data.status == 200) {
 			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
 		}
@@ -67,20 +86,22 @@ const actions = {
 
 // mutations
 const mutations = {
-	showUpdateModal (state, id) {
-		state.model.value = {...state.all.find(model => model.id == id)};
+	showUpdateModal(state, id) {
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
 		state.modalMode = C.mode.UPDATE;
 		state.modalShow = true;
 	},
-	showCreateModal (state) {
+	showCreateModal(state) {
 		state.model.value = C.defaultUser;
-		state.modalMode = C.mode.CRAETE;
+		state.modalMode = C.mode.CREATE;
 		state.modalShow = true;
 	},
-	setModelValue (state, id) {
-		state.model.value = {...state.all.find(model => model.id == id)};
+	setModelValue(state, id) {
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
 	},
-	setUsers (state, users) {
+	setUsers(state, users) {
 		state.all = users;
 	},
 	showModal(state, show) {
