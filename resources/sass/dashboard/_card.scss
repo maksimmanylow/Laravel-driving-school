@@ -1,0 +1,48 @@
+.card {
+  border-radius: 1rem !important;
+  overflow: hidden;
+
+  &-header {
+    text-align: center;
+    background-color: $vue-light-darker;
+    color: white;
+
+    h3 {
+      display: inline-block;
+      margin: 0;
+      font-family: 'Lobster', cursive;
+    }
+  }
+}
+
+.btn-add {
+  font-family: 'Roboto', Helvetica, serif;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 300;
+  background-color: #fff;
+  color: $gray;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.btn-add--outline {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 300;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: #fff;
+  font-size: 26px;
+  line-height: 26px;
+}

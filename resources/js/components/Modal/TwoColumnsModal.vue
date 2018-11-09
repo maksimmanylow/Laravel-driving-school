@@ -56,11 +56,17 @@ export default {
 			if (this.show && e.keyCode == 27) {
 				this.close();
 			}
+			if (!this.show && e.keyCode == 13) {
+				this.open();
+			}
 		});
 	},
 	methods: {
-		close: function () {
+		close: function() {
 			this.$emit('close');
+		},
+		open: function() {
+			this.$emit('open');
 		},
 	}
 };

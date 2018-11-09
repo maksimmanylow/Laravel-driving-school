@@ -2,6 +2,14 @@
   <div id="app">
     <Navbar>
       <router-link
+        :to="{name: 'home'}"
+        tag="li"
+        class="nav-item"
+        active-class="active"
+      >
+        <a class="nav-link">Главная</a>
+      </router-link>
+      <router-link
         :to="{name: 'user'}"
         tag="li"
         class="nav-item"

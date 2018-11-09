@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a
       class="navbar-brand"
-      href="#">
+      href="/dashboard">
       <img
-        src=""
+        src="../../img/logo.png"
         width="30"
         height="30"
         alt="vue logo">

@@ -7,11 +7,14 @@
           <div class="card">
             <div class="card-header">
               <h3>Учащиеся</h3>
-              <span
-                class="btn-add float-right"
-                @click="showCreateModal">
-                +
-              </span>
+              <div class="float-right">
+                <SearchInput/>
+                <span
+                  class="btn-add"
+                  @click="showCreateModal">
+                  +
+                </span>
+              </div>
             </div>
             <div class="card-body">
               <TableComponent
@@ -28,6 +31,7 @@
 <script>
 // import TableComponent from './DataTable/TableComponent';
 import UserModal from '../components/UserModal';
+import SearchInput from '../components/SearchInput';
 import TableComponent from '../components/DataTable/TableComponent';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
@@ -35,6 +39,7 @@ export default {
 	components: {
 		TableComponent,
 		UserModal,
+		SearchInput,
 	},
 	computed: mapState({
 		users: state => state.user.all,

@@ -1,7 +1,8 @@
 <template>
   <TwoColumnsModal
     :show="modalShow"
-    @close="closeModal">
+    @close="closeModal"
+    @open="showCreateModal">
     <template slot="header">
       <h3>{{ modalModeLabel }} группу</h3>
     </template>
@@ -105,7 +106,7 @@
     </template>
     <template slot="footer">
       <span
-        class="button-default"
+        class="btn button-default"
         @click="closeModal">Отмена</span>
       <button
         class="btn btn-success"
@@ -130,7 +131,6 @@ export default {
 			validationErrors: state => state.group.model.validationErrors,
 			errors: state => state.group.errors,
 			modalShow: state => state.group.modalShow,
-			modalModeLabel: state => state.group.modalModeLabel,
 			constants: state => state.group.constants,
 		}),
 		...mapGetters('group',[
@@ -145,6 +145,7 @@ export default {
 		]),
 		...mapMutations('group', [
 			'closeModal',
+			'showCreateModal'
 		])
 	},
 };

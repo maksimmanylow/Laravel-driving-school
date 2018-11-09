@@ -108,12 +108,11 @@ const actions = {
 // mutations
 const mutations = {
 	showUpdateModal(state, id) {
-		state.model.value = { ...state.all.find(model => model.id == id)
-		};
+		state.model.value = { ...state.all.find(model => model.id == id)};
 		state.modalMode = C.mode.UPDATE;
 		state.modalShow = true;
 	},
-	showCreateModal(state, id) {
+	showCreateModal(state) {
 		state.model.value = C.defaultGroup;
 		state.modalMode = C.mode.CRAETE;
 		state.modalShow = true;

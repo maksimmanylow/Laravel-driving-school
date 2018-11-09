@@ -1,9 +1,10 @@
 <template>
   <Modal
     :show="modalShow"
-    @close="closeModal">
+    @close="closeModal"
+    @open="showCreateModal">
     <template slot="header">
-      <h3>Добавить учащегося</h3>
+      <h3>{{ modalModeLabel }} учащегося</h3>
     </template>
     <template slot="body">
       <div class="form-group">
@@ -12,8 +13,7 @@
           v-model="model.email"
           type="email"
           class="form-control"
-          aria-describedby="emailHelp"
-        >
+          aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Имя</label>
@@ -22,8 +22,7 @@
           :class="{'is-invalid': validationErrors.includes('name')}"
           type="text"
           class="form-control"
-          aria-describedby="emailHelp"
-        >
+          aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
@@ -50,8 +49,7 @@
           <option
             v-for="group in groups"
             :key="group.id"
-            :value="group.id"
-          >
+            :value="group.id">
             {{ group.name }} ({{ group.timetable }})
           </option>
         </select>
@@ -59,7 +57,7 @@
     </template>
     <template slot="footer">
       <span
-        class="button-default"
+        class="btn button-default"
         @click="closeModal">Отмена</span>
       <button
         class="btn btn-success"
@@ -69,20 +67,26 @@
 </template>
 
 <script>
-import Modal  from './Modal/Modal';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import Modal from './Modal/Modal';
+import SearchInput from './SearchInput';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
 	components: {
-		Modal
+		Modal,
 	},
-	computed: mapState({
-		model: state => state.user.model.value,
-		validationErrors: state => state.user.model.validationErrors,
-		errors: state => state.user.errors,
-		modalShow: state => state.user.modalShow,
-		groups: state => state.group.all,
-	}),
+	computed: {
+		...mapState({
+			model: state => state.user.model.value,
+			validationErrors: state => state.user.model.validationErrors,
+			errors: state => state.user.errors,
+			modalShow: state => state.user.modalShow,
+			groups: state => state.group.all,
+		}),
+		...mapGetters('user', [
+			'modalModeLabel'
+		])
+	},
 	created () {
 		this.$store.dispatch('group/getAll');
 	},
@@ -94,6 +98,7 @@ export default {
 		]),
 		...mapMutations('user', [
 			'closeModal',
+			'showCreateModal'
 		])
 	}
 };

@@ -25,12 +25,13 @@
     border-radius: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
+    // font-family: Helvetica, Arial, sans-serif;
   }
 
   &-header {
     h3 {
       margin: auto;
+      font-family: 'Lobster', cursive;
     }
     .close {
       padding: 0;
@@ -87,18 +88,4 @@
  .multiselect, .multiselect__tags, .multiselect__single, .multiselect__content, .multiselect__input {
   background-color: $theme-secondary;
   color: #fff;
-}
-
-.btn-add {
-  vertical-align: middle;
-  text-align: center;
-  line-height: 2rem;
-  cursor: pointer;
-  font-weight: 300;
-  font-size: 2rem;
-  background-color: #fff;
-  color: #000;
-  border-radius: 1rem;
-  width: 2rem;
-  height: 2rem;
 }

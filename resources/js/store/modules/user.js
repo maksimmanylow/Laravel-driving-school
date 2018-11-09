@@ -14,7 +14,16 @@ const state = {
 };
 
 // getters
-const getters = {};
+const getters = {
+	modalModeLabel: (state, getters, rootState) => {
+		switch (state.modalMode) {
+		case C.mode.CRAETE:
+			return 'Добавить';
+		case C.mode.UPDATE:
+			return 'Редактировать';
+		}
+	}
+};
 
 // actions
 const actions = {
@@ -63,7 +72,7 @@ const mutations = {
 		state.modalMode = C.mode.UPDATE;
 		state.modalShow = true;
 	},
-	showCreateModal (state, id) {
+	showCreateModal (state) {
 		state.model.value = C.defaultUser;
 		state.modalMode = C.mode.CRAETE;
 		state.modalShow = true;

@@ -19,15 +19,17 @@
 }
 
 .btn-primary {
-  @include button-variant ($vue-dark, $vue-dark);
+  @include button-variant ($pale-blue, $pale-blue);
 }
 
 .btn-success {
   @include button-variant ($vue-light-darker, $vue-light-darker);
+  // @include button-variant (yellow, yellow);
 }
 
 .btn {
   font-weight: 700;
+  font-family: 'Roboto', Helvetica, serif;
   // border: none;
   // @include sans-serif-font;
 }
@@ -50,27 +52,14 @@
   }
 }
 
-.card {
-    border-radius: 1rem !important;
-    overflow: hidden;
-    &-header {
-      text-align: center;
-      background-color: $vue-light-darker;
-      padding: .5rem;
-      color: white;
-      h3 {
-        display: inline-block;
-        margin: 0;
-      }
-  }
-}
-
-.table th, .table td, .table thead th {
+.table th,
+.table td,
+.table thead th {
   padding: 0.25rem;
   vertical-align: middle;
   border: none;
   font-weight: 400;
-  color: white;//$gray-lighter;
+  color: white; //$gray-lighter;
 }
 
 .table th {
@@ -84,4 +73,8 @@
 
 .is-invalid {
   border-width: 1px;
+}
+
+label {
+  font-family: 'Jura', sans-serif;
 }
