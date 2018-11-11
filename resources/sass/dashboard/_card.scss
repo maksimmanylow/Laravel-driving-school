@@ -2,47 +2,21 @@
   border-radius: 1rem !important;
   overflow: hidden;
 
-  &-header {
+  &__header {
     text-align: center;
-    background-color: $vue-light-darker;
+    background-color: map-get($grays, "700");
     color: white;
+    padding: 0.75rem 1.25rem;
 
     h3 {
       display: inline-block;
       margin: 0;
-      font-family: 'Lobster', cursive;
+      // font-family: 'Lobster', cursive;
     }
   }
-}
 
-.btn-add {
-  font-family: 'Roboto', Helvetica, serif;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  line-height: 30px;
-  cursor: pointer;
-  font-size: 30px;
-  font-weight: 300;
-  background-color: #fff;
-  color: $gray;
-  border-radius: 15px;
-  width: 30px;
-  height: 30px;
-}
-
-.btn-add--outline {
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-  cursor: pointer;
-  font-weight: 300;
-  border-radius: 15px;
-  width: 30px;
-  height: 30px;
-  border: 2px solid white;
-  background-color: transparent;
-  color: #fff;
-  font-size: 26px;
-  line-height: 26px;
+  &__body {
+    padding: 1.25rem;
+    background-color: map-get($grays, "500");
+  }
 }

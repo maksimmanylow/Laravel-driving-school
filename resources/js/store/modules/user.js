@@ -1,5 +1,6 @@
 import API from '../../api/user';
 import C from './constants';
+import { Store } from 'vuex';
 
 // initial state
 const state = {
@@ -12,6 +13,12 @@ const state = {
 		required: ['name', 'phone', 'group_id'],
 		validationErrors: [],
 	},
+	message: {
+		text: 'Default text',
+		type: C.message.type.OK,
+		show: false,
+		image: null,
+	}
 };
 
 // getters
@@ -43,33 +50,47 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async create({
-		commit
-	}) {
-		if (!mutations.validateNotEmpty()) {
+	save({state, getters, commit, dispatch}) {
+		commit('validateNotEmpty');
+		if (state.model.validationErrors.length) {
 			return;
 		}
+		switch (state.modalMode) {
+		case C.mode.CREATE:
+			dispatch('create');
+			break;
+		case C.mode.UPDATE:
+			dispatch('update');
+			break;
+		}
+		commit('closeModal');
+	},
+	async create({commit, dispatch, state}) {
 		try {
 			const {
 				data,
 				status
 			} = await API.create(state.model.value);
-			if (status == 200) {
-				commit('setUsers', [...state.all, state.model.value]);
-				commit('clearAndCloseModal');
+			if (status == 201) {
+				dispatch('showMessageOK', 'Учащийся добавлен!');
+				commit('setUsers', [...state.all, data.data]);
 			}
 		} catch (error) {
-			mutations.addErrors(error);
+			commit('addErrors', error);
 		}
 	},
-	async update({
-		commit
-	}) {
-		const {
-			data
-		} = await API.update(state.model.value);
-		if (data.status == 200) {
-			commit('setUsers', data);
+	async update({commit, dispatch, state}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.update(state.model.value);
+			if (status == 202) {
+				dispatch('showMessageOK', 'Учащийся обновлен!');
+				commit('setUsers', data.data);
+			}
+		} catch (error) {
+			commit('addErrors', error);
 		}
 	},
 	async delete({
@@ -82,10 +103,43 @@ const actions = {
 			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
 		}
 	},
+	showMessageOK({commit}, message) {
+		commit('showMessageOK', message);
+		setTimeout(() => commit('closeMessage'), 1500);
+	},
 };
 
 // mutations
 const mutations = {
+	setEmail(state, val) {
+		state.model.value.email = val;
+	},
+	setName(state, val) {
+		state.model.value.name = val;
+	},
+	setSurname(state, val) {
+		state.model.value.surname = val;
+	},
+	setGroup(state, val) {
+		state.model.value.group_id = val;
+	},
+	setPhone(state, val) {
+		state.model.value.phone = val;
+	},
+	showMessageOK(state, message) {
+		state.message = {
+			text: message,
+			type: C.message.type.OK,
+			show: true,
+		};
+	},
+	closeMessage(state) {
+		state.message = {
+			text: '',
+			type: null,
+			show: false,
+		};
+	},
 	showUpdateModal(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)
 		};

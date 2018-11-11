@@ -3,6 +3,18 @@ export default {
 		CREATE: 'create',
 		UPDATE: 'update'
 	},
+	message: {
+		type: {
+			OK: 'Готово',
+			WARNING: 'Внимание',
+			ERROR: 'Ошибка',
+		},
+		image: {
+			OK: 'Готово',
+			WARNING: 'Внимание',
+			ERROR: 'Ошибка',
+		}
+	},
 	weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
 	groupStatuses: [{
 		key: 1,

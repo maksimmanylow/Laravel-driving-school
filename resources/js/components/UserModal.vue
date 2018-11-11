@@ -10,7 +10,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input
-          v-model="model.email"
+          v-model="email"
           type="email"
           class="form-control"
           aria-describedby="emailHelp">
@@ -18,7 +18,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Имя</label>
         <input
-          v-model="model.name"
+          v-model="name"
           :class="{'is-invalid': validationErrors.includes('name')}"
           type="text"
           class="form-control"
@@ -27,7 +27,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
         <input
-          v-model="model.surname"
+          v-model="surname"
           type="text"
           class="form-control"
           aria-describedby="emailHelp">
@@ -35,7 +35,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Телефон</label>
         <input
-          v-model="model.phone"
+          v-model="phone"
           :class="{'is-invalid': validationErrors.includes('phone')}"
           type="text"
           class="form-control">
@@ -43,7 +43,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Группа</label>
         <select
-          v-model="model.group_id"
+          v-model="group_id"
           :class="{'is-invalid': validationErrors.includes('group_id')}"
           class="form-control">
           <option
@@ -61,7 +61,7 @@
         @click="closeModal">Отмена</span>
       <button
         class="btn btn-success"
-        @click="create">Сохранить</button>
+        @click="save">Сохранить</button>
     </template>
   </Modal>
 </template>
@@ -76,8 +76,47 @@ export default {
 		Modal,
 	},
 	computed: {
+		name: {
+			get() {
+				return this.$store.state.user.model.value.name;
+			},
+			set(val) {
+				this.$store.commit('user/setName', val);
+			},
+		},
+		surname: {
+			get() {
+				return this.$store.state.user.model.value.surname;
+			},
+			set(val) {
+				this.$store.commit('user/setSurname', val);
+			},
+		},
+		phone: {
+			get() {
+				return this.$store.state.user.model.value.phone;
+			},
+			set(val) {
+				this.$store.commit('user/setPhone', val);
+			},
+		},
+		email: {
+			get() {
+				return this.$store.state.user.model.value.email;
+			},
+			set(val) {
+				this.$store.commit('user/setEmail', val);
+			},
+		},
+		group_id: {
+			get() {
+				return this.$store.state.user.model.value.group_id;
+			},
+			set(val) {
+				this.$store.commit('user/setGroup', val);
+			},
+		},
 		...mapState({
-			model: state => state.user.model.value,
 			validationErrors: state => state.user.model.validationErrors,
 			errors: state => state.user.errors,
 			modalShow: state => state.user.modalShow,
@@ -85,20 +124,19 @@ export default {
 		}),
 		...mapGetters('user', [
 			'modalModeLabel'
-		])
+		]),
 	},
 	created () {
 		this.$store.dispatch('group/getAll');
+		setTimeout(() => (this.$store.dispatch('user/showMessageOK', 'Just another test')), 2000);
 	},
 	methods: {
 		...mapActions('user', [
-			'create',
-			'update',
-			'delete'
+			'save',
 		]),
 		...mapMutations('user', [
 			'closeModal',
-			'showCreateModal'
+			'showCreateModal',
 		])
 	}
 };

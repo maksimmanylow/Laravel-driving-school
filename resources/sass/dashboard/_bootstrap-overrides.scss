@@ -19,7 +19,7 @@
 }
 
 .btn-primary {
-  @include button-variant ($pale-blue, $pale-blue);
+  @include button-variant ($blue-700, $blue-700);
 }
 
 .btn-success {
@@ -77,4 +77,9 @@
 
 label {
   font-family: 'Jura', sans-serif;
+}
+
+h1, h2, h3 {
+  // font-family: 'Lobster', cursive;
+  letter-spacing: 0.04em;
 }

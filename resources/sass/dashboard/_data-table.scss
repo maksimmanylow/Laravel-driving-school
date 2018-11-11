@@ -1,13 +1,23 @@
 @import "variables.scss";
 
 .data-table {
-  margin: 1rem;
+  // margin: 1rem;
   background-color: $data-table-body-bg;
   user-select: none;
+  border-radius: 1rem !important;
+  overflow: hidden;
 
   &__head-row {
-    // background-color: $data-table-head-bg;
+    background-color: map-get($grays, '800');
     display: flex;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.0625em;
+    padding: 0.75rem 1.25rem;
+  }
+
+  &__body {
+    padding: 0.75rem 1.25rem;
   }
 
   &__body-row {
@@ -36,5 +46,58 @@
     padding: .25rem;
     flex-basis: 20%;
     text-align: center;
+  }
+}
+
+
+.btn-add {
+  font-family: 'Roboto', Helvetica, serif;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 300;
+  background-color: #fff;
+  color: $gray;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.btn-add.btn-add--outline {
+  // display: inline-block;
+  // vertical-align: middle;
+  // text-align: center;
+  // cursor: pointer;
+  // font-weight: 300;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: #fff;
+  // font-size: 26px;
+  line-height: 26px;
+}
+
+.search-input {
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding: 0 15px 0 30px;
+  border: 1px solid #e3e3e3;
+  color: #2c3e50;
+  outline: none;
+  border-radius: 15px;
+  margin-right: 10px;
+  transition: border-color 0.2s ease;
+  background: #fff url(../../img/search.png) 8px 5px no-repeat;
+  background-size: 20px;
+  vertical-align: middle !important;
+
+  &:focus {
+    border-color: #42b983;
   }
 }
