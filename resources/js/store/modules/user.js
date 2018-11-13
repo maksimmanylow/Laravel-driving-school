@@ -8,6 +8,7 @@ const state = {
 	modalShow: false,
 	modalMode: null,
 	errors: [],
+	constants: C,
 	model: {
 		value: C.defaultUser,
 		required: ['name', 'phone', 'group_id'],
@@ -35,9 +36,7 @@ const getters = {
 
 // actions
 const actions = {
-	async getAll({
-		commit
-	}) {
+	async getAll({commit, dispatch, state}) {
 		try {
 			const {
 				data,
@@ -76,6 +75,7 @@ const actions = {
 				commit('setUsers', [...state.all, data.data]);
 			}
 		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
 			commit('addErrors', error);
 		}
 	},
@@ -85,26 +85,46 @@ const actions = {
 				data,
 				status
 			} = await API.update(state.model.value);
-			if (status == 202) {
+			if (status == 200) {
 				dispatch('showMessageOK', 'Учащийся обновлен!');
-				commit('setUsers', data.data);
+				commit('setUsers', state.all.map(user => {
+					if (user.id === data.data.id) {
+						return data.data;
+					} else {
+						return user;
+					}
+				}));
 			}
 		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
 			commit('addErrors', error);
 		}
 	},
-	async delete({
-		commit
-	}) {
-		const {
-			data
-		} = await API.delete(state.model.value);
-		if (data.status == 200) {
-			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
+	async delete({commit, dispatch, state}) {
+		try {
+			if (!state.model.value.id) {
+				throw new Error('Please, provide user id');
+			}
+			const {
+				data,
+				status
+			} = await API.delete(state.model.value.id);
+			if (status == 204) {
+				commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
+				dispatch('showMessageOK', 'Учащийся удален!');
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
 		}
+		commit('closeModal');
 	},
 	showMessageOK({commit}, message) {
 		commit('showMessageOK', message);
+		setTimeout(() => commit('closeMessage'), 1500);
+	},
+	showMessageError({commit}, message) {
+		commit('showMessageError', message);
 		setTimeout(() => commit('closeMessage'), 1500);
 	},
 };
@@ -133,6 +153,13 @@ const mutations = {
 			show: true,
 		};
 	},
+	showMessageError(state, message) {
+		state.message = {
+			text: message,
+			type: C.message.type.ERROR,
+			show: true,
+		};
+	},
 	closeMessage(state) {
 		state.message = {
 			text: '',
@@ -141,8 +168,7 @@ const mutations = {
 		};
 	},
 	showUpdateModal(state, id) {
-		state.model.value = { ...state.all.find(model => model.id == id)
-		};
+		state.model.value = { ...state.all.find(model => model.id == id)};
 		state.modalMode = C.mode.UPDATE;
 		state.modalShow = true;
 	},

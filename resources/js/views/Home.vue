@@ -55,17 +55,6 @@
         <div class="col-lg-1 pale-blue-900"/>
       </div>
       <div class="row justify-content-center row--colors">
-        <div class="col-lg-1 grey-100"/>
-        <div class="col-lg-1 grey-200"/>
-        <div class="col-lg-1 grey-300"/>
-        <div class="col-lg-1 grey-400"/>
-        <div class="col-lg-1 grey-500"/>
-        <div class="col-lg-1 grey-600"/>
-        <div class="col-lg-1 grey-700"/>
-        <div class="col-lg-1 grey-800"/>
-        <div class="col-lg-1 grey-900"/>
-      </div>
-      <div class="row justify-content-center row--colors">
         <div class="col-lg-1 gray-100"/>
         <div class="col-lg-1 gray-200"/>
         <div class="col-lg-1 gray-300"/>

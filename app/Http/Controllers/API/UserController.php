@@ -52,7 +52,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $User)
     {
-      $User->update($request->all);
+      $User->update($request->all());
 
       return new UserResource($User);
     }

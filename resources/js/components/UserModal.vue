@@ -1,8 +1,11 @@
 <template>
   <Modal
     :show="modalShow"
+    @open="showCreateModal"
     @close="closeModal"
-    @open="showCreateModal">
+    @save="saveUser"
+    @delete="deleteUser"
+  >
     <template slot="header">
       <h3>{{ modalModeLabel }} учащегося</h3>
     </template>
@@ -60,8 +63,12 @@
         class="btn button-default"
         @click="closeModal">Отмена</span>
       <button
+        v-if="modalMode == constants.mode.UPDATE"
+        class="btn btn-danger"
+        @click="deleteUser">Удалить</button>
+      <button
         class="btn btn-success"
-        @click="save">Сохранить</button>
+        @click="saveUser">Сохранить</button>
     </template>
   </Modal>
 </template>
@@ -69,6 +76,7 @@
 <script>
 import Modal from './Modal/Modal';
 import SearchInput from './SearchInput';
+
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
@@ -120,7 +128,9 @@ export default {
 			validationErrors: state => state.user.model.validationErrors,
 			errors: state => state.user.errors,
 			modalShow: state => state.user.modalShow,
+			constants: state => state.user.constants,
 			groups: state => state.group.all,
+			modalMode: state => state.user.modalMode,
 		}),
 		...mapGetters('user', [
 			'modalModeLabel'
@@ -128,12 +138,13 @@ export default {
 	},
 	created () {
 		this.$store.dispatch('group/getAll');
-		setTimeout(() => (this.$store.dispatch('user/showMessageOK', 'Just another test')), 2000);
+		// setTimeout(() => (this.$store.dispatch('user/showMessageOK', 'Just another test')), 2000);
 	},
 	methods: {
-		...mapActions('user', [
-			'save',
-		]),
+		...mapActions('user', {
+			saveUser: 'save',
+			deleteUser: 'delete',
+		}),
 		...mapMutations('user', [
 			'closeModal',
 			'showCreateModal',

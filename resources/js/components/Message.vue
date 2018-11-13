@@ -2,16 +2,11 @@
   <Modal
     :show="message.show">
     <template slot="header">
-      <h3>{{ message.text }} </h3>
+      <h3>{{ message.type }}</h3>
     </template>
     <template slot="body">
-      <!-- <img
-        :src="message.image"
-        alt=""> -->
+      {{ message.text }}
     </template>
-    <!-- <template slot="footer">
-
-    </template> -->
   </Modal>
 </template>
 

@@ -12,7 +12,7 @@
                 class="modal-container"
                 @click.stop>
                 <div class="modal-header">
-                  <slot name="header">default header</slot>
+                  <slot name="header" />
                   <!-- <button
                     type="button"
                     class="close"
@@ -23,10 +23,10 @@
                   </button> -->
                 </div>
                 <div class="modal-body">
-                  <slot name="body">default body</slot>
+                  <slot name="body" />
                 </div>
                 <div class="modal-footer">
-                  <slot name="footer">default footer</slot>
+                  <slot name="footer" />
                 </div>
               </div>
             </div>
@@ -40,24 +40,37 @@
 <script>
 export default {
 	props: {
-		show: {type: Boolean, default: false}
+		show: { type: Boolean, default: false }
 	},
 	mounted: function () {
 		document.addEventListener('keydown', (e) => {
 			if (this.show && e.keyCode == 27) {
 				this.close();
 			}
-			if (!this.show && e.keyCode == 13) {
-				this.open();
+			if (e.keyCode == 13) {
+				if (!this.show) {
+					this.open();
+				} else {
+					this.save();
+				}
+			}
+			if (e.keyCode == 46) {
+				this.delete();
 			}
 		});
 	},
 	methods: {
-		close: function() {
+		close: function () {
 			this.$emit('close');
 		},
-		open: function() {
+		open: function () {
 			this.$emit('open');
+		},
+		save: function () {
+			this.$emit('save');
+		},
+		delete: function () {
+			this.$emit('delete');
 		},
 	}
 };
