@@ -43,7 +43,7 @@ const actions = {
 				status
 			} = await API.getAll();
 			if (status == 200) {
-				commit('setUsers', data.data);
+				commit('setAll', data.data);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
@@ -72,7 +72,7 @@ const actions = {
 			} = await API.create(state.model.value);
 			if (status == 201) {
 				dispatch('showMessageOK', 'Учащийся добавлен!');
-				commit('setUsers', [...state.all, data.data]);
+				commit('setAll', [...state.all, state.model.value]);
 			}
 		} catch (error) {
 			dispatch('showMessageError', 'Код ошибки: ' + status);
@@ -87,7 +87,7 @@ const actions = {
 			} = await API.update(state.model.value);
 			if (status == 200) {
 				dispatch('showMessageOK', 'Учащийся обновлен!');
-				commit('setUsers', state.all.map(user => {
+				commit('setAll', state.all.map(user => {
 					if (user.id === data.data.id) {
 						return data.data;
 					} else {
@@ -110,7 +110,7 @@ const actions = {
 				status
 			} = await API.delete(state.model.value.id);
 			if (status == 204) {
-				commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
+				commit('setAll', state.all.filter(user => user.id != state.model.value.id));
 				dispatch('showMessageOK', 'Учащийся удален!');
 			}
 		} catch (error) {
@@ -146,6 +146,25 @@ const mutations = {
 	setPhone(state, val) {
 		state.model.value.phone = val;
 	},
+	setModelValue(state, id) {
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
+	},
+	setAll(state, users) {
+		state.all = users;
+	},
+	addErrors(state, e) {
+		state.errors.push(e);
+	},
+	validateNotEmpty() {
+		state.model.validationErrors = [];
+		for (let key of state.model.required) {
+			if (!state.model.value[key] || state.model.value[key].length == 0) {
+				state.model.validationErrors.push(key);
+			}
+		}
+		return state.model.validationErrors.length === 0;
+	},
 	showMessageOK(state, message) {
 		state.message = {
 			text: message,
@@ -177,34 +196,15 @@ const mutations = {
 		state.modalMode = C.mode.CREATE;
 		state.modalShow = true;
 	},
-	setModelValue(state, id) {
-		state.model.value = { ...state.all.find(model => model.id == id)
-		};
-	},
-	setUsers(state, users) {
-		state.all = users;
-	},
 	showModal(state, show) {
 		state.modalShow = show;
-	},
-	addErrors(state, e) {
-		state.errors.push(e);
-	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
 	},
 	closeModal(state) {
 		// for (var key in state.model.value) {
 		// 	state.model.value[key] = null;
 		// }
 		state.modalShow = false;
-	}
+	},
 };
 
 export default {

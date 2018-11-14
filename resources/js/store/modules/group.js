@@ -7,12 +7,18 @@ const state = {
 	modalShow: false,
 	modalMode: null,
 	errors: [],
+	constants: C,
 	model: {
 		value: C.defaultGroup,
 		required: ['name', 'phone', 'group_id'],
 		validationErrors: [],
 	},
-	constants: C
+	message: {
+		text: 'Default text',
+		type: C.message.type.OK,
+		show: false,
+		image: null,
+	}
 };
 
 // getters
@@ -38,7 +44,7 @@ const actions = {
 				status
 			} = await API.getAll();
 			if (status == 200) {
-				commit('setGroups', data.data);
+				commit('setAll', data.data);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
@@ -59,13 +65,22 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async create({
-		commit
-	}) {
-		if (!mutations.validateNotEmpty()) {
+	save({state, getters, commit, dispatch}) {
+		commit('validateNotEmpty');
+		if (state.model.validationErrors.length) {
 			return;
 		}
-
+		switch (state.modalMode) {
+		case C.mode.CREATE:
+			dispatch('create');
+			break;
+		case C.mode.UPDATE:
+			dispatch('update');
+			break;
+		}
+		commit('closeModal');
+	},
+	async create({commit, dispatch, state}) {
 		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
 		state.model.value.status = state.model.value.status.key;
 		state.model.value.category = state.model.value.category.key;
@@ -75,38 +90,85 @@ const actions = {
 				data,
 				status
 			} = await API.create(state.model.value);
-			if (status == 200) {
-				commit('setUsers', [...state.all, state.model.value]);
-				commit('clearAndCloseModal');
+			if (status == 201) {
+				dispatch('showMessageOK', 'Группа добавлена!');
+				commit('setAll', [...state.all, state.model.value]);
 			}
 		} catch (error) {
-			mutations.addErrors(error);
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
 		}
 	},
-	async update({
-		commit
-	}) {
-		const {
-			data
-		} = await API.update(state.model.value);
-		if (data.status == 200) {
-			commit('setUsers', data);
+	async update({commit, dispatch, state}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.update(state.model.value);
+			if (status == 200) {
+				dispatch('showMessageOK', 'Группа обновлена!');
+				commit('setAll', state.all.map(model => {
+					if (model.id === data.data.id) {
+						return data.data;
+					} else {
+						return model;
+					}
+				}));
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
 		}
 	},
-	async delete({
-		commit
-	}) {
-		const {
-			data
-		} = await API.delete(state.model.value);
-		if (data.status == 200) {
-			commit('setUsers', state.all.filter(user => user.id != state.model.value.id));
+	async delete({commit, dispatch, state}) {
+		try {
+			if (!state.model.value.id) {
+				throw new Error('Please, provide model id');
+			}
+			const {
+				data,
+				status
+			} = await API.delete(state.model.value.id);
+			if (status == 204) {
+				commit('setUsers', state.all.filter(model => model.id != state.model.value.id));
+				dispatch('showMessageOK', 'Группа удалена!');
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
 		}
+		commit('closeModal');
+	},
+	showMessageOK({commit}, message) {
+		commit('showMessageOK', message);
+		setTimeout(() => commit('closeMessage'), 1500);
+	},
+	showMessageError({commit}, message) {
+		commit('showMessageError', message);
+		setTimeout(() => commit('closeMessage'), 1500);
 	},
 };
 
 // mutations
 const mutations = {
+	setAll(state, groups) {
+		state.all = groups;
+	},
+	setModel(state, value) {
+		state.model.value = value;
+	},
+	addErrors(state, e) {
+		state.errors.push(e);
+	},
+	validateNotEmpty() {
+		state.model.validationErrors = [];
+		for (let key of state.model.required) {
+			if (!state.model.value[key] || state.model.value[key].length == 0) {
+				state.model.validationErrors.push(key);
+			}
+		}
+		return state.model.validationErrors.length === 0;
+	},
 	showUpdateModal(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)};
 		state.modalMode = C.mode.UPDATE;
@@ -121,30 +183,33 @@ const mutations = {
 		state.model.value = { ...state.all.find(model => model.id == id)
 		};
 	},
-	setGroups(state, groups) {
-		state.all = groups;
-	},
-	setModel(state, value) {
-		state.model.value = value;
-	},
 	showModal(state, show) {
 		state.modalShow = show;
 	},
-	addErrors(state, e) {
-		state.errors.push(e);
-	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
-	},
 	closeModal(state) {
 		state.modalShow = false;
-	}
+	},
+	showMessageOK(state, message) {
+		state.message = {
+			text: message,
+			type: C.message.type.OK,
+			show: true,
+		};
+	},
+	showMessageError(state, message) {
+		state.message = {
+			text: message,
+			type: C.message.type.ERROR,
+			show: true,
+		};
+	},
+	closeMessage(state) {
+		state.message = {
+			text: '',
+			type: null,
+			show: false,
+		};
+	},
 };
 
 export default {

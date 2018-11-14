@@ -2,6 +2,8 @@
   <TwoColumnsModal
     :show="modalShow"
     @close="closeModal"
+    @delete="deleteGroup"
+    @save="saveGroup"
     @open="showCreateModal">
     <template slot="header">
       <h3>{{ modalModeLabel }} группу</h3>
@@ -109,8 +111,12 @@
         class="btn button-default"
         @click="closeModal">Отмена</span>
       <button
+        v-if="modalMode == constants.mode.UPDATE"
+        class="btn btn-danger"
+        @click="deleteGroup">Удалить</button>
+      <button
         class="btn btn-success"
-        @click="create">Сохранить</button>
+        @click="saveGroup">Сохранить</button>
     </template>
   </TwoColumnsModal>
 </template>
@@ -131,6 +137,7 @@ export default {
 			validationErrors: state => state.group.model.validationErrors,
 			errors: state => state.group.errors,
 			modalShow: state => state.group.modalShow,
+			modalMode: state => state.group.modalMode,
 			constants: state => state.group.constants,
 		}),
 		...mapGetters('group',[
@@ -138,11 +145,10 @@ export default {
 		]),
 	},
 	methods: {
-		...mapActions('group', [
-			'create',
-			'update',
-			'delete'
-		]),
+		...mapActions('group', {
+			saveGroup: 'save',
+			deleteGroup: 'delete',
+		}),
 		...mapMutations('group', [
 			'closeModal',
 			'showCreateModal'

@@ -52,7 +52,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $Group)
     {
-        $Group->update($request->all);
+        $Group->update($request->all());
 
         return new GroupResource($Group);
     }
