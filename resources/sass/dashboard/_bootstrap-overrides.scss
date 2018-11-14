@@ -23,13 +23,23 @@
 }
 
 .btn-success {
-  @include button-variant ($vue-light-darker, $vue-light-darker);
+  @include button-variant (#4D5437, #4D5437);
+  // @include button-variant (yellow, yellow);
+}
+.btn-outline-danger {
+  @include button-outline-variant (#8B1312, #fefefe, lighten(#8B1312, 30%));
+  // @include button-variant (yellow, yellow);
+}
+.btn-outline-success {
+  @include button-outline-variant (#4D5437, #fefefe, lighten(#4D5437, 30%));
   // @include button-variant (yellow, yellow);
 }
 
 .btn {
-  font-weight: 700;
+  font-weight: 500;
   font-family: 'Roboto', Helvetica, serif;
+  border-radius: 50vh;
+  margin-left: .5rem;
   // border: none;
   // @include sans-serif-font;
 }
@@ -80,6 +90,8 @@ label {
 }
 
 h1, h2, h3 {
-  // font-family: 'Lobster', cursive;
+  font-family: 'Lobster', cursive;
   letter-spacing: 0.04em;
+  color: #B7E4FF;
+  // text-align: center;
 }

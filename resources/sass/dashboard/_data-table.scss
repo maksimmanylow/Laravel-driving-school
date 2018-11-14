@@ -2,13 +2,13 @@
 
 .data-table {
   // margin: 1rem;
-  background-color: $data-table-body-bg;
+  background-color: $gray-dark;
   user-select: none;
   border-radius: 1rem !important;
   overflow: hidden;
 
   &__head-row {
-    background-color: map-get($grays, '800');
+    // background-color: map-get($grays, '800');
     display: flex;
     font-weight: 700;
     text-transform: uppercase;
@@ -75,9 +75,11 @@
   border-radius: 15px;
   width: 30px;
   height: 30px;
-  border: 2px solid white;
+  // border: 2px solid map-get($blues, "500");
+  border: 2px solid map-get($grays, "200");
   background-color: transparent;
-  color: #fff;
+  color: map-get($grays, "200");
+  // color: map-get($blues, "300");
   // font-size: 26px;
   line-height: 26px;
 }
@@ -87,17 +89,18 @@
   line-height: 30px;
   box-sizing: border-box;
   padding: 0 15px 0 30px;
-  border: 1px solid #e3e3e3;
-  color: #2c3e50;
+  border: 2px solid #e3e3e3;
+  color: map-get($grays, "900");
+  font-weight: 700;
   outline: none;
   border-radius: 15px;
   margin-right: 10px;
-  transition: border-color 0.2s ease;
-  background: #fff url(../../img/search.png) 8px 5px no-repeat;
+  transition: border-color 0.6s ease;
+  background: map-get($grays, "100") url(../../img/search.png) 8px 5px no-repeat;
   background-size: 20px;
   vertical-align: middle !important;
 
   &:focus {
-    border-color: #42b983;
+    border-color: map-get($blues, "500");
   }
 }

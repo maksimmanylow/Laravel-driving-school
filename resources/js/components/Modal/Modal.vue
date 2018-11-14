@@ -2,18 +2,15 @@
   <transition name="modal">
     <div
       v-show="show"
-      class="modal-mask"
+      class="modal__mask"
       @click="close">
-      <div class="modal-wrapper">
+      <div class="modal__wrapper">
         <div class="container-fluid">
           <div class="row justify-content-md-center">
             <div class="col-md-auto">
-              <div
-                class="modal-container"
-                @click.stop>
-                <div class="modal-header">
-                  <slot name="header" />
-                  <!-- <button
+              <div class="modal__header">
+                <slot name="header" />
+                <!-- <button
                     type="button"
                     class="close"
                     data-dismiss="modal"
@@ -21,11 +18,14 @@
                     @click="close">
                     <span aria-hidden="true">&times;</span>
                   </button> -->
-                </div>
-                <div class="modal-body">
+              </div>
+              <div
+                class="modal__container"
+                @click.stop>
+                <div class="modal__body">
                   <slot name="body" />
                 </div>
-                <div class="modal-footer">
+                <div class="modal__footer">
                   <slot name="footer" />
                 </div>
               </div>

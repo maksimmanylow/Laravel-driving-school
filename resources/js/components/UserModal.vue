@@ -60,14 +60,14 @@
     </template>
     <template slot="footer">
       <span
-        class="btn button-default"
+        class="btn btn-default"
         @click="closeModal">Отмена</span>
       <button
         v-if="modalMode == constants.mode.UPDATE"
-        class="btn btn-danger"
+        class="btn btn-outline-danger"
         @click="deleteUser">Удалить</button>
       <button
-        class="btn btn-success"
+        class="btn btn-outline-success"
         @click="saveUser">Сохранить</button>
     </template>
   </Modal>

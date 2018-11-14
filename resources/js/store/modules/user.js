@@ -121,11 +121,11 @@ const actions = {
 	},
 	showMessageOK({commit}, message) {
 		commit('showMessageOK', message);
-		setTimeout(() => commit('closeMessage'), 1500);
+		setTimeout(() => commit('closeMessage'), 1000);
 	},
 	showMessageError({commit}, message) {
 		commit('showMessageError', message);
-		setTimeout(() => commit('closeMessage'), 1500);
+		setTimeout(() => commit('closeMessage'), 1000);
 	},
 };
 
@@ -180,11 +180,7 @@ const mutations = {
 		};
 	},
 	closeMessage(state) {
-		state.message = {
-			text: '',
-			type: null,
-			show: false,
-		};
+		state.message.show = false;
 	},
 	showUpdateModal(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)};

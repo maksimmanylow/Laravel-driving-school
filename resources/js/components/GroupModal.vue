@@ -112,10 +112,10 @@
         @click="closeModal">Отмена</span>
       <button
         v-if="modalMode == constants.mode.UPDATE"
-        class="btn btn-danger"
+        class="btn btn-outline-danger"
         @click="deleteGroup">Удалить</button>
       <button
-        class="btn btn-success"
+        class="btn btn-outline-success"
         @click="saveGroup">Сохранить</button>
     </template>
   </TwoColumnsModal>
