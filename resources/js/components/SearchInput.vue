@@ -3,7 +3,8 @@
     :value="value"
     class="search-input"
     maxlength="255"
-    type="text">
+    type="text"
+    @input="input">
 </template>
 
 <script>
@@ -15,8 +16,8 @@ export default {
 		}
 	},
 	methods: {
-		input: function () {
-			this.$emit('input', $event.target.value);
+		input: function (event) {
+			this.$emit('input', event.target.value);
 		}
 	}
 };

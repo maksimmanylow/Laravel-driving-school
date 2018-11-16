@@ -26,7 +26,6 @@ const state = {
 	search: {
 		query: '',
 		debounceTimeout: 500,
-		found: [],
 	},
 	paginator: {
 		from: 0,
@@ -104,7 +103,7 @@ const actions = {
 				commit('setAll', [...state.all, state.model.value]);
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},
@@ -129,7 +128,7 @@ const actions = {
 				}));
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},
@@ -151,7 +150,7 @@ const actions = {
 				dispatch('showMessageOK', 'Учащийся удален!');
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 		commit('closeModal');
@@ -175,18 +174,18 @@ const actions = {
 	}) {
 		try {
 			state.search.query = state.search.query.trim();
-			if (!state.search.length) {
-				throw new Error('empty query string');
-			}
+
 			const {
 				data,
 				status
 			} = await API.search(state.search.query);
-			if (status == 201) {
+
+			if (status == 200) {
 				commit('setAll', data.data);
+				commit('setPaginator', data);
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError', error);
 			commit('addErrors', error);
 		}
 		commit('closeModal');
@@ -204,13 +203,13 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.getPage(nextPageNumber);
+			} = await API.getPage(nextPageNumber, state.search.query.trim());
 			if (status == 200) {
 				commit('setAll', data.data);
 				commit('setPaginator', data);
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},
@@ -227,13 +226,13 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.getPage(prevPageNumber);
+			} = await API.getPage(prevPageNumber, state.search.query.trim());
 			if (status == 200) {
 				commit('setAll', data.data);
 				commit('setPaginator', data);
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},
@@ -269,6 +268,9 @@ const mutations = {
 		state.paginator.total = paginator.total;
 		state.paginator.current_page = paginator.current_page;
 		state.paginator.last_page = paginator.last_page;
+	},
+	setSearchQuery(state, query) {
+		state.search.query = query;
 	},
 	addErrors(state, e) {
 		state.errors.push(e);

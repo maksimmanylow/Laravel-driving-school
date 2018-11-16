@@ -15,9 +15,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return User::paginate(self::PAGE_SIZE);
+      $query = $request->query('q');
+
+      return User::where('name', 'like', "%$query%")
+                ->orWhere('surname', 'like', "%$query%")
+                ->orWhere('phone', 'like', "%$query%")
+                ->paginate(self::PAGE_SIZE);
         // return UserResource::collection(User::paginate(PAGE_SIZE));
     }
 

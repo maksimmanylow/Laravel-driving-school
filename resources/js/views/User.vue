@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-6 text-right">
           <SearchInput
-            v-model="query"
+            :value="query"
             @input="search" />
           <span
             class="btn-add btn-add--outline"
@@ -58,12 +58,20 @@ export default {
 	},
 	computed: mapState({
 		users: state => state.user.all,
-		query: state => state.user.search.query,
 		from: state => state.user.paginator.from,
 		to: state => state.user.paginator.to,
 		total: state => state.user.paginator.total,
 		current_page: state => state.user.paginator.current_page,
 		last_page: state => state.user.paginator.last_page,
+		query: state => state.user.search.query,
+		// query: {
+		// 	get() {
+		// 		return this.$store.state.user.search.query;
+		// 	},
+		// 	set(value) {
+		// 	  this.$store.commit('user/setSearchQuery', value);
+		// 	}
+		// },
 	}),
 	// watch: {
 	// 	// call again the method if the route changes
@@ -73,12 +81,15 @@ export default {
 		this.$store.dispatch('user/getPage', 1);
 	},
 	methods: {
-		search: function () {
-			return debounce(
-				() => this.$store.dispatch('user/search'),
-				this.$store.state.user.search.debounceTimeout
-			);
+		search: function (query) {
+			this.$store.commit('user/setSearchQuery', query);
+			this._search();
 		},
+		_search: debounce(
+			function () {this.$store.dispatch('user/search');},
+			// this.$store.state.user.search.debounceTimeout
+			1000
+		),
 		...mapMutations('user', [
 			'showCreateModal',
 			'showUpdateModal',

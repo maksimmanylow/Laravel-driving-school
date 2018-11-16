@@ -12009,7 +12009,7 @@ h3 {
   margin-right: 10px;
   -webkit-transition: border-color 0.6s ease;
   transition: border-color 0.6s ease;
-  background: #f8f9fa url(/images/search.png?3a38056b0f3ec4fcac63c4d1c3841cab) 8px 5px no-repeat;
+  background: #f8f9fa url(/images/search.png?3a38056b0f3ec4fcac63c4d1c3841cab) 8px 3px no-repeat;
   background-size: 20px;
   vertical-align: middle !important;
 }
