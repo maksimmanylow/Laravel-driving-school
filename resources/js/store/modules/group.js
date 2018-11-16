@@ -188,6 +188,7 @@ const mutations = {
 	},
 	closeModal(state) {
 		state.modalShow = false;
+		state.model.validationErrors = [];
 	},
 	showMessageOK(state, message) {
 		state.message = {

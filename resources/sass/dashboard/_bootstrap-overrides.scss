@@ -26,10 +26,12 @@
   @include button-variant (#4D5437, #4D5437);
   // @include button-variant (yellow, yellow);
 }
+
 .btn-outline-danger {
   @include button-outline-variant (#8B1312, #fefefe, lighten(#8B1312, 30%));
   // @include button-variant (yellow, yellow);
 }
+
 .btn-outline-success {
   @include button-outline-variant (#4D5437, #fefefe, lighten(#4D5437, 30%));
   // @include button-variant (yellow, yellow);
@@ -38,7 +40,7 @@
 .btn {
   font-weight: 500;
   font-family: 'Roboto', Helvetica, serif;
-  border-radius: 50vh;
+  border-radius: 2rem;
   margin-left: .5rem;
   // border: none;
   // @include sans-serif-font;
@@ -52,6 +54,8 @@
   background-color: $theme-secondary;
   color: #fff;
   border: none;
+  border-radius: 2rem;
+
 
   &:focus {
     background-color: $theme-secondary;
@@ -82,16 +86,20 @@
 }
 
 .is-invalid {
-  border-width: 1px;
+  border: 1px solid $red !important;
 }
 
 label {
   font-family: 'Jura', sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Lobster', cursive;
   letter-spacing: 0.04em;
-  color: #B7E4FF;
+  color: map-get($grays, "200");
+  display: inline-block;
+  // color: #B7E4FF;
   // text-align: center;
 }

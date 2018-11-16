@@ -1,12 +1,15 @@
 import API from '../../api/user';
 import C from './constants';
-import { Store } from 'vuex';
+import {
+	Store
+} from 'vuex';
 
 // initial state
 const state = {
 	all: [],
 	modalShow: false,
 	modalMode: null,
+	query: null,
 	errors: [],
 	constants: C,
 	model: {
@@ -19,7 +22,19 @@ const state = {
 		type: C.message.type.OK,
 		show: false,
 		image: null,
-	}
+	},
+	search: {
+		query: '',
+		debounceTimeout: 500,
+		found: [],
+	},
+	paginator: {
+		from: 0,
+		to: 0,
+		total: 0,
+		current_page: 0,
+		last_page: 0,
+	},
 };
 
 // getters
@@ -36,20 +51,30 @@ const getters = {
 
 // actions
 const actions = {
-	async getAll({commit, dispatch, state}) {
+	async getPage({
+		commit,
+		dispatch,
+		state
+	}, page) {
 		try {
 			const {
 				data,
 				status
-			} = await API.getAll();
+			} = await API.getPage(page);
 			if (status == 200) {
 				commit('setAll', data.data);
+				commit('setPaginator', data);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
 		}
 	},
-	save({state, getters, commit, dispatch}) {
+	save({
+		state,
+		getters,
+		commit,
+		dispatch
+	}) {
 		commit('validateNotEmpty');
 		if (state.model.validationErrors.length) {
 			return;
@@ -64,7 +89,11 @@ const actions = {
 		}
 		commit('closeModal');
 	},
-	async create({commit, dispatch, state}) {
+	async create({
+		commit,
+		dispatch,
+		state
+	}) {
 		try {
 			const {
 				data,
@@ -79,7 +108,11 @@ const actions = {
 			commit('addErrors', error);
 		}
 	},
-	async update({commit, dispatch, state}) {
+	async update({
+		commit,
+		dispatch,
+		state
+	}) {
 		try {
 			const {
 				data,
@@ -100,7 +133,11 @@ const actions = {
 			commit('addErrors', error);
 		}
 	},
-	async delete({commit, dispatch, state}) {
+	async delete({
+		commit,
+		dispatch,
+		state
+	}) {
 		try {
 			if (!state.model.value.id) {
 				throw new Error('Please, provide user id');
@@ -119,13 +156,86 @@ const actions = {
 		}
 		commit('closeModal');
 	},
-	showMessageOK({commit}, message) {
+	showMessageOK({
+		commit
+	}, message) {
 		commit('showMessageOK', message);
 		setTimeout(() => commit('closeMessage'), 1000);
 	},
-	showMessageError({commit}, message) {
+	showMessageError({
+		commit
+	}, message) {
 		commit('showMessageError', message);
 		setTimeout(() => commit('closeMessage'), 1000);
+	},
+	async search({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			state.search.query = state.search.query.trim();
+			if (!state.search.length) {
+				throw new Error('empty query string');
+			}
+			const {
+				data,
+				status
+			} = await API.search(state.search.query);
+			if (status == 201) {
+				commit('setAll', data.data);
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
+		}
+		commit('closeModal');
+	},
+	async goToNextPage({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const nextPageNumber = state.paginator.current_page + 1;
+			if (nextPageNumber > state.paginator.last_page) {
+				throw new Error('Paginator: out of range');
+			}
+			const {
+				data,
+				status
+			} = await API.getPage(nextPageNumber);
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data);
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
+		}
+	},
+	async goToPrevPage({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const prevPageNumber = state.paginator.current_page - 1;
+			if (prevPageNumber < 1) {
+				throw new Error('Paginator: out of range');
+			}
+			const {
+				data,
+				status
+			} = await API.getPage(prevPageNumber);
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data);
+			}
+		} catch (error) {
+			dispatch('showMessageError', 'Код ошибки: ' + status);
+			commit('addErrors', error);
+		}
 	},
 };
 
@@ -152,6 +262,13 @@ const mutations = {
 	},
 	setAll(state, users) {
 		state.all = users;
+	},
+	setPaginator(state, paginator) {
+		state.paginator.from = paginator.from;
+		state.paginator.to = paginator.to;
+		state.paginator.total = paginator.total;
+		state.paginator.current_page = paginator.current_page;
+		state.paginator.last_page = paginator.last_page;
 	},
 	addErrors(state, e) {
 		state.errors.push(e);
@@ -183,7 +300,8 @@ const mutations = {
 		state.message.show = false;
 	},
 	showUpdateModal(state, id) {
-		state.model.value = { ...state.all.find(model => model.id == id)};
+		state.model.value = { ...state.all.find(model => model.id == id)
+		};
 		state.modalMode = C.mode.UPDATE;
 		state.modalShow = true;
 	},
@@ -200,7 +318,11 @@ const mutations = {
 		// 	state.model.value[key] = null;
 		// }
 		state.modalShow = false;
+		state.model.validationErrors = [];
 	},
+	setFound(state, found) {
+		state.found = found;
+	}
 };
 
 export default {

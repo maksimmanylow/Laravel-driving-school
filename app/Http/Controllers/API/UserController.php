@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
+  const PAGE_SIZE = 2;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::all());
+      return User::paginate(self::PAGE_SIZE);
+        // return UserResource::collection(User::paginate(PAGE_SIZE));
     }
 
     /**
