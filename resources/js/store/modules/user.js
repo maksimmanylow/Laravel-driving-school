@@ -100,7 +100,7 @@ const actions = {
 			} = await API.create(state.model.value);
 			if (status == 201) {
 				dispatch('showMessageOK', 'Учащийся добавлен!');
-				commit('setAll', [...state.all, state.model.value]);
+				dispatch('getPage');
 			}
 		} catch (error) {
 			dispatch('showMessageError');
@@ -121,7 +121,7 @@ const actions = {
 				dispatch('showMessageOK', 'Учащийся обновлен!');
 				commit('setAll', state.all.map(user => {
 					if (user.id === data.data.id) {
-						return data.data;
+						return state.model.value;
 					} else {
 						return user;
 					}

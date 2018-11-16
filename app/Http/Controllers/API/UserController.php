@@ -9,7 +9,7 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
-  const PAGE_SIZE = 2;
+  const PAGE_SIZE = 6;
     /**
      * Display a listing of the resource.
      *
