@@ -86,12 +86,17 @@
   width: 30px;
   height: 30px;
   // border: 2px solid map-get($blues, "500");
-  border: 2px solid map-get($grays, "200");
+  border: 2px solid map-get($grays, "300");
+  color: map-get($grays, "300");
   background-color: transparent;
-  color: map-get($grays, "200");
   // color: map-get($blues, "300");
   // font-size: 26px;
   line-height: 26px;
+
+  &:hover {
+    border: 2px solid map-get($grays, "100");
+    color: map-get($grays, "100");
+  }
 }
 
 .search-input {

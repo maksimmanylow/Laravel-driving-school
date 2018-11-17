@@ -11989,10 +11989,15 @@ h3 {
   border-radius: 15px;
   width: 30px;
   height: 30px;
-  border: 2px solid #e9ecef;
+  border: 2px solid #dee2e6;
+  color: #dee2e6;
   background-color: transparent;
-  color: #e9ecef;
   line-height: 26px;
+}
+
+.btn-add.btn-add--outline:hover {
+  border: 2px solid #f8f9fa;
+  color: #f8f9fa;
 }
 
 .search-input {
