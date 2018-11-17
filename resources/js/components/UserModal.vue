@@ -13,41 +13,64 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input
+          v-validate="'email'"
           v-model="email"
+          :class="{'is-invalid': errors.has('email')}"
+          name="email"
           type="email"
           class="form-control"
           aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{ errors.first('email') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Имя</label>
         <input
+          v-validate="'required|min:2|max:255'"
           v-model="name"
-          :class="{'is-invalid': validationErrors.includes('name')}"
+          :class="{'is-invalid': errors.has('name')}"
+          name="name"
           type="text"
           class="form-control"
           aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{ errors.first('name') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
         <input
+          v-validate="'min:2|max:255'"
           v-model="surname"
+          :class="{'is-invalid': errors.has('surname')}"
+          name="surname"
           type="text"
           class="form-control"
           aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{ errors.first('surname') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Телефон</label>
         <input
+          v-validate="'required|phoneNumber'"
           v-model="phone"
-          :class="{'is-invalid': validationErrors.includes('phone')}"
+          :class="{'is-invalid': errors.has('phone')}"
+          name="phone"
           type="text"
           class="form-control">
+        <div class="invalid-feedback">
+          {{ errors.first('phone') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Группа</label>
         <select
           v-model="group_id"
-          :class="{'is-invalid': validationErrors.includes('group_id')}"
+          :class="{'is-invalid': errors.has('group_id')}"
+          name="group_id"
           class="form-control">
           <option
             v-for="group in groups"
@@ -56,6 +79,9 @@
             {{ group.name }} ({{ group.timetable }})
           </option>
         </select>
+        <div class="invalid-feedback">
+          {{ errors.first('group_id') }}
+        </div>
       </div>
     </template>
     <template slot="footer">
@@ -68,7 +94,7 @@
         @click="deleteUser">Удалить</button>
       <button
         class="btn btn-outline-success"
-        @click="saveUser">Сохранить</button>
+        @click="beforeSave">Сохранить</button>
     </template>
   </Modal>
 </template>
@@ -141,6 +167,10 @@ export default {
 		// setTimeout(() => (this.$store.dispatch('user/showMessageOK', 'Just another test')), 2000);
 	},
 	methods: {
+		beforeSave: function () {
+			if (!this.errors.length)
+				this.$store.dispatch('user/save');
+		},
 		...mapActions('user', {
 			saveUser: 'save',
 			deleteUser: 'delete',
