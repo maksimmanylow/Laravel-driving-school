@@ -18,6 +18,13 @@
   &__wrapper {
     display: table-cell;
     vertical-align: middle;
+    position: absolute;
+    overflow: auto;
+    /* z-index: 9999; */
+    right: 0;
+    left: 0;
+    padding: 2rem;
+    max-height: 100vh;
   }
 
   &__container {
