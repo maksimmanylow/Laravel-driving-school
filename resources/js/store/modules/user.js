@@ -62,7 +62,7 @@ const actions = {
 			} = await API.getPage(page);
 			if (status == 200) {
 				commit('setAll', data.data);
-				commit('setPaginator', data);
+				commit('setPaginator', data.meta);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
@@ -182,7 +182,7 @@ const actions = {
 
 			if (status == 200) {
 				commit('setAll', data.data);
-				commit('setPaginator', data);
+				commit('setPaginator', data.meta);
 			}
 		} catch (error) {
 			dispatch('showMessageError', error);
@@ -206,7 +206,7 @@ const actions = {
 			} = await API.getPage(nextPageNumber, state.search.query.trim());
 			if (status == 200) {
 				commit('setAll', data.data);
-				commit('setPaginator', data);
+				commit('setPaginator', data.meta);
 			}
 		} catch (error) {
 			dispatch('showMessageError');
@@ -229,7 +229,7 @@ const actions = {
 			} = await API.getPage(prevPageNumber, state.search.query.trim());
 			if (status == 200) {
 				commit('setAll', data.data);
-				commit('setPaginator', data);
+				commit('setPaginator', data.meta);
 			}
 		} catch (error) {
 			dispatch('showMessageError');

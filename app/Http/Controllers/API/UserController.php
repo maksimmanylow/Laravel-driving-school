@@ -19,11 +19,11 @@ class UserController extends Controller
     {
       $query = $request->query('q');
 
-      return User::where('name', 'like', "%$query%")
-                ->orWhere('surname', 'like', "%$query%")
-                ->orWhere('phone', 'like', "%$query%")
-                ->orderBy('created_at', 'desc')
-                ->paginate(self::PAGE_SIZE);
+      return UserResource::collection(User::where('name', 'like', "%$query%")
+      ->orWhere('surname', 'like', "%$query%")
+      ->orWhere('phone', 'like', "%$query%")
+      ->orderBy('created_at', 'desc')
+      ->paginate(self::PAGE_SIZE));
         // return UserResource::collection(User::paginate(PAGE_SIZE));
     }
 
