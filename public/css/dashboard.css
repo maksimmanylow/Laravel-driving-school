@@ -11280,7 +11280,7 @@ a.text-dark:focus {
 }
 
 .is-invalid {
-  border: 1px solid #8B1312 !important;
+  border: 1px solid #e22221 !important;
 }
 
 label {
@@ -11294,6 +11294,10 @@ h3 {
   letter-spacing: 0.04em;
   color: #e9ecef;
   display: inline-block;
+}
+
+.invalid-feedback {
+  color: #e22221;
 }
 
 .row--colors div {
@@ -11572,6 +11576,13 @@ h3 {
 .modal__wrapper {
   display: table-cell;
   vertical-align: middle;
+  position: absolute;
+  overflow: auto;
+  /* z-index: 9999; */
+  right: 0;
+  left: 0;
+  padding: 2rem;
+  max-height: 100vh;
 }
 
 .modal__container {
