@@ -68,6 +68,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Группа</label>
         <select
+          v-validate="'required'"
           v-model="group_id"
           :class="{'is-invalid': errors.has('group_id')}"
           name="group_id"
