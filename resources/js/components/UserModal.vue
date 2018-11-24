@@ -3,7 +3,7 @@
     :show="modalShow"
     @open="showCreateModal"
     @close="closeModal"
-    @save="saveUser"
+    @save="beforeSave"
     @delete="deleteUser"
   >
     <template slot="header">
@@ -162,17 +162,15 @@ export default {
 			'modalModeLabel'
 		]),
 	},
-	created () {
-		this.$store.dispatch('group/getAll');
-		// setTimeout(() => (this.$store.dispatch('user/showMessageOK', 'Just another test')), 2000);
-	},
 	methods: {
-		beforeSave: function () {
-			if (!this.errors.length)
+		async beforeSave () {
+			let allValid = await this.$validator.validateAll();
+			if (allValid)
 				this.$store.dispatch('user/save');
+			// if (!this.errors.length)
+			// 	this.$store.dispatch('user/save');
 		},
 		...mapActions('user', {
-			saveUser: 'save',
 			deleteUser: 'delete',
 		}),
 		...mapMutations('user', [

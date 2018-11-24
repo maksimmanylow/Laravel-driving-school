@@ -88,12 +88,11 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
         <input
-          v-validate="'required'"
+          v-validate="'required|date_format:MM/DD/YYYY'"
           v-model="start_at"
           :class="{'is-invalid': errors.has('start_at')}"
           name="start_at"
-          type="string"
-          maxlength="255"
+          type="date"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Начало занятий">
@@ -104,9 +103,10 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <input
+          v-validate="'date_format:MM/DD/YYYY'"
           :class="{'is-invalid': errors.has('exam_date')}"
           v-model="exam_date"
-          type="string"
+          type="date"
           name="exam_date"
           maxlength="255"
           class="form-control"
@@ -122,9 +122,11 @@
           v-validate="'required'"
           v-model="timetable"
           :options="constants.weekdays"
+          :class="{'is-invalid': errors.has('timetable')}"
           :multiple="true"
           :close-on-select="false"
           :clear-on-select="false"
+          class="form-control"
           name="timetable" />
         <div class="invalid-feedback">
           {{ errors.first('timetable') }}
@@ -279,8 +281,12 @@ export default {
 		]),
 	},
 	methods: {
+		async saveGroup() {
+			let allValid = await this.$validator.validateAll();
+			if (allValid)
+				this.$store.dispatch('group/save');
+		},
 		...mapActions('group', {
-			saveGroup: 'save',
 			deleteGroup: 'delete',
 		}),
 		...mapMutations('group', [

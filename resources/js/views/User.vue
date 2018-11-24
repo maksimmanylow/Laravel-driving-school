@@ -4,7 +4,7 @@
     <UserModal />
     <div class="container">
       <div class="row mx-0">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
           <h3>Учащиеся</h3>
           <Paginator
             :from="from"
@@ -16,7 +16,15 @@
             @goToPrevPage="goToPrevPage"
           />
         </div>
-        <div class="col-lg-6 text-right">
+        <div class="col-lg-3">
+          <multiselect
+            :options="groups"
+            v-model="group_id"
+            class="filter-dropdown"
+            label="name"
+            track-by="name" />
+        </div>
+        <div class="col-lg-4 text-right">
           <SearchInput
             :value="query"
             @input="search" />
@@ -40,6 +48,7 @@
 
 <script>
 // import TableComponent from './DataTable/TableComponent';
+import Multiselect from 'vue-multiselect';
 import UserModal from '../components/UserModal';
 import Message from '../components/Message';
 import SearchInput from '../components/SearchInput';
@@ -52,12 +61,19 @@ export default {
 	components: {
 		TableComponent,
 		UserModal,
+		Multiselect,
 		Message,
 		SearchInput,
 		Paginator,
 	},
+	data: function() {
+		return {
+			group_id: null
+		};
+	},
 	computed: mapState({
 		users: state => state.user.all,
+		groups: state => state.group.all,
 		from: state => state.user.paginator.from,
 		to: state => state.user.paginator.to,
 		total: state => state.user.paginator.total,
@@ -79,6 +95,7 @@ export default {
 	// },
 	created () {
 		this.$store.dispatch('user/getPage', 1);
+		this.$store.dispatch('group/getPage', 1);
 	},
 	methods: {
 		search: function (query) {

@@ -11586,7 +11586,7 @@ h3 {
 }
 
 .modal__container {
-  overflow: auto;
+  overflow: visible;
   background-color: #222222;
   border-radius: 1rem;
   -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);

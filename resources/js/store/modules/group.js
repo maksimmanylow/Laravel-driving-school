@@ -10,7 +10,7 @@ const state = {
 	constants: C,
 	model: {
 		value: C.defaultGroup,
-		required: ['name', 'phone', 'group_id'],
+		required: C.defaultGroup.keys,
 		validationErrors: [],
 	},
 	message: {
@@ -102,10 +102,14 @@ const actions = {
 		}
 	},
 	save({state, getters, commit, dispatch}) {
-		commit('validateNotEmpty');
-		if (state.model.validationErrors.length) {
-			return;
-		}
+		// commit('validateNotEmpty');
+		// if (state.model.validationErrors.length) {
+		// 	return;
+		// }
+		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
+		state.model.value.status = state.model.value.status.key;
+		state.model.value.category = state.model.value.category.key;
+
 		switch (state.modalMode) {
 		case C.mode.CREATE:
 			dispatch('create');
@@ -117,10 +121,6 @@ const actions = {
 		commit('closeModal');
 	},
 	async create({commit, dispatch, state}) {
-		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
-		state.model.value.status = state.model.value.status.key;
-		state.model.value.category = state.model.value.category.key;
-
 		try {
 			const {
 				data,
@@ -129,9 +129,11 @@ const actions = {
 			if (status == 201) {
 				dispatch('showMessageOK', 'Группа добавлена!');
 				commit('setAll', [...state.all, state.model.value]);
+			} else {
+				dispatch('showMessageError');
 			}
 		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
+			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},

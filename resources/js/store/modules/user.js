@@ -74,10 +74,10 @@ const actions = {
 		commit,
 		dispatch
 	}) {
-		commit('validateNotEmpty');
-		if (state.model.validationErrors.length) {
-			return;
-		}
+		// commit('validateNotEmpty');
+		// if (state.model.validationErrors.length) {
+		// 	return;
+		// }
 		switch (state.modalMode) {
 		case C.mode.CREATE:
 			dispatch('create');
