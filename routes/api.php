@@ -19,5 +19,4 @@ use Illuminate\Http\Request;
 
 
 Route::apiResource('group', 'API\GroupController');
-// Route::get('group/all', 'API\GroupController@all');
 Route::apiResource('user', 'API\UserController');
