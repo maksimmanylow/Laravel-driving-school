@@ -153,11 +153,10 @@ export default {
 		},
 		...mapState({
 			validationErrors: state => state.user.model.validationErrors,
-			errors: state => state.user.errors,
-			modalShow: state => state.user.modalShow,
-			constants: state => state.user.constants,
 			groups: state => state.group.all,
+			modalShow: state => state.user.modalShow,
 			modalMode: state => state.user.modalMode,
+			constants: state => state.user.constants,
 		}),
 		...mapGetters('user', [
 			'modalModeLabel'

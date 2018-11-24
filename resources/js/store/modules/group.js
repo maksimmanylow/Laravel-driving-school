@@ -18,7 +18,18 @@ const state = {
 		type: C.message.type.OK,
 		show: false,
 		image: null,
-	}
+	},
+	search: {
+		query: '',
+		debounceTimeout: 500,
+	},
+	paginator: {
+		from: 0,
+		to: 0,
+		total: 0,
+		current_page: 0,
+		last_page: 0,
+	},
 };
 
 // getters
@@ -35,6 +46,27 @@ const getters = {
 
 // actions
 const actions = {
+	async getPage({
+		commit,
+		dispatch,
+		state
+	}, page) {
+		try {
+			const {
+				data,
+				status
+			} = await API.getPage(page);
+			if (status == 200) {
+				commit('setAll', data.data.map((model) => ({
+					timetable: JSON.parse(model.timetable),
+					...model,
+				})));
+				commit('setPaginator', data.meta);
+			}
+		} catch (error) {
+			mutations.addErrors(error);
+		}
+	},
 	async getAll({
 		commit
 	}) {
@@ -44,7 +76,11 @@ const actions = {
 				status
 			} = await API.getAll();
 			if (status == 200) {
-				commit('setAll', data.data);
+				commit('setAll', data.data.map((model) => ({
+					timetable: JSON.parse(model.timetable),
+					...model,
+				}))
+				);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
@@ -147,6 +183,75 @@ const actions = {
 		commit('showMessageError', message);
 		setTimeout(() => commit('closeMessage'), 1500);
 	},
+	async search({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			state.search.query = state.search.query.trim();
+
+			const {
+				data,
+				status
+			} = await API.search(state.search.query);
+
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data.meta);
+			}
+		} catch (error) {
+			dispatch('showMessageError', error);
+			commit('addErrors', error);
+		}
+		commit('closeModal');
+	},
+	async goToNextPage({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const nextPageNumber = state.paginator.current_page + 1;
+			if (nextPageNumber > state.paginator.last_page) {
+				throw new Error('Paginator: out of range');
+			}
+			const {
+				data,
+				status
+			} = await API.getPage(nextPageNumber, state.search.query.trim());
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data.meta);
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+	},
+	async goToPrevPage({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const prevPageNumber = state.paginator.current_page - 1;
+			if (prevPageNumber < 1) {
+				throw new Error('Paginator: out of range');
+			}
+			const {
+				data,
+				status
+			} = await API.getPage(prevPageNumber, state.search.query.trim());
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data.meta);
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+	},
 };
 
 // mutations
@@ -156,6 +261,36 @@ const mutations = {
 	},
 	setModel(state, value) {
 		state.model.value = value;
+	},
+	setName(state, value) {
+		state.model.value.name = value;
+	},
+	setStatus(state, value) {
+		state.model.value.status = value;
+	},
+	setPrice(state, value) {
+		state.model.value.price = value;
+	},
+	setPriceForStudents(state, value) {
+		state.model.value.price_for_students = value;
+	},
+	setCategory(state, value) {
+		state.model.value.category = value;
+	},
+	setStartAt(state, value) {
+		state.model.value.start_at = value;
+	},
+	setExamDate(state, value) {
+		state.model.value.exam_date = value;
+	},
+	setTimetable(state, value) {
+		state.model.value.timetable = value;
+	},
+	setHoursStartAt(state, value) {
+		state.model.value.hours_start_at = value;
+	},
+	setHoursFinishAt(state, value) {
+		state.model.value.hours_finish_at = value;
 	},
 	addErrors(state, e) {
 		state.errors.push(e);
@@ -210,6 +345,16 @@ const mutations = {
 			type: null,
 			show: false,
 		};
+	},
+	setPaginator(state, paginator) {
+		state.paginator.from = paginator.from;
+		state.paginator.to = paginator.to;
+		state.paginator.total = paginator.total;
+		state.paginator.current_page = paginator.current_page;
+		state.paginator.last_page = paginator.last_page;
+	},
+	setSearchQuery(state, query) {
+		state.search.query = query;
 	},
 };
 

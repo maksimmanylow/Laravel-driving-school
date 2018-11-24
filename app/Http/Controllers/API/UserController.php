@@ -24,7 +24,6 @@ class UserController extends Controller
       ->orWhere('phone', 'like', "%$query%")
       ->orderBy('created_at', 'desc')
       ->paginate(self::PAGE_SIZE));
-        // return UserResource::collection(User::paginate(PAGE_SIZE));
     }
 
     /**

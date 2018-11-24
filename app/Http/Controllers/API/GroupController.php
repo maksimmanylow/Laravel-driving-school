@@ -9,12 +9,23 @@ use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
+  const PAGE_SIZE = 6;
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
+    {
+      $query = $request->query('q');
+
+      return GroupResource::collection(Group::where('name', 'like', "%$query%")
+      ->orderBy('created_at', 'desc')
+      ->paginate(self::PAGE_SIZE));
+    }
+
+    public function all()
     {
         return GroupResource::collection(Group::all());
     }

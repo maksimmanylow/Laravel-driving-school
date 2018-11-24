@@ -12,98 +12,153 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Название</label>
         <input
-          :class="{'is-invalid': validationErrors.includes('name')}"
-          v-model="model.name"
+          v-validate="'required|min:2|max:255'"
+          :class="{'is-invalid': errors.has('name')}"
+          v-model="name"
+          name="name"
+          maxlength="255"
           class="form-control"
           type="text"
           aria-describedby="emailHelp"
           placeholder="Название">
+        <div class="invalid-feedback">
+          {{ errors.first('name') }}
+        </div>
       </div>
       <div class="form-group">
         <label>Статус</label>
         <multiselect
+          v-validate="'required'"
           :options="constants.groupStatuses"
-          v-model="model.status"
+          :class="{'is-invalid': errors.has('status')}"
+          v-model="status"
+          name="status"
           label="value"
           track-by="value" />
+        <div class="invalid-feedback">
+          {{ errors.first('status') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Стоимость обучения</label>
         <input
-          v-model="model.price"
-          :class="{'is-invalid': validationErrors.includes('price')}"
+          v-validate="'required'"
+          v-model="price"
+          :class="{'is-invalid': errors.has('price')}"
           type="number"
+          name="price"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Стоимость обучения">
+        <div class="invalid-feedback">
+          {{ errors.first('price') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Стоимость обучения для студентов</label>
         <input
-          v-model="model.price_for_students"
-          :class="{'is-invalid': validationErrors.includes('price_for_students')}"
+          v-validate="'required'"
+          v-model="price_for_students"
+          :class="{'is-invalid': errors.has('price_for_students')}"
           type="number"
+          name="price_for_students"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Стоимость обучения для студентов">
+        <div class="invalid-feedback">
+          {{ errors.first('price_for_students') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Категория</label>
         <multiselect
+          v-validate="'required'"
           :options="constants.groupCategories"
-          v-model="model.category"
+          :class="{'is-invalid': errors.has('category')}"
+          v-model="category"
+          name="category"
           label="value"
           track-by="value" />
+        <div class="invalid-feedback">
+          {{ errors.first('category') }}
+        </div>
       </div>
     </template>
     <template slot="body-right">
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
         <input
-          v-model="model.start_at"
-          :class="{'is-invalid': validationErrors.includes('start_at')}"
-          type="date"
+          v-validate="'required'"
+          v-model="start_at"
+          :class="{'is-invalid': errors.has('start_at')}"
+          name="start_at"
+          type="string"
+          maxlength="255"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Начало занятий">
+        <div class="invalid-feedback">
+          {{ errors.first('start_at') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <input
-          v-model="model.exam_date"
-          type="date"
+          :class="{'is-invalid': errors.has('exam_date')}"
+          v-model="exam_date"
+          type="string"
+          name="exam_date"
+          maxlength="255"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Экзамен">
+        <div class="invalid-feedback">
+          {{ errors.first('exam_date') }}
+        </div>
       </div>
       <div class="form-group">
         <label>Дни занятий</label>
         <multiselect
-          v-model="model.timetable"
+          v-validate="'required'"
+          v-model="timetable"
           :options="constants.weekdays"
           :multiple="true"
           :close-on-select="false"
-          :clear-on-select="false" />
+          :clear-on-select="false"
+          name="timetable" />
+        <div class="invalid-feedback">
+          {{ errors.first('timetable') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятия</label>
         <input
-          v-model="model.hours_start_at"
-          :class="{'is-invalid': validationErrors.includes('hours_start_at')}"
+          v-validate="'required'"
+          v-model="hours_start_at"
+          :class="{'is-invalid': errors.has('hours_start_at')}"
           type="time"
           class="form-control"
           aria-describedby="emailHelp"
+          name="hours_start_at"
           placeholder="Начало занятия">
+        <div class="invalid-feedback">
+          {{ errors.first('hours_start_at') }}
+        </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Конец занятия</label>
         <input
-          v-model="model.hours_finish_at"
-          :class="{'is-invalid': validationErrors.includes('hours_finish_at')}"
+          v-validate="'required'"
+          v-model="hours_finish_at"
+          :class="{'is-invalid': errors.has('hours_finish_at')}"
+          name="hours_finish_at"
           type="time"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Конец занятия">
+        <div class="invalid-feedback">
+          {{ errors.first('hours_finish_at') }}
+        </div>
       </div>
     </template>
     <template slot="footer">
@@ -132,10 +187,89 @@ export default {
 		Multiselect
 	},
 	computed: {
+		name: {
+			get() {
+				return this.$store.state.group.model.value.name;
+			},
+			set(val) {
+				this.$store.commit('group/setName', val);
+			},
+		},
+		status: {
+			get() {
+				return this.$store.state.group.model.value.status;
+			},
+			set(val) {
+				this.$store.commit('group/setStatus', val);
+			},
+		},
+		price: {
+			get() {
+				return this.$store.state.group.model.value.price;
+			},
+			set(val) {
+				this.$store.commit('group/setPrice', val);
+			},
+		},
+		price_for_students: {
+			get() {
+				return this.$store.state.group.model.value.price_for_students;
+			},
+			set(val) {
+				this.$store.commit('group/setPriceForStudents', val);
+			},
+		},
+		category: {
+			get() {
+				return this.$store.state.group.model.value.category;
+			},
+			set(val) {
+				this.$store.commit('group/setCategory', val);
+			},
+		},
+		start_at: {
+			get() {
+				return this.$store.state.group.model.value.start_at;
+			},
+			set(val) {
+				this.$store.commit('group/setStartAt', val);
+			},
+		},
+		exam_date: {
+			get() {
+				return this.$store.state.group.model.value.exam_date;
+			},
+			set(val) {
+				this.$store.commit('group/setExamDate', val);
+			},
+		},
+		timetable: {
+			get() {
+				return this.$store.state.group.model.value.timetable;
+			},
+			set(value) {
+				this.$store.commit('group/setTimetable', value);
+			},
+		},
+		hours_start_at: {
+			get() {
+				return this.$store.state.group.model.value.hours_start_at;
+			},
+			set(val) {
+				this.$store.commit('group/setHoursStartAt', val);
+			},
+		},
+		hours_finish_at: {
+			get() {
+				return this.$store.state.group.model.value.hours_finish_at;
+			},
+			set(val) {
+				this.$store.commit('group/setHoursFinishAt', val);
+			},
+		},
+
 		...mapState({
-			model: state => state.group.model.value,
 			validationErrors: state => state.group.model.validationErrors,
-			errors: state => state.group.errors,
 			modalShow: state => state.group.modalShow,
 			modalMode: state => state.group.modalMode,
 			constants: state => state.group.constants,
