@@ -58,8 +58,8 @@ const actions = {
 			} = await API.getPage(page);
 			if (status == 200) {
 				commit('setAll', data.data.map((model) => ({
-					timetable: JSON.parse(model.timetable),
 					...model,
+					timetable: JSON.parse(model.timetable),
 				})));
 				commit('setPaginator', data.meta);
 			}
