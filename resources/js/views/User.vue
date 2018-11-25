@@ -2,9 +2,9 @@
   <div>
     <Message />
     <UserModal />
-    <div class="container">
+    <div class="container-fluid">
       <div class="row mx-0">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
           <h3>Учащиеся</h3>
           <Paginator
             :from="from"
@@ -15,13 +15,17 @@
             @goToNextPage="goToNextPage"
             @goToPrevPage="goToPrevPage" />
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <multiselect
             v-model="group"
             :options="groups"
             class="filter-dropdown"
             label="name"
             track-by="name" />
+          <ExportLink
+            :link="exportLink"
+            :show="exportLink.length"
+          />
         </div>
         <div class="col-lg-4 text-right">
           <SearchInput
@@ -53,6 +57,7 @@ import Message from '../components/Message';
 import SearchInput from '../components/SearchInput';
 import Paginator from '../components/Paginator';
 import TableComponent from '../components/DataTable/TableComponent';
+import ExportLink from '../components/ExportLink';
 import { mapState, mapMutations, mapActions } from 'vuex';
 import debounce from '../helpers/debounce';
 
@@ -64,6 +69,7 @@ export default {
 		Message,
 		SearchInput,
 		Paginator,
+		ExportLink,
 	},
 	computed: {
 		...mapState({
@@ -75,6 +81,7 @@ export default {
 			current_page: state => state.user.paginator.current_page,
 			last_page: state => state.user.paginator.last_page,
 			query: state => state.user.search.query,
+			exportLink: state => state.user.search.exportLink,
 		}),
 		group: {
 			get () {

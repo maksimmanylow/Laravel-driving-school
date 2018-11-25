@@ -26,7 +26,8 @@ const state = {
 	search: {
 		query: '',
 		debounceTimeout: 500,
-		group: null
+		group: null,
+		exportLink: ''
 	},
 	paginator: {
 		from: 0,
@@ -287,6 +288,7 @@ const mutations = {
 	},
 	setFilterByGroup(state, val) {
 		state.search.group = val;
+		state.search.exportLink = `/export?group_id=${val.id}`;
 	},
 	setSurname(state, val) {
 		state.model.value.surname = val;
