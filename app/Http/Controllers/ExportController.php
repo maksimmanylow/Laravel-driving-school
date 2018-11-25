@@ -40,7 +40,7 @@ class ExportController extends Controller
 
       $Group = \App\Group::find($groupId);
       $groupName = $Group->name;
-      $today = date("m.d.y h:i:s");
+      $today = date("d.m.y his");
       $filename = "Группа $groupName на $today.xlsx";
       // redirect output to client browser
       header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
