@@ -2,7 +2,7 @@
   <div>
     <Message />
     <GroupModal />
-    <div class="container">
+    <div class="container-fluid">
       <div class="row mx-0">
         <div class="col-lg-6">
           <h3>Группы</h3>
