@@ -6,10 +6,11 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-  const PAGE_SIZE = 6;
+    const PAGE_SIZE = 6;
     /**
      * Display a listing of the resource.
      *
@@ -17,13 +18,24 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-      $query = $request->query('q');
+        $queryString = $request->query('q');
+        $groupId = (int) $request->query('group_id');
 
-      return UserResource::collection(User::where('name', 'like', "%$query%")
-      ->orWhere('surname', 'like', "%$query%")
-      ->orWhere('phone', 'like', "%$query%")
-      ->orderBy('created_at', 'desc')
-      ->paginate(self::PAGE_SIZE));
+        $Query = DB::table('users');
+
+        if ($groupId) {
+            $Query->where('group_id', $groupId);
+        }
+
+        if ($queryString) {
+            $Query->where(function ($query) use ($queryString) {
+                $query->orWhere('name', 'like', "%$queryString%")
+                ->orWhere('surname', 'like', "%$queryString%")
+                ->orWhere('phone', 'like', "%$queryString%");
+            });
+        }
+
+        return UserResource::collection($Query->orderBy('created_at', 'desc')->paginate(self::PAGE_SIZE));
     }
 
     /**
@@ -34,9 +46,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $User = User::create($request->all());
+        $User = User::create($request->all());
 
-      return new UserResource($User);
+        return new UserResource($User);
     }
 
     /**
@@ -59,9 +71,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $User)
     {
-      $User->update($request->all());
+        $User->update($request->all());
 
-      return new UserResource($User);
+        return new UserResource($User);
     }
 
     /**
@@ -72,8 +84,8 @@ class UserController extends Controller
      */
     public function destroy(User $User)
     {
-      $User->delete();
+        $User->delete();
 
-      return response()->json(null, 204);
+        return response()->json(null, 204);
     }
 }

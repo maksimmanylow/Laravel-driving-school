@@ -26,6 +26,7 @@ const state = {
 	search: {
 		query: '',
 		debounceTimeout: 500,
+		group: null
 	},
 	paginator: {
 		from: 0,
@@ -59,7 +60,11 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.getPage(page);
+			} = await API.getPage({
+				page: 1,
+				q: state.search.query,
+				group_id: state.search.group ? state.search.group.id : null,
+			});
 			if (status == 200) {
 				commit('setAll', data.data);
 				commit('setPaginator', data.meta);
@@ -174,11 +179,14 @@ const actions = {
 	}) {
 		try {
 			state.search.query = state.search.query.trim();
-
 			const {
 				data,
 				status
-			} = await API.search(state.search.query);
+			} = await API.getPage({
+				page: 1,
+				q: state.search.query,
+				group_id: state.search.group ? state.search.group.id : null,
+			});
 
 			if (status == 200) {
 				commit('setAll', data.data);
@@ -203,7 +211,11 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.getPage(nextPageNumber, state.search.query.trim());
+			} = await API.getPage({
+				page: nextPageNumber,
+				q: state.search.query,
+				group_id: state.search.group ? state.search.group.id : null,
+			});
 			if (status == 200) {
 				commit('setAll', data.data);
 				commit('setPaginator', data.meta);
@@ -226,7 +238,11 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.getPage(prevPageNumber, state.search.query.trim());
+			} = await API.getPage({
+				page: prevPageNumber,
+				q: state.search.query,
+				group_id: state.search.group ? state.search.group.id : null,
+			});
 			if (status == 200) {
 				commit('setAll', data.data);
 				commit('setPaginator', data.meta);
@@ -236,6 +252,29 @@ const actions = {
 			commit('addErrors', error);
 		}
 	},
+	async filterByGroup({
+		commit,
+		dispatch,
+		state
+	}, group) {
+		try {
+			const {
+				data,
+				status
+			} = await API.getPage({
+				page: 1,
+				q: state.search.query,
+				group_id: group.id,
+			});
+			if (status == 200) {
+				commit('setAll', data.data);
+				commit('setPaginator', data.meta);
+				commit('setFilterByGroup', group);
+			}
+		} catch (error) {
+			commit('addErrors', error);
+		}
+	}
 };
 
 // mutations
@@ -245,6 +284,9 @@ const mutations = {
 	},
 	setName(state, val) {
 		state.model.value.name = val;
+	},
+	setFilterByGroup(state, val) {
+		state.search.group = val;
 	},
 	setSurname(state, val) {
 		state.model.value.surname = val;
@@ -274,6 +316,7 @@ const mutations = {
 	},
 	addErrors(state, e) {
 		state.errors.push(e);
+		console.log(e);
 	},
 	validateNotEmpty() {
 		state.model.validationErrors = [];
