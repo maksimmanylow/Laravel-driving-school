@@ -9,7 +9,13 @@
     display: inline-block;
   }
 
-  &__current-page {}
+  &__current-page {
+    min-width: 5.5rem;
+  }
+
+  &__controls {
+    margin-left: 1rem;
+  }
 
   &__controls .disabled {
     color: map-get($grays, "600");

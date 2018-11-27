@@ -1,12 +1,12 @@
 <template>
-  <div v-if="objects && objects.length" >
+  <div v-if="labels" >
     <div class="data-table">
       <div class="data-table__head">
         <div class="data-table__head-row">
           <div
-            v-for="(vaule, key) in objects[0]"
+            v-for="(vaule, key) in labels"
             :key="key"
-            class="data-table__head-col">{{ key }}
+            class="data-table__head-col">{{ vaule }}
           </div>
         </div>
       </div>
@@ -17,10 +17,10 @@
           class="data-table__body-row"
           @click="update(object.id)">
           <div
-            v-for="(value, key) in object"
+            v-for="(value, key) in labels"
             :key="key"
             class="data-table__body-col"
-          >{{ value }}
+          >{{ object[key] }}
           </div>
         </div>
       </div>
@@ -33,6 +33,7 @@
 export default {
 	props: {
 		objects: { type: Array, default: () => [] },
+		labels: { type: Object, default: () => null },
 		// rows: { type: Array, default: () => [] },
 		// columns: { type: Array, default: () =>[] },
 

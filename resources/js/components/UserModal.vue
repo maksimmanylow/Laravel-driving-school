@@ -94,7 +94,7 @@
         class="btn btn-outline-danger"
         @click="deleteUser">Удалить</button>
       <button
-        class="btn btn-outline-success"
+        class="btn btn-success"
         @click="beforeSave">Сохранить</button>
     </template>
   </Modal>

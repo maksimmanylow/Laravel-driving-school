@@ -1,18 +1,19 @@
 <template>
   <div class="pagintor">
-    <div class="pagintor__current-page">{{ from }}-{{ to }}&nbsp;of&nbsp;{{ total }}</div>
+    <div class="pagintor__current-page">{{ from }}-{{ to }}&nbsp;из&nbsp;{{ total }}</div>
     <div class="pagintor__controls">
       <div
         :class="{disabled: noPrevPage}"
         class="pagintor__arrow-prev"
         @click="goToPrevPage">
-        pervious
+        предыдущие
       </div>
+      <div>|</div>
       <div
         :class="{disabled: noNextPage}"
         class="pagintor__arrow-next"
         @click="goToNextPage">
-        next
+        следующие
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
     <UserModal />
     <div class="container-fluid">
       <div class="row mx-0">
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <h3>Учащиеся</h3>
           <Paginator
             :from="from"
@@ -15,7 +15,7 @@
             @goToNextPage="goToNextPage"
             @goToPrevPage="goToPrevPage" />
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <multiselect
             v-model="group"
             :options="groups"
@@ -24,8 +24,9 @@
             track-by="name" />
           <ExportLink
             :link="exportLink"
-            :show="exportLink.length"
-          />
+            :show="exportLink.length > 0"
+          >Группа в таблице XLSX
+          </ExportLink>
         </div>
         <div class="col-lg-4 text-right">
           <SearchInput
@@ -41,7 +42,8 @@
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <TableComponent
-            :objects="users"
+            :objects="userWGroupNames"
+            :labels="userLabels"
             @update="showUpdateModal" />
         </div>
       </div>
@@ -72,6 +74,18 @@ export default {
 		ExportLink,
 	},
 	computed: {
+		userWGroupNames: function () {
+			let groups = {};
+
+			for(let group in this.$store.state.group.all) {
+				groups[group.id] = group.name;
+			}
+
+			return this.$store.state.user.all.map(user => ({
+				...user,
+				group_id: groups[user.group_id]
+			}));
+		},
 		...mapState({
 			users: state => state.user.all,
 			groups: state => state.group.all,
@@ -82,6 +96,7 @@ export default {
 			last_page: state => state.user.paginator.last_page,
 			query: state => state.user.search.query,
 			exportLink: state => state.user.search.exportLink,
+			userLabels: state => state.user.userLabels,
 		}),
 		group: {
 			get () {

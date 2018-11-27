@@ -59,4 +59,11 @@ export default {
 			group_id: null
 		};
 	},
+	userLabels: {
+		'surname': 'Фамилия',
+		'name': 'Имя',
+		'phone': 'Телефон',
+		'email': 'Email',
+		'group_id': 'Группа',
+	}
 };

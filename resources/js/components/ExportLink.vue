@@ -1,10 +1,12 @@
 <template>
   <div
     v-show="show"
-    class="export-link text-right">
+    class="export-link">
     <a
       :href="link"
-      target="_blank">export</a>
+      target="_blank">
+      <slot/>
+    </a>
   </div>
 </template>
 <script>

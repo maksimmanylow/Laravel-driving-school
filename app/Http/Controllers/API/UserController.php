@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    const PAGE_SIZE = 6;
+    const PAGE_SIZE = 12;
     /**
      * Display a listing of the resource.
      *

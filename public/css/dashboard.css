@@ -12034,6 +12034,11 @@ h3 {
   border-color: #00507F;
 }
 
+.export-link {
+  text-align: right;
+  text-decoration: underline;
+}
+
 .card {
   border-radius: 1rem !important;
   overflow: hidden;
@@ -12325,6 +12330,14 @@ h3 {
   display: inline-block;
 }
 
+.pagintor__current-page {
+  min-width: 5.5rem;
+}
+
+.pagintor__controls {
+  margin-left: 1rem;
+}
+
 .pagintor__controls .disabled {
   color: #6c757d;
   cursor: not-allowed;
@@ -12342,7 +12355,7 @@ body {
 }
 
 .router-view {
-  margin: 4rem 0;
+  margin: 2rem 0;
 }
 
 .multiselect,

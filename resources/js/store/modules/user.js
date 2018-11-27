@@ -36,6 +36,7 @@ const state = {
 		current_page: 0,
 		last_page: 0,
 	},
+	userLabels: C.userLabels,
 };
 
 // getters
