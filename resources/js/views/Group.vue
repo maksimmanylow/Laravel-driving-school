@@ -2,21 +2,13 @@
   <div>
     <Message />
     <GroupModal />
-    <div class="container-fluid">
-      <div class="row mx-0">
-        <div class="col-lg-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
           <h3>Группы</h3>
-          <Paginator
-            :from="from"
-            :to="to"
-            :total="total"
-            :current_page="current_page"
-            :last_page="last_page"
-            @goToNextPage="goToNextPage"
-            @goToPrevPage="goToPrevPage"
-          />
+
         </div>
-        <div class="col-lg-6 text-right">
+        <div class="col-lg-8 text-right">
           <SearchInput
             :value="query"
             @input="search" />
@@ -28,23 +20,25 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <GroupTableComponent
-            :statuses="groupStatuses"
-            :objects="groups"
-            :labels="groupLabels"
-            @update="showUpdateModal" />
+        <div
+          v-for="group in groups"
+          :key="group.id"
+          class="col-lg-4">
+          <GroupCard
+            :key="group.id"
+            :group="group"
+            @update="showUpdateModal"
+          />
         </div>
       </div>
     </div>
-  </div>
-</template>
+</div></template>
 
 <script>
 // import TableComponent from './DataTable/TableComponent';
 import GroupModal from '../components/GroupModal';
 import Message from '../components/Message';
-import GroupTableComponent from '../components/DataTable/GroupTableComponent';
+import GroupCard from '../components/GroupCard';
 import SearchInput from '../components/SearchInput';
 import Paginator from '../components/Paginator';
 import { mapState, mapMutations, mapActions } from 'vuex';
@@ -52,7 +46,7 @@ import debounce from '../helpers/debounce';
 
 export default {
 	components: {
-		GroupTableComponent,
+		GroupCard,
 		GroupModal,
 		Message,
 		SearchInput,

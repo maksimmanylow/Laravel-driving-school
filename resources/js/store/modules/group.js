@@ -62,6 +62,8 @@ const actions = {
 				commit('setAll', data.data.map((model) => ({
 					...model,
 					timetable: JSON.parse(model.timetable),
+					status: C.groupStatuses.find(item => item.key == model.status),
+					category: C.groupCategories.find(item => item.key == model.category),
 				})));
 				commit('setPaginator', data.meta);
 			}

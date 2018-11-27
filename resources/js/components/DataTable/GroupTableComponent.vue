@@ -19,7 +19,7 @@
           @click="update(object.id)">
           <div class="data-table__body-col data-table__body-col--indicator">
             <div
-              :class="getIndicatorClass(object.status)"
+              :class="object.status.class"
             />
           </div>
           <div

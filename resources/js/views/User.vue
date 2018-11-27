@@ -27,6 +27,7 @@
             :show="exportLink.length > 0"
           >Группа в таблице XLSX
           </ExportLink>
+          <br v-show="exportLink.length == 0">
         </div>
         <div class="col-lg-4 text-right">
           <SearchInput
