@@ -18,15 +18,18 @@ export default {
 	weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
 	groupStatuses: [{
 		key: 1,
-		value: 'Открыт набор'
+		value: 'Набирается',
+		class: 'indicator indicator--green',
 	},
 	{
 		key: 2,
-		value: 'Идет обучение'
+		value: 'Обучается',
+		class: 'indicator indicator--yellow',
 	},
 	{
 		key: 3,
-		value: 'Обучение завершено'
+		value: 'Закрыта',
+		class: 'indicator indicator--red',
 	},
 	],
 	groupCategories: [{
@@ -65,5 +68,11 @@ export default {
 		'phone': 'Телефон',
 		'email': 'Email',
 		'group_id': 'Группа',
-	}
+	},
+	groupLabels: {
+		name: 'Название',
+		timetable: 'Расписание',
+		category: 'Категория',
+		start_at: 'Начало занятий',
+	},
 };

@@ -51,12 +51,21 @@
     // }
 
   }
+
   &__body-col,
   &__head-col {
     padding: .25rem;
     flex-basis: 20%;
-    text-align: center;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
+  &__body-col--indicator:first-child,
+  &__head-col--indicator:first-child {
+      flex-basis: 2rem;
+    }
 }
 
 
@@ -123,4 +132,34 @@
 .export-link {
   text-align: right;
   text-decoration: underline;
+}
+
+.indicator {
+  width: 1rem;
+  height: 1rem;
+  border-radius: .5rem;
+
+  // &--green {
+  //   background: map-get($greens, '600');
+  // }
+
+  // &--yellow {
+  //   background: map-get($yellows, '400');
+  // }
+
+  // &--red {
+  //   background: map-get($reds, '500');
+  // }
+
+  &--green {
+    background: map-get($greens, '400');
+  }
+
+  &--yellow {
+    background: map-get($pale-blues, '400');
+  }
+
+  &--red {
+    background: map-get($grays, '600');
+  }
 }

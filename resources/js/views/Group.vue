@@ -29,8 +29,10 @@
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-12">
-          <TableComponent
+          <GroupTableComponent
+            :statuses="groupStatuses"
             :objects="groups"
+            :labels="groupLabels"
             @update="showUpdateModal" />
         </div>
       </div>
@@ -42,7 +44,7 @@
 // import TableComponent from './DataTable/TableComponent';
 import GroupModal from '../components/GroupModal';
 import Message from '../components/Message';
-import TableComponent from '../components/DataTable/TableComponent';
+import GroupTableComponent from '../components/DataTable/GroupTableComponent';
 import SearchInput from '../components/SearchInput';
 import Paginator from '../components/Paginator';
 import { mapState, mapMutations, mapActions } from 'vuex';
@@ -50,7 +52,7 @@ import debounce from '../helpers/debounce';
 
 export default {
 	components: {
-		TableComponent,
+		GroupTableComponent,
 		GroupModal,
 		Message,
 		SearchInput,
@@ -64,6 +66,8 @@ export default {
 		current_page: state => state.group.paginator.current_page,
 		last_page: state => state.group.paginator.last_page,
 		query: state => state.group.search.query,
+		groupLabels: state => state.group.groupLabels,
+		groupStatuses: state => state.group.groupStatuses,
 	}),
 	created () {
 		this.$store.dispatch('group/getPage', 1);

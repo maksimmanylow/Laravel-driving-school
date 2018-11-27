@@ -138,6 +138,9 @@
           v-validate="'required'"
           v-model="hours_start_at"
           :class="{'is-invalid': errors.has('hours_start_at')}"
+          min="9:00"
+          max="21:00"
+          pattern="[0-9]{2}:[0-9]{2}"
           type="time"
           class="form-control"
           aria-describedby="emailHelp"
@@ -155,6 +158,9 @@
           :class="{'is-invalid': errors.has('hours_finish_at')}"
           name="hours_finish_at"
           type="time"
+          min="9:00"
+          max="21:00"
+          pattern="[0-9]{2}:[0-9]{2}"
           class="form-control"
           aria-describedby="emailHelp"
           placeholder="Конец занятия">
@@ -172,7 +178,7 @@
         class="btn btn-outline-danger"
         @click="deleteGroup">Удалить</button>
       <button
-        class="btn btn-outline-success"
+        class="btn btn-success"
         @click="saveGroup">Сохранить</button>
     </template>
   </TwoColumnsModal>

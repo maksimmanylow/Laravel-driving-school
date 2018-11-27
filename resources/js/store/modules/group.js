@@ -30,6 +30,8 @@ const state = {
 		current_page: 0,
 		last_page: 0,
 	},
+	groupLabels: C.groupLabels,
+	groupStatuses: C.groupStatuses,
 };
 
 // getters
@@ -67,25 +69,25 @@ const actions = {
 			mutations.addErrors(error);
 		}
 	},
-	async getAll({
-		commit
-	}) {
-		try {
-			const {
-				data,
-				status
-			} = await API.getAll();
-			if (status == 200) {
-				commit('setAll', data.data.map((model) => ({
-					timetable: JSON.parse(model.timetable),
-					...model,
-				}))
-				);
-			}
-		} catch (error) {
-			mutations.addErrors(error);
-		}
-	},
+	// async getAll({
+	// 	commit
+	// }) {
+	// 	try {
+	// 		const {
+	// 			data,
+	// 			status
+	// 		} = await API.getAll();
+	// 		if (status == 200) {
+	// 			commit('setAll', data.data.map((model) => ({
+	// 				timetable: JSON.parse(model.timetable),
+	// 				...model,
+	// 			}))
+	// 			);
+	// 		}
+	// 	} catch (error) {
+	// 		mutations.addErrors(error);
+	// 	}
+	// },
 	async get({
 		commit
 	}, id) {
