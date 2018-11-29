@@ -12357,7 +12357,7 @@ header.masthead {
   min-height: auto;
   text-align: center;
   color: white;
-  background-image: url(/images/bg.jpg?04a00887aba1d1903deec75d62309894);
+  background-image: url("/images/bg.jpg");
   background-position: center;
   background-size: cover;
 }

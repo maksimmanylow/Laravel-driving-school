@@ -11,7 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app/app.js', 'public/js/app.js')
 	.sourceMaps()
 	.version();
 mix.sass('resources/sass/app/app.scss', 'public/css');
@@ -19,7 +19,7 @@ mix.sass('resources/sass/app/app.scss', 'public/css');
 // dashboard section
 // TODO: make private (staff only)
 
-mix.js('resources/js/dashboard.js', 'public/js')
+mix.js('resources/js/dashboard/app.js', 'public/js/dashboard.js')
 	.sourceMaps()
 	.version();
 mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css');
