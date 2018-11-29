@@ -102,8 +102,6 @@
 
 <script>
 import Modal from './Modal/Modal';
-import SearchInput from './SearchInput';
-
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {

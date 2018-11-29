@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar>
+    <Nav>
       <router-link
         :to="{name: 'home'}"
         tag="li"
@@ -10,34 +10,41 @@
         <a class="nav-link">Главная</a>
       </router-link>
       <router-link
-        :to="{name: 'user'}"
+        :to="{name: 'sign-up'}"
         tag="li"
         class="nav-item"
         active-class="active"
       >
-        <a class="nav-link">Учащиеся</a>
+        <a class="nav-link">Запись</a>
       </router-link>
       <router-link
-        :to="{name: 'group'}"
+        :to="{name: 'login'}"
         tag="li"
         class="nav-item"
         active-class="active"
       >
-        <a class="nav-link">Группы</a>
+        <a class="nav-link">Вход</a>
       </router-link>
-    </Navbar>
-    <div class="router-view">
+    </Nav>
+    <transition
+      name="fade"
+      mode="out-in"
+      appear
+      @after-enter="afterEnter">
       <router-view/>
-    </div>
+    </transition>
+    <Footer />
   </div>
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
+import Nav from './components/Nav.vue';
+import Footer from './components/Footer.vue';
 
 export default {
 	components: {
-		Navbar
+		Nav,
+		Footer,
 	}
 };
 </script>

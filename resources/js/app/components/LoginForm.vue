@@ -1,0 +1,74 @@
+<template>
+  <div class="card p-3">
+    <div class="site-login">
+      <h1 class="text-center">Вход</h1>
+    </div>
+    <div class="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input
+          v-validate="'email|required'"
+          v-model="email"
+          :class="{'is-invalid': errors.has('email')}"
+          name="email"
+          type="email"
+          class="form-control"
+          aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{ errors.first('email') }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Имя</label>
+        <input
+          v-validate="'required|min:2|max:255'"
+          v-model="password"
+          :class="{'is-invalid': errors.has('password')}"
+          name="password"
+          type="text"
+          class="form-control"
+          aria-describedby="emailHelp">
+        <div class="invalid-feedback">
+          {{ errors.first('password') }}
+        </div>
+      </div>
+      <button
+        class="btn btn-success"
+        @click="beforeLogin">Войти</button>
+    </div>
+  </div>
+</template>
+<script>
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+
+export default {
+	computed: {
+		email: {
+			get() {
+				return this.$store.state.user.model.value.email;
+			},
+			set(val) {
+				this.$store.commit('user/setName', val);
+			},
+		},
+		password: {
+			get() {
+				return this.$store.state.user.model.value.password;
+			},
+			set(val) {
+				this.$store.commit('user/setSurname', val);
+			},
+		},
+		...mapState({
+			validationErrors: state => state.user.model.validationErrors,
+			constants: state => state.user.constants,
+		}),
+	},
+	methods: {
+		async beforeLogin () {
+			if (await this.$validator.validateAll())
+				this.$store.dispatch('user/login');
+		},
+	}
+};
+</script>

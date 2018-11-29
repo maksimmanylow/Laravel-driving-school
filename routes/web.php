@@ -22,13 +22,13 @@
 //   Route::get('/user/{id}', 'DashboardController@user');
 // });
 
-Auth::routes();
+// Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/export', 'ExportController@index'); //->middleware('admin');
 
 // Route::get('/site/groups', 'SiteController@groups');
 
 // Route::prefix('dashboard')->group(function() {})
-Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');
-Route::view('/{vue?}', 'index')->where('vue', '[\/\w\.-]*');
+  Route::get('/export', 'ExportController@index'); //->middleware('admin');
+  Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');
+  Route::view('/{vue?}', 'index')->where('vue', '[\/\w\.-]*');

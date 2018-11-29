@@ -11,18 +11,19 @@
       <div class="header-content">
         <div class="header-content-inner">
           <h1
-            id="homeHeading sr-mh"
+            id="homeHeading"
             class=""
           >Автошкола</h1>
           <br>
-          <h3 class="f-Comfortaa sr-mh ">Подготовка водителей транспортных средств <br>категорий «В» и «ВC»</h3>
+          <h3 class="f-Comfortaa">Подготовка водителей транспортных средств <br>категорий «В» и «ВC»</h3>
           <br>
           <a
-            class="btn btn-primary btn-xl js-scroll-trigger  sr-mh"
+            class="btn btn-primary"
             href="#about"
           >Подробнее</a>
         </div>
       </div>
+
     </header>
 
     <section
@@ -119,7 +120,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/izmaylov.JPG"
+                src="/images/team/fall-winter-2017/izmaylov.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -141,7 +142,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/savinyh.JPG"
+                src="/images/team/fall-winter-2017/savinyh.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -164,7 +165,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/vishnyakov.JPG"
+                src="/images/team/fall-winter-2017/vishnyakov.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -187,7 +188,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/sigaev.JPG"
+                src="/images/team/fall-winter-2017/sigaev.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -210,7 +211,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/vishnyakovav.JPG"
+                src="/images/team/fall-winter-2017/vishnyakovav.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -233,7 +234,7 @@
             >
               <img
                 class="img-fluid"
-                src="/img/team/fall-winter-2017/chechetkin.JPG"
+                src="/images/team/fall-winter-2017/chechetkin.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
@@ -274,31 +275,31 @@
                 <div class="carousel-item active">
                   <img
                     class="d-block w-100"
-                    src="/img/platform/1.JPG"
+                    src="/images/platform/1.JPG"
                     alt="First slide">
                 </div>
                 <div class="carousel-item ">
                   <img
                     class="d-block w-100"
-                    src="/img/platform/2.JPG"
+                    src="/images/platform/2.JPG"
                     alt="Second slide">
                 </div>
                 <div class="carousel-item ">
                   <img
                     class="d-block w-100"
-                    src="/img/platform/3.JPG"
+                    src="/images/platform/3.JPG"
                     alt="Third slide">
                 </div>
                 <div class="carousel-item ">
                   <img
                     class="d-block w-100"
-                    src="/img/platform/4.JPG"
+                    src="/images/platform/4.JPG"
                     alt="Fourth slide">
                 </div>
                 <div class="carousel-item ">
                   <img
                     class="d-block w-100"
-                    src="/img/platform/5.JPG"
+                    src="/images/platform/5.JPG"
                     alt="Fifth slide">
                 </div>
               </div>
@@ -434,7 +435,7 @@
                 href="http://megapolis-car.ru/"
                 class="partner-logo"><img
                   class="img-fluid sr-button"
-                  src="/img/logos/megapolis.png"></a>
+                  src="/images/logos/megapolis.png"></a>
               <div class="partner-title h3">Атошкола "Мегаполис"</div>
             </div>
           </div>
@@ -445,7 +446,7 @@
                 href="http://auto.igps.ru/"
                 class="partner-logo"><img
                   class="img-fluid sr-button"
-                  src="/img/logos/logo_ugps.png"></a>
+                  src="/images/logos/logo_ugps.png"></a>
               <div class="partner-title h3">Государственная автошкола МЧС</div>
             </div>
           </div>
@@ -454,17 +455,20 @@
       </div>
     </section>
 
+    <UserModal />
   </div>
 </template>
 
 <script>
 
 import GroupCard from '../components/GroupCard';
+import UserModal from '../components/UserModal';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
 	components: {
 		GroupCard,
+		UserModal,
 	},
 	computed: mapState({
 		groups: state => state.group.all,
@@ -472,13 +476,14 @@ export default {
 	created () {
 		this.$store.dispatch('group/getPage', 1);
 	},
-	// methods: {
-	// 	...mapMutations('user', [
-	// 		'selectGroup',
-	// 	]),
-	// 	...mapActions('user', [
-	// 		'signUp',
-	// 	]),
-	// }
+	methods: {
+		selectGroup: function(group_id) {
+			this.$store.commit('user/setGroup', group_id);
+			this.$store.commit('user/showCreateModal');
+		},
+		...mapActions('user', [
+			'signUp',
+		]),
+	}
 };
 </script>

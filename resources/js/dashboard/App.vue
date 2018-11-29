@@ -26,9 +26,13 @@
         <a class="nav-link">Группы</a>
       </router-link>
     </Navbar>
-    <div class="router-view">
+    <transition
+      name="fade"
+      mode="out-in"
+      appear
+      @after-enter="afterEnter">
       <router-view/>
-    </div>
+    </transition>
   </div>
 </template>
 

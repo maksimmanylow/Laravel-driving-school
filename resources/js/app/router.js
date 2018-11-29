@@ -14,7 +14,7 @@ export default new Router({
 		},
 		{
 		  path: '/sign-up',
-		  name: 'user',
+		  name: 'sign-up',
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route
 		  // which is lazy-loaded when the route is visited.
@@ -22,7 +22,7 @@ export default new Router({
 		},
 		{
 		  path: '/login',
-		  name: 'group',
+		  name: 'login',
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route
 		  // which is lazy-loaded when the route is visited.

@@ -10,7 +10,8 @@ export default new Router({
 		{
 			path: '/dashboard',
 			name: 'home',
-			component: Home
+      component: Home,
+      meta: { transitionName: 'slide' },
 		},
 		{
 		  path: '/dashboard/user',
@@ -18,7 +19,8 @@ export default new Router({
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route
 		  // which is lazy-loaded when the route is visited.
-		  component: () => import(/* webpackChunkName: "group" */ './views/User.vue')
+		  component: () => import(/* webpackChunkName: "group" */ './views/User.vue'),
+      meta: { transitionName: 'slide' },
 		},
 		{
 		  path: '/dashboard/group',
@@ -26,7 +28,8 @@ export default new Router({
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route
 		  // which is lazy-loaded when the route is visited.
-		  component: () => import(/* webpackChunkName: "group" */ './views/Group.vue')
+		  component: () => import(/* webpackChunkName: "group" */ './views/Group.vue'),
+      meta: { transitionName: 'slide' },
 		},
 	]
 });
