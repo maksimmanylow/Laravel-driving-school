@@ -34,3 +34,6 @@
 .btn-xl {
   padding: 15px 30px;
 }
+.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+  color:rgba(255, 255, 255, 1) !important;
+}
