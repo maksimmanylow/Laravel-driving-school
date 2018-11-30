@@ -363,7 +363,9 @@
         <br>
         <div class=" card">
 
-          <div id="map"/>
+          <Map
+            :markers="markers"
+          />
 
           <br>
           <div class="row">
@@ -463,12 +465,21 @@
 
 import GroupCard from '../components/GroupCard';
 import UserModal from '../components/UserModal';
+import Map from '../components/Map/Map';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
 	components: {
 		GroupCard,
 		UserModal,
+		Map,
+	},
+	data: function() {
+		return {
+			markers: [
+				{lat: 59.9163774, lng: 30.3136526}
+			]
+		};
 	},
 	computed: mapState({
 		groups: state => state.group.all,

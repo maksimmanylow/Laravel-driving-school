@@ -3,10 +3,15 @@
     <h1>Map</h1>
     <map-loader
       :map-config="mapConfig"
-      api-key="YOUR API KEY"
-    >
-      <template v-for="marker in markers">
-        <child-marker :position="marker" />
+      api-key="API_KEY">
+      <template slot-scope="scopeProps"> <!-- slot-scope -->
+        <child-marker
+          v-for="(marker,i) in markers"
+          :key="i"
+          :position="marker"
+          :google="scopeProps.google"
+          :map="scopeProps.map"
+        />
       </template>
     </map-loader>
   </div>
@@ -15,6 +20,7 @@
 <script>
 import MapLoader from './MapLoader.vue';
 import ChildMarker from './ChildMarker';
+import C from './constants';
 
 export default {
 	components: {
@@ -26,6 +32,7 @@ export default {
 	},
 	data(){
 		return {
+			API_KEY: C.API_KEY,
 			mapConfig: {
 				zoom: 12,
 				center: this.markers[0]

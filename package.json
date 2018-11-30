@@ -28,6 +28,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-vue": "^4.7.1",
+    "google-maps-api-loader": "^1.1.1",
     "imagemin": "^6.0.0",
     "inputmask": "^4.0.2",
     "jquery": "^3.2",

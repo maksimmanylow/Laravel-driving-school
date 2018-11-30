@@ -1,13 +1,12 @@
+<!-- MapLoader.vue -->
 <template>
   <div>
     <div id="map"/> <!-- point 1 -->
     <template v-if="!!this.google && !!this.map"> <!-- point 2 -->
-      <map-provider
+      <slot
         :google="google"
         :map="map"
-      >
-        <slot/>
-      </map-provider>
+      />
     </template>
   </div>
 </template>
