@@ -22,7 +22,7 @@
     </div>
     <div class="card__footer">
       <div
-        class="btn btn-primary text-uppercase"
+        class="btn btn--gray"
         @click="select(group.id)">выбрать</div>
     </div>
   </div>

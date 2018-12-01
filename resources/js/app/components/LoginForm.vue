@@ -32,9 +32,12 @@
           {{ errors.first('password') }}
         </div>
       </div>
-      <button
-        class="btn btn-success"
-        @click="beforeLogin">Войти</button>
+      <div class="text-right">
+        <a href="">Забыли пароль?</a>
+        <button
+          class="btn btn--gray"
+          @click="beforeLogin">Войти</button>
+      </div>
     </div>
   </div>
 </template>

@@ -9,18 +9,13 @@
         <div class="glitch__img" />
       </div>
       <div class="header-content">
-        <div class="header-content-inner">
+        <div class="header-content__inner">
           <h1
             id="homeHeading"
             class=""
-          >Автошкола</h1>
+          >Автошкола БГТУ "ВОЕНМЕХ"</h1>
           <br>
           <h3 class="f-Comfortaa">Подготовка водителей транспортных средств <br>категорий «В» и «ВC»</h3>
-          <br>
-          <a
-            class="btn btn-primary"
-            href="#about"
-          >Подробнее</a>
         </div>
       </div>
 

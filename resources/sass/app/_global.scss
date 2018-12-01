@@ -21,7 +21,7 @@ hr.dark {
 }
 
 a {
-  color: $theme-primary;
+  color: $link-color;
   @include transition-all;
   &:focus,
   &:hover {

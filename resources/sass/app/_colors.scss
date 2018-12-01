@@ -15,8 +15,6 @@ $pale-green: #20CF5E;
 $pale-blue: #0E88B5;
 $pale-slate: #4A475B;
 
-$background-dark: #0A1B2E;
-$background-light: #f3f3f3;
 
 $gray-base: #000 !default;
 $gray-darker: lighten($gray-base, 13.5%) !default;
@@ -27,13 +25,18 @@ $gray-lighter: lighten($gray-base, 80%) !default;
 
 // Gray and Brand Colors for use across theme
 $body-bg: $gray-darker; //rgb(38, 38, 38);
-$body-color: #fff; //#888;
-$card-bg: $gray-dark;
-$data-table-head-bg: $gray-darker;
-$data-table-body-bg: $gray-dark;
+// $body-color: #fff; //#888;
 
-$theme-primary: $gray-darker;
-$theme-secondary: $gray-dark;
+$background-dark: #ebebeb;
+$background-light: #f3f3f3;
+$theme-primary: $background-dark;
+$theme-secondary: $background-light;
+$theme-light: #37ACFF;
+$button-primary: #0095FF;
+$yellow: #FFF300;
+
+$link-color: $pale-blue;
+
 
 // close btn
 // $close-color: $body-color;

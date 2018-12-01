@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import "colors";
 
 .modal {
 
@@ -48,12 +48,12 @@
     border: none;
     // color: map-get($greens, "100");
     // background-color: #3B4B5B;
-    color: #B7E4FF;
+    color: $white;
     text-align: center;
 
     h3 {
       margin: 0;
-      font-family: 'Lobster', cursive;
+      // font-family: 'Lobster', cursive;
     }
 
     .close {

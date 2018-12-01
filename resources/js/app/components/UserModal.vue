@@ -69,7 +69,7 @@
         class="btn btn-default"
         @click="closeModal">Отмена</span>
       <button
-        class="btn btn-success"
+        class="btn gray-400"
         @click="beforeSave">Записаться</button>
     </template>
   </Modal>
