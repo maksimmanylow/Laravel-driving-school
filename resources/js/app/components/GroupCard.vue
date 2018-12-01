@@ -3,18 +3,21 @@
     class="card text-center"
   >
     <div class="card__header">
+      <div
+        :class="group.status.class"
+      />
       <h4 class="card__title">{{ group.name }}</h4>
-      <h6 class="card__description">{{ group.description || "Группа воскресного обучения" }}</h6>
+      <h6 class="card__description text-muted">{{ group.description || "Группа воскресного обучения" }}</h6>
     </div>
     <div class="card__body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Стоимость обучения <br> <strong>{{ group.price }}</strong> рублей
-          <hr>
-          для студентов <br> стоимость обучения <br> <strong>{{ group.price_for_students }}</strong> рублей
+        <li class="list-group-item"><div class="text-muted">cтоимость обучения</div>
+          <p>{{ group.price }} рублей</p>
+          <p class="text-muted">{{ group.price_for_students }} рублей - для студентов</p>
         </li>
-        <li class="list-group-item">Дни недели <br><strong>{{ group.timetable }}</strong></li>
-        <li class="list-group-item">Часы <strong>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</strong></li>
-        <li class="list-group-item">Начало обучения <br><strong>{{ group.start_at }}</strong></li>
+        <li class="list-group-item"><div class="text-muted">дни</div>{{ JSON.parse(group.timetable).join(', ') }}</li>
+        <li class="list-group-item"><div class="text-muted">часы</div>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</li>
+        <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ group.start_at }}</li>
       </ul>
     </div>
     <div class="card__footer">

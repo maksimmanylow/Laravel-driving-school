@@ -12055,24 +12055,6 @@ h3 {
   text-decoration: underline;
 }
 
-.indicator {
-  width: 1rem;
-  height: 1rem;
-  border-radius: .5rem;
-}
-
-.indicator--green {
-  background: #40e27a;
-}
-
-.indicator--yellow {
-  background: #12ace4;
-}
-
-.indicator--red {
-  background: #6c757d;
-}
-
 .card {
   border-radius: 1rem !important;
   overflow: hidden;
@@ -12403,6 +12385,25 @@ body {
 .multiselect__tags {
   border-radius: 2rem;
   border: none;
+}
+
+.indicator {
+  width: 1rem;
+  height: 1rem;
+  border-radius: .5rem;
+  position: absolute;
+}
+
+.indicator--green {
+  background: #40e27a;
+}
+
+.indicator--yellow {
+  background: #12ace4;
+}
+
+.indicator--red {
+  background: #6c757d;
 }
 
 .fade-enter-active,

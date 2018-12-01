@@ -114,16 +114,6 @@ ul.list  > li {
   margin-left: 2rem;
 }
 
-.card {
-  &, &:hover, &:active, &:focus {
-    text-decoration: none;
-    color: inherit;
-  }
-  .card-text {
-    font-size: 1rem;
-  }
-}
-
 .text-underline {
   text-decoration: underline;
 }

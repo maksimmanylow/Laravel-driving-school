@@ -264,7 +264,7 @@
         <br>
 
         <div class="row justify-content-center">
-          <div class="col-md-10 card p-3">
+          <div class="col-md-10 card p-0">
 
             <div
               id="carouselExampleControls"
@@ -361,7 +361,7 @@
 
         <h2 class="section-heading">контакты</h2>
         <br>
-        <div class=" card">
+        <div class="card p-0">
 
           <Map
             :markers="markers"

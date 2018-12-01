@@ -5,7 +5,7 @@
         <div
           v-for="group in groups"
           :key="group.id"
-          class="col-lg-4">
+          class="col-md-6 col-lg-4">
           <GroupCard
             :key="group.id"
             :group="group"
