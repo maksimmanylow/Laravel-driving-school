@@ -34,8 +34,7 @@
     <transition
       name="fade"
       mode="out-in"
-      appear
-      @after-enter="afterEnter">
+      appear>
       <router-view/>
     </transition>
     <Footer />

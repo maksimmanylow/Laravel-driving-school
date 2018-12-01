@@ -397,7 +397,7 @@
           <div class="row justify-content-center">
 
             <div class="col-md-4">
-              <span id="vk_groups"/>
+              <VKGroups/>
 
             </div>
 
@@ -466,6 +466,7 @@
 import GroupCard from '../components/GroupCard';
 import UserModal from '../components/UserModal';
 import Map from '../components/Map/Map';
+import VKGroups from '../components/VK/Widget.vue';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
@@ -473,6 +474,7 @@ export default {
 		GroupCard,
 		UserModal,
 		Map,
+		VKGroups,
 	},
 	data: function() {
 		return {
