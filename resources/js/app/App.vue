@@ -2,7 +2,7 @@
   <div id="app">
     <Nav>
       <template slot="title">
-        ВОЕНМЕХ.АВТОШКОЛА
+        <small>ВОЕНМЕХ</small> АВТОШКОЛА
       </template>
       <template slot="links">
         <router-link

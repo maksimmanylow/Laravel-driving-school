@@ -1,3 +1,4 @@
+@import "colors";
 // Styling for the navbar
 #mainNav {
   line-height: 1rem;
@@ -6,12 +7,13 @@
   // @include sans-serif-font;
   @include transition-all;
   .navbar-brand {
+    font-family: Jura;
     font-weight: 700;
     text-transform: uppercase;
-    color: $theme-primary;
+    color: map-get($blues, "500");
     &:focus,
     &:hover {
-      color: darken($theme-primary, .1);
+      color: map-get($blues, "400");
     }
   }
   .navbar-toggle {
@@ -48,13 +50,13 @@
   @media (min-width: 992px) {
     border-color: fade-out(white, .7);
     background-color: transparent;
-    .navbar-brand {
-      color: fade-out(white, .3);
-      &:focus,
-      &:hover {
-        color: white;
-      }
-    }
+    // .navbar-brand {
+    //   color: fade-out(white, .3);
+    //   &:focus,
+    //   &:hover {
+    //     color: white;
+    //   }
+    // }
     .navbar-nav > li.nav-item > a.nav-link,
     .navbar-nav > li.nav-item > a.nav-link:focus {
       color: fade-out(white, .3);
@@ -65,14 +67,14 @@
     &.navbar-shrink {
       border-color: fade-out($gray-darker, .95);
       background-color: white;
-      .navbar-brand {
-        font-size: 16px;
-        color: $theme-primary;
-        &:focus,
-        &:hover {
-          color: darken($theme-primary, .1);
-        }
-      }
+      // .navbar-brand {
+      //   font-size: 16px;
+      //   color: $theme-primary;
+      //   &:focus,
+      //   &:hover {
+      //     color: darken($theme-primary, .1);
+      //   }
+      // }
       .navbar-nav > li.nav-item > a.nav-link,
       .navbar-nav > li.nav-item > a.nav-link:focus {
         color: $gray-darker;
