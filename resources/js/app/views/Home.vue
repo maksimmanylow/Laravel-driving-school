@@ -47,7 +47,7 @@
               <br>
               <p>Также предоставляем услугу по <b>восстановлению навыков вождения</b> (методика обучения подбирается индивидуально).</p>
 
-              <small><sup>1</sup>На обучение могут поступить все граждане РФ или иностранные граждане, имеющее основания законного пребывания в РФ, кроме инвалидов или имеющих судимость лиц.</small>
+              <small class="text-muted"><sup>1</sup>На обучение могут поступить все граждане РФ или иностранные граждане, имеющее основания законного пребывания в РФ, кроме инвалидов или имеющих судимость лиц.</small>
             </div>
           </div>
 
@@ -56,7 +56,7 @@
               <p>Программа профессиональной подготовки водителей категорий «В» и «ВC» реализуется в БГТУ «ВОЕНМЕХ» им. Д.Ф. Устинова в соответствии с лицензией на право ведения образовательной деятельности рег. № 2238 от 28.06.2016 выданной Федеральной службой
               по надзору в сфере образования и науки, и заключением о соответствии учебно–материальной базы выданной Управлением Государственной инспекцией безопасности дорожного движения.</p>
               <a
-                class=""
+                class="text-underline"
                 target="_blank"
                 href="https://xn--90adear.xn--p1ai/drivingschools/"
               >
@@ -371,56 +371,33 @@
           <div class="row">
             <div class="col-md-10 mx-auto">
               <br>
-              <p class="h3">Адрес: 1-я Красноармейская ул. 1, Санкт-Петербург</p>
+              <p class="h3">Адрес: 1-я Красноармейская ул. 1, Санкт-Петербург.</p>
+              <p class="h4 text-muted">Открыто по будням с 10 до 17 часов.</p>
+
               <br>
               <div class="row">
                 <div class="col-md-6 text-center">
                   <i class="fa fa-phone fa-3x sr-contact"/>
+                  <h4>Олег Воловик</h4>
+                  <h6 class="text-muted">руководитель автошколы</h6>
                   <p>+7 (911) 740 6422</p>
-                  <p>по будням с 9 до 17 часов</p>
-                </div>
-                <div class="col-md-6 text-center">
-                  <i class="fa fa-envelope-o fa-3x sr-contact"/>
-                  <p>
-                    <a href="mailto:volovik_ov@bstu.spb.su">volovik_ov@bstu.spb.su</a>
-                  </p>
-                </div>
-                <div class="col-md-6 text-center">
+                  <a href="mailto:volovik_ov@bstu.spb.su">volovik_ov@bstu.spb.su</a>
                   <hr>
-                  <p>Чаплыгин Анатолий Сергеевич</p>
+                  <h4>Анатолий Сергеевич</h4>
+                  <h6 class="text-muted">зам. руководителя</h6>
                   <p>+7 (999) 028-28-96</p>
                 </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="row justify-content-center">
-
-            <div class="col-md-4">
-              <VKGroups/>
-
-            </div>
-
-            <div class="col-md-4">
-              <div
-                class="fb-page"
-                data-height="300"
-                data-href="https://www.facebook.com/bstuattcru"
-                data-tabs="timeline"
-                data-small-header="false"
-                data-adapt-container-width="true"
-                data-hide-cover="false"
-                data-show-facepile="true">
-                <blockquote
-                  cite="https://www.facebook.com/bstuattcru"
-                  class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/bstuattcru">Автошкола университета Военмех</a></blockquote>
+                <div class="col-md-6 text-center">
+                  <VkGroupsWidget/>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
 
-    </div></section>
+      </div>
+    </section>
 
 
     <section
@@ -462,11 +439,12 @@
 </template>
 
 <script>
-
+// Custom components
 import GroupCard from '../components/GroupCard';
 import UserModal from '../components/UserModal';
 import Map from '../components/Map/Map';
-import VKGroups from '../components/VK/Widget.vue';
+import VkGroupsWidget from '../components/VkGroupsWidget.vue';
+// Vuex
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
@@ -474,7 +452,7 @@ export default {
 		GroupCard,
 		UserModal,
 		Map,
-		VKGroups,
+		VkGroupsWidget,
 	},
 	data: function() {
 		return {
@@ -488,6 +466,33 @@ export default {
 	}),
 	created () {
 		this.$store.dispatch('group/getPage', 1);
+	},
+	mounted: function() {
+		// Magnific popup calls
+		const mp_config = {
+			delegate: 'a',
+			type: 'image',
+			tLoading: 'Loading image #%curr%...',
+			mainClass: 'mfp-img-mobile',
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0, 1]
+			},
+			image: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
+			}
+		};
+
+		if (window.innerWidth >= 960) {
+			$('.popup-gallery-room').magnificPopup(mp_config);
+			$('.popup-gallery-ploshadka').magnificPopup(mp_config);
+			$('.popup-gallery-cars').magnificPopup(mp_config);
+		} else {
+			$('.popup-gallery-cars').find('a').click(function(e) {e.preventDefault();});
+			$('.popup-gallery-ploshadka').find('a').click(function(e) {e.preventDefault();});
+			$('.popup-gallery-cars').find('a').click(function(e) {e.preventDefault();});
+		}
 	},
 	methods: {
 		selectGroup: function(group_id) {

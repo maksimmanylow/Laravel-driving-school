@@ -10794,6 +10794,10 @@ ul.list > li {
   font-size: 1rem;
 }
 
+.text-underline {
+  text-decoration: underline;
+}
+
 #mainNav {
   line-height: 1rem;
   border-color: rgba(34, 34, 34, 0.05);
