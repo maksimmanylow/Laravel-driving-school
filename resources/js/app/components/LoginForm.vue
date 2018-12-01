@@ -5,9 +5,9 @@
     </div>
     <div class="form">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
+        <label for="exampleInputEmail1">Email или номер телефона</label>
         <input
-          v-validate="'email|required'"
+          v-validate="'required'"
           v-model="email"
           :class="{'is-invalid': errors.has('email')}"
           name="email"
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Имя</label>
+        <label for="exampleInputEmail1">Пароль</label>
         <input
           v-validate="'required|min:2|max:255'"
           v-model="password"

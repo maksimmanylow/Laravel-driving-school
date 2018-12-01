@@ -75,7 +75,6 @@
         <div class="row justify-content-center">
           <div class="col-md-10 card p-3">
 
-            <h4 class="text-center">Вот список наших сильных сторон:</h4>
             <ul class="list">
               <br>
               <li>теоретические занятия проходят на закрытой территории в специально оборудованных классах;</li>
@@ -120,11 +119,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Volkswagen Polo
-                  </div>
                   <div class="project-name">
                     Измайлов Сергей Андреевич
+                  </div>
+                  <div class="project-category text-faded">
+                    Volkswagen Polo
                   </div>
                 </div>
               </div>
@@ -142,11 +141,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Volkswagen Polo
-                  </div>
                   <div class="project-name">
                     Савиных Павел Вячеславович
+                  </div>
+                  <div class="project-category text-faded">
+                    Volkswagen Polo
                   </div>
                 </div>
               </div>
@@ -165,11 +164,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Volkswagen Polo
-                  </div>
                   <div class="project-name">
                     Вишняков Сергей Валерьевич
+                  </div>
+                  <div class="project-category text-faded">
+                    Volkswagen Polo
                   </div>
                 </div>
               </div>
@@ -188,11 +187,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Hyundai Solaris
-                  </div>
                   <div class="project-name">
                     Сигаев Вячеслав Иванович
+                  </div>
+                  <div class="project-category text-faded">
+                    Hyundai Solaris
                   </div>
                 </div>
               </div>
@@ -211,11 +210,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Peugeot 408
-                  </div>
                   <div class="project-name">
                     Вишняков Андрей Владимирович
+                  </div>
+                  <div class="project-category text-faded">
+                    Peugeot 408
                   </div>
                 </div>
               </div>
@@ -234,11 +233,11 @@
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
-                  <div class="project-category text-faded">
-                    Chevrolet Cruze
-                  </div>
                   <div class="project-name">
                     Чечеткин Виталий Николаевич
+                  </div>
+                  <div class="project-category text-faded">
+                    Chevrolet Cruze
                   </div>
                 </div>
               </div>
@@ -373,7 +372,7 @@
               <div class="row">
                 <div class="col-md-6 text-center">
                   <i class="fa fa-phone fa-3x sr-contact"/>
-                  <h4>Олег Воловик</h4>
+                  <h4>Олег Владимирович</h4>
                   <h6 class="text-muted">руководитель автошколы</h6>
                   <p>+7 (911) 740 6422</p>
                   <a href="mailto:volovik_ov@bstu.spb.su">volovik_ov@bstu.spb.su</a>
