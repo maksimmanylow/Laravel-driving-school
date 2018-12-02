@@ -337,7 +337,7 @@
           <div
             v-for="group in groups"
             :key="group.id"
-            class="col-lg-4">
+            class="col-lg-4 col-md-6">
             <GroupCard
               :key="group.id"
               :group="group"

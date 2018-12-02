@@ -19,6 +19,10 @@
                     <span aria-hidden="true">&times;</span>
                   </button> -->
               </div>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-auto">
               <div
                 class="modal__container"
                 @click.stop>

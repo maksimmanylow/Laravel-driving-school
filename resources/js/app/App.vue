@@ -13,14 +13,14 @@
         >
           <a class="nav-link">Главная</a>
         </router-link>
-        <router-link
+        <!-- <router-link
           :to="{name: 'sign-up'}"
           tag="li"
           class="nav-item"
           active-class="active"
         >
           <a class="nav-link">Запись</a>
-        </router-link>
+        </router-link> -->
         <router-link
           :to="{name: 'login'}"
           tag="li"

@@ -16,14 +16,14 @@ export default new Router({
 			name: 'home',
 			component: Home
 		},
-		{
-		  path: '/sign-up',
-		  name: 'sign-up',
-		  // route level code-splitting
-		  // this generates a separate chunk (group.[hash].js) for this route
-		  // which is lazy-loaded when the route is visited.
-		  component: () => import(/* webpackChunkName: "group" */ './views/SignUp.vue')
-		},
+		// {
+		//   path: '/sign-up',
+		//   name: 'sign-up',
+		//   // route level code-splitting
+		//   // this generates a separate chunk (group.[hash].js) for this route
+		//   // which is lazy-loaded when the route is visited.
+		//   component: () => import(/* webpackChunkName: "group" */ './views/SignUp.vue')
+		// },
 		{
 		  path: '/login',
 		  name: 'login',

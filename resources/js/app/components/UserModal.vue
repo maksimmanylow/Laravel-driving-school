@@ -5,7 +5,7 @@
     @save="beforeSave"
   >
     <template slot="header">
-      <h3>Введите свои контактные данные</h3>
+      <h3>Форма записи</h3>
     </template>
     <template slot="body">
       <div class="form-group">
