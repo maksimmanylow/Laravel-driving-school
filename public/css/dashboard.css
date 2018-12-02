@@ -11284,6 +11284,8 @@ a.text-dark:focus {
 }
 
 label {
+  padding-left: 1rem;
+  margin-bottom: 0.125rem;
   font-family: 'Jura', sans-serif;
 }
 
