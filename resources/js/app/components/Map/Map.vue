@@ -2,7 +2,7 @@
   <div>
     <map-loader
       :map-config="mapConfig"
-      api-key="API_KEY">
+      :api-key="API_KEY">
       <template slot-scope="scopeProps"> <!-- slot-scope -->
         <child-marker
           v-for="(marker,i) in markers"
