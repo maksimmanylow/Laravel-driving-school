@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Имя</label>
+        <label for="exampleInputEmail1">Имя*</label>
         <input
           v-validate="'required|min:2|max:255'"
           v-model="name"
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Телефон</label>
+        <label for="exampleInputEmail1">Телефон*</label>
         <input
           v-validate="'required|phoneNumber'"
           v-model="phone"
@@ -63,6 +63,7 @@
           {{ errors.first('phone') }}
         </div>
       </div>
+      <p class="text-muted">*обязательные для заполнения поля</p>
     </template>
     <template slot="footer">
       <span
