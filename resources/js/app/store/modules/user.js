@@ -19,6 +19,7 @@ const state = {
 	},
 	message: {
 		text: 'Default text',
+		heading: 'Default text',
 		type: C.message.type.OK,
 		show: false,
 		image: null,
@@ -106,7 +107,10 @@ const actions = {
 				status
 			} = await API.create(state.model.value);
 			if (status == 201) {
-				dispatch('showMessageOK', 'Учащийся добавлен!');
+				dispatch('showMessageOK', {
+					heading: 'Вы записаны!',
+					text: 'В ближайшее время мы свяжемся с Вами',
+				});
 				dispatch('getPage');
 			}
 		} catch (error) {
@@ -114,65 +118,17 @@ const actions = {
 			commit('addErrors', error);
 		}
 	},
-	async update({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			const {
-				data,
-				status
-			} = await API.update(state.model.value);
-			if (status == 200) {
-				dispatch('showMessageOK', 'Учащийся обновлен!');
-				commit('setAll', state.all.map(user => {
-					if (user.id === data.data.id) {
-						return state.model.value;
-					} else {
-						return user;
-					}
-				}));
-			}
-		} catch (error) {
-			dispatch('showMessageError');
-			commit('addErrors', error);
-		}
-	},
-	async delete({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			if (!state.model.value.id) {
-				throw new Error('Please, provide user id');
-			}
-			const {
-				data,
-				status
-			} = await API.delete(state.model.value.id);
-			if (status == 204) {
-				commit('setAll', state.all.filter(user => user.id != state.model.value.id));
-				dispatch('showMessageOK', 'Учащийся удален!');
-			}
-		} catch (error) {
-			dispatch('showMessageError');
-			commit('addErrors', error);
-		}
-		commit('closeModal');
-	},
 	showMessageOK({
 		commit
 	}, message) {
 		commit('showMessageOK', message);
-		setTimeout(() => commit('closeMessage'), 1000);
+		setTimeout(() => commit('closeMessage'), 2000);
 	},
 	showMessageError({
 		commit
 	}, message) {
 		commit('showMessageError', message);
-		setTimeout(() => commit('closeMessage'), 1000);
+		setTimeout(() => commit('closeMessage'), 2000);
 	},
 	async search({
 		commit,
@@ -333,7 +289,7 @@ const mutations = {
 	},
 	showMessageOK(state, message) {
 		state.message = {
-			text: message,
+			...message,
 			type: C.message.type.OK,
 			show: true,
 		};

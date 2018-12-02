@@ -15,18 +15,21 @@
       </div>
     </div>
     <UserModal />
+    <Message />
   </section>
 </template>
 <script>
 
 import GroupCard from '../components/GroupCard';
 import UserModal from '../components/UserModal';
+import Message from '../components/Message';
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
 	components: {
 		GroupCard,
 		UserModal,
+		Message,
 	},
 	computed: mapState({
 		groups: state => state.group.all,

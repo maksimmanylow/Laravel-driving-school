@@ -144,46 +144,6 @@ const actions = {
 			commit('addErrors', error);
 		}
 	},
-	async update({commit, dispatch, state}) {
-		try {
-			const {
-				data,
-				status
-			} = await API.update(state.model.value);
-			if (status == 200) {
-				dispatch('showMessageOK', 'Группа обновлена!');
-				commit('setAll', state.all.map(model => {
-					if (model.id === data.data.id) {
-						return data.data;
-					} else {
-						return model;
-					}
-				}));
-			}
-		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
-			commit('addErrors', error);
-		}
-	},
-	async delete({commit, dispatch, state}) {
-		try {
-			if (!state.model.value.id) {
-				throw new Error('Please, provide model id');
-			}
-			const {
-				data,
-				status
-			} = await API.delete(state.model.value.id);
-			if (status == 204) {
-				commit('setUsers', state.all.filter(model => model.id != state.model.value.id));
-				dispatch('showMessageOK', 'Группа удалена!');
-			}
-		} catch (error) {
-			dispatch('showMessageError', 'Код ошибки: ' + status);
-			commit('addErrors', error);
-		}
-		commit('closeModal');
-	},
 	showMessageOK({commit}, message) {
 		commit('showMessageOK', message);
 		setTimeout(() => commit('closeMessage'), 1500);

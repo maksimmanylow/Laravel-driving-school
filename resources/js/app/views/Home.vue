@@ -429,6 +429,7 @@
     </section>
 
     <UserModal />
+    <Message />
   </div>
 </template>
 
@@ -436,6 +437,7 @@
 // Custom components
 import GroupCard from '../components/GroupCard';
 import UserModal from '../components/UserModal';
+import Message from '../components/Message';
 import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
 // Vuex
@@ -445,6 +447,7 @@ export default {
 	components: {
 		GroupCard,
 		UserModal,
+		Message,
 		Map,
 		VkGroupsWidget,
 	},

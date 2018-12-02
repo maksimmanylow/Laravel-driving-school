@@ -1,7 +1,7 @@
 {
-    "/group.js": "/group.js",
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/dashboard.css": "/css/dashboard.css",
-    "/js/dashboard.js": "/js/dashboard.js"
+    "/group.js": "/group.js?id=0fadbeacdd9dfed392b9",
+    "/js/app.js": "/js/app.js?id=b1ef75f73e0b56173272",
+    "/css/app.css": "/css/app.css?id=3ef874b87e8adf8a8d07",
+    "/css/dashboard.css": "/css/dashboard.css?id=01885f97d0b3ec9a8b0f",
+    "/js/dashboard.js": "/js/dashboard.js?id=0ce0a0cc9c8f873f7b3f"
 }
