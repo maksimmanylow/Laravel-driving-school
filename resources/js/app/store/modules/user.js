@@ -355,7 +355,6 @@ const mutations = {
 		state.modalShow = true;
 	},
 	showCreateModal(state) {
-		state.model.value = C.defaultUser;
 		state.modalMode = C.mode.CREATE;
 		state.modalShow = true;
 	},
