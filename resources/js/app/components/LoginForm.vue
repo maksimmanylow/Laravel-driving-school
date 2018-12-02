@@ -25,7 +25,7 @@
           v-model="password"
           :class="{'is-invalid': errors.has('password')}"
           name="password"
-          type="text"
+          type="password"
           class="form-control"
           aria-describedby="emailHelp">
         <div class="invalid-feedback">
