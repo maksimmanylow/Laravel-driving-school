@@ -113,7 +113,7 @@ const actions = {
 		// if (state.model.validationErrors.length) {
 		// 	return;
 		// }
-		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
+		// state.model.value.timetable = JSON.stringify(state.model.value.timetable);
 		state.model.value.status = state.model.value.status.key;
 		state.model.value.category = state.model.value.category.key;
 
@@ -135,7 +135,7 @@ const actions = {
 			} = await API.create(state.model.value);
 			if (status == 201) {
 				dispatch('showMessageOK', 'Группа добавлена!');
-				commit('setAll', [...state.all, state.model.value]);
+				dispatch('getPage');
 			} else {
 				dispatch('showMessageError');
 			}
