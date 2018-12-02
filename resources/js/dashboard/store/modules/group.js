@@ -113,7 +113,7 @@ const actions = {
 		// if (state.model.validationErrors.length) {
 		// 	return;
 		// }
-		// state.model.value.timetable = JSON.stringify(state.model.value.timetable);
+		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
 		state.model.value.status = state.model.value.status.key;
 		state.model.value.category = state.model.value.category.key;
 

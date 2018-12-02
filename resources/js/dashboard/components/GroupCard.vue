@@ -18,7 +18,7 @@
           <hr>
           для студентов <br> стоимость обучения <br> <strong>{{ group.price_for_students }}</strong> рублей
         </li>
-        <li class="list-group-item">Дни недели <br><strong>{{ group.timetable }}</strong></li>
+        <li class="list-group-item">Дни недели <br><strong>{{ group.timetable.join(', ') }}</strong></li>
         <li class="list-group-item">Часы <strong>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</strong></li>
         <li class="list-group-item">Начало обучения <br><strong>{{ group.start_at }}</strong></li>
       </ul>
