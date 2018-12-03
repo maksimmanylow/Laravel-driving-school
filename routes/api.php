@@ -13,9 +13,31 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::group([
+  'prefix' => 'auth'
+], function () {
+
+  Route::post('login', 'Auth\AuthController@login');
+  Route::post('signup', 'Auth\AuthController@signup');
+  Route::get('signup/activate/{token}', 'Auth\AuthController@signupActivate');
+
+  Route::group([
+    'middleware' => 'auth:api'
+  ], function() {
+    Route::get('logout', 'Auth\AuthController@logout');
+    Route::get('user', 'Auth\AuthController@user');
+  });
+});
+
+
+Route::group([
+  'namespace' => 'Auth',
+  'prefix' => 'password'
+], function () {
+  Route::post('create', 'PasswordResetController@create');
+  Route::get('find/{token}', 'PasswordResetController@find');
+  Route::post('reset', 'PasswordResetController@reset');
+});
 
 
 // Route::group([
@@ -24,19 +46,5 @@ use Illuminate\Http\Request;
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
 // });
-
-Route::group([
-  'prefix' => 'auth'
-], function () {
-  Route::post('login', 'API\AuthController@login');
-  Route::post('signup', 'API\AuthController@signup');
-
-  Route::group([
-    'middleware' => 'auth:api'
-  ], function() {
-    Route::get('logout', 'API\AuthController@logout');
-    Route::get('user', 'API\AuthController@user');
-  });
-});
 
 Route::get('public-group', 'API\PublicGroupController@index');
