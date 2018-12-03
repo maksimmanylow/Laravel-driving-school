@@ -27,6 +27,7 @@ class CreateGroupsTable extends Migration
             $table->smallInteger('price_for_students');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

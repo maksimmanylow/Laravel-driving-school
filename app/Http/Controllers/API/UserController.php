@@ -47,6 +47,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+      $request->validate([
+        'name' => 'required|string',
+        'phone' => 'required|string',
+        'email' => 'string|email|unique:users',
+        'password' => 'required|string|confirmed'
+      ]);
+      $user = new User([
+          'name' => $request->name,
+          'email' => $request->email,
+          'password' => bcrypt($request->password),
+          'phone' => $request->phone
+      ]);
+      $user->save();
         $User = User::create($request->all());
 
         return new UserResource($User);

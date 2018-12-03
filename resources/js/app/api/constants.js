@@ -1,7 +1,12 @@
 const constants = {
 	REST: {
-		user: '/api/user',
-		group: '/api/group'
+		auth: {
+			login: '/api/auth/login',
+			signup: '/api/auth/signup',
+			logout: '/api/auth/logout',
+			user: '/api/auth/user',
+		},
+		group: '/api/public-group'
 	}
 };
 

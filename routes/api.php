@@ -18,5 +18,25 @@ use Illuminate\Http\Request;
 // });
 
 
-Route::apiResource('group', 'API\GroupController');
-Route::apiResource('user', 'API\UserController');
+// Route::group([
+//   'middleware' => 'auth:api'
+// ], function() {
+  Route::apiResource('group', 'API\GroupController');
+  Route::apiResource('user', 'API\UserController');
+// });
+
+Route::group([
+  'prefix' => 'auth'
+], function () {
+  Route::post('login', 'API\AuthController@login');
+  Route::post('signup', 'API\AuthController@signup');
+
+  Route::group([
+    'middleware' => 'auth:api'
+  ], function() {
+    Route::get('logout', 'API\AuthController@logout');
+    Route::get('user', 'API\AuthController@user');
+  });
+});
+
+Route::get('public-group', 'API\PublicGroupController@index');

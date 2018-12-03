@@ -29,6 +29,13 @@
 // Route::get('/site/groups', 'SiteController@groups');
 
 // Route::prefix('dashboard')->group(function() {})
-  Route::get('/export', 'ExportController@index'); //->middleware('admin');
+
+
+// Route::group([
+//   'middleware' => 'auth:api'
+// ], function() {
+  Route::get('/export', 'ExportController@index');
   Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');
-  Route::view('/{vue?}', 'index')->where('vue', '[\/\w\.-]*');
+// });
+
+Route::view('/{vue?}', 'app')->where('vue', '[\/\w\.-]*');

@@ -1,7 +1,6 @@
 export default {
 	mode: {
-		CREATE: 'create',
-		UPDATE: 'update'
+		SIGNUP: 'signup',
 	},
 	message: {
 		type: {
@@ -15,7 +14,6 @@ export default {
 			ERROR: 'Ошибка',
 		}
 	},
-	weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
 	groupStatuses: [{
 		key: 1,
 		value: 'Набирается',
@@ -39,20 +37,6 @@ export default {
 		key: 2,
 		value: 'BC'
 	}],
-	get defaultGroup() {
-		return {
-			name: null,
-			start_at: null,
-			timetable: null,
-			hours_start_at: null,
-			hours_finish_at: null,
-			status: this.groupStatuses[0],
-			category: this.groupCategories[0],
-			price: 25000,
-			price_for_students: 23000,
-			is_active: true,
-		};
-	},
 	get defaultUser() {
 		return {
 			name: null,
@@ -61,18 +45,5 @@ export default {
 			email: null,
 			group_id: null
 		};
-	},
-	userLabels: {
-		'surname': 'Фамилия',
-		'name': 'Имя',
-		'phone': 'Телефон',
-		'email': 'Email',
-		'group_id': 'Группа',
-	},
-	groupLabels: {
-		name: 'Название',
-		timetable: 'Расписание',
-		category: 'Категория',
-		start_at: 'Начало занятий',
 	},
 };

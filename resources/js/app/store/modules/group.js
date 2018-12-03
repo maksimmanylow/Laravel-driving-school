@@ -8,11 +8,6 @@ const state = {
 	modalMode: null,
 	errors: [],
 	constants: C,
-	model: {
-		value: C.defaultGroup,
-		required: C.defaultGroup.keys,
-		validationErrors: [],
-	},
 	message: {
 		text: 'Default text',
 		type: C.message.type.OK,
@@ -93,57 +88,7 @@ const actions = {
 	// 		mutations.addErrors(error);
 	// 	}
 	// },
-	async get({
-		commit
-	}, id) {
-		try {
-			const {
-				data,
-				status
-			} = await API.get(id);
-			if (status == 200) {
-				commit('setModel', data.data);
-			}
-		} catch (error) {
-			mutations.addErrors(error);
-		}
-	},
-	save({state, getters, commit, dispatch}) {
-		// commit('validateNotEmpty');
-		// if (state.model.validationErrors.length) {
-		// 	return;
-		// }
-		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
-		state.model.value.status = state.model.value.status.key;
-		state.model.value.category = state.model.value.category.key;
 
-		switch (state.modalMode) {
-		case C.mode.CREATE:
-			dispatch('create');
-			break;
-		case C.mode.UPDATE:
-			dispatch('update');
-			break;
-		}
-		commit('closeModal');
-	},
-	async create({commit, dispatch, state}) {
-		try {
-			const {
-				data,
-				status
-			} = await API.create(state.model.value);
-			if (status == 201) {
-				dispatch('showMessageOK', 'Группа добавлена!');
-				commit('setAll', [...state.all, state.model.value]);
-			} else {
-				dispatch('showMessageError');
-			}
-		} catch (error) {
-			dispatch('showMessageError');
-			commit('addErrors', error);
-		}
-	},
 	showMessageOK({commit}, message) {
 		commit('showMessageOK', message);
 		setTimeout(() => commit('closeMessage'), 1500);
@@ -151,32 +96,6 @@ const actions = {
 	showMessageError({commit}, message) {
 		commit('showMessageError', message);
 		setTimeout(() => commit('closeMessage'), 1500);
-	},
-	async search({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			const query = state.search.query.trim();
-
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page: 1,
-				q: query,
-			});
-
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-			}
-		} catch (error) {
-			dispatch('showMessageError', error);
-			commit('addErrors', error);
-		}
-		commit('closeModal');
 	},
 	async goToNextPage({
 		commit,

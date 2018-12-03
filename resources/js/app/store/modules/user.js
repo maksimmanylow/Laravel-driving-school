@@ -42,40 +42,10 @@ const state = {
 
 // getters
 const getters = {
-	modalModeLabel: (state, getters, rootState) => {
-		switch (state.modalMode) {
-		case C.mode.CREATE:
-			return 'Добавить';
-		case C.mode.UPDATE:
-			return 'Редактировать';
-		}
-	}
 };
 
 // actions
 const actions = {
-	async getPage({
-		commit,
-		dispatch,
-		state
-	}, page) {
-		try {
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page,
-				q: state.search.query,
-				group_id: state.search.group ? state.search.group.id : null,
-			});
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-			}
-		} catch (error) {
-			commit('addErrors', error);
-		}
-	},
 	save({
 		state,
 		getters,
@@ -86,14 +56,7 @@ const actions = {
 		// if (state.model.validationErrors.length) {
 		// 	return;
 		// }
-		switch (state.modalMode) {
-		case C.mode.CREATE:
-			dispatch('create');
-			break;
-		case C.mode.UPDATE:
-			dispatch('update');
-			break;
-		}
+		dispatch('create');
 		commit('closeModal');
 	},
 	async create({
@@ -105,7 +68,7 @@ const actions = {
 			const {
 				data,
 				status
-			} = await API.create(state.model.value);
+			} = await API.signup(state.model.value);
 			if (status == 201) {
 				dispatch('showMessageOK', {
 					heading: 'Вы записаны!',
@@ -130,110 +93,6 @@ const actions = {
 		commit('showMessageError', message);
 		setTimeout(() => commit('closeMessage'), 2000);
 	},
-	async search({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			const query = state.search.query.trim();
-
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page: 1,
-				q: query,
-				group_id: state.search.group ? state.search.group.id : null,
-			});
-
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-			}
-		} catch (error) {
-			dispatch('showMessageError', error);
-			commit('addErrors', error);
-		}
-		commit('closeModal');
-	},
-	async goToNextPage({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			const nextPageNumber = state.paginator.current_page + 1;
-			if (nextPageNumber > state.paginator.last_page) {
-				throw new Error('Paginator: out of range');
-			}
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page: nextPageNumber,
-				q: state.search.query,
-				group_id: state.search.group ? state.search.group.id : null,
-			});
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-			}
-		} catch (error) {
-			dispatch('showMessageError');
-			commit('addErrors', error);
-		}
-	},
-	async goToPrevPage({
-		commit,
-		dispatch,
-		state
-	}) {
-		try {
-			const prevPageNumber = state.paginator.current_page - 1;
-			if (prevPageNumber < 1) {
-				throw new Error('Paginator: out of range');
-			}
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page: prevPageNumber,
-				q: state.search.query,
-				group_id: state.search.group ? state.search.group.id : null,
-			});
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-			}
-		} catch (error) {
-			dispatch('showMessageError');
-			commit('addErrors', error);
-		}
-	},
-	async filterByGroup({
-		commit,
-		dispatch,
-		state
-	}, group) {
-		try {
-			const {
-				data,
-				status
-			} = await API.getPage({
-				page: 1,
-				q: state.search.query,
-				group_id: group.id,
-			});
-			if (status == 200) {
-				commit('setAll', data.data);
-				commit('setPaginator', data.meta);
-				commit('setFilterByGroup', group);
-			}
-		} catch (error) {
-			commit('addErrors', error);
-		}
-	}
 };
 
 // mutations
@@ -260,19 +119,6 @@ const mutations = {
 	setModelValue(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)
 		};
-	},
-	setAll(state, users) {
-		state.all = users;
-	},
-	setPaginator(state, paginator) {
-		state.paginator.from = paginator.from;
-		state.paginator.to = paginator.to;
-		state.paginator.total = paginator.total;
-		state.paginator.current_page = paginator.current_page;
-		state.paginator.last_page = paginator.last_page;
-	},
-	setSearchQuery(state, query) {
-		state.search.query = query;
 	},
 	addErrors(state, e) {
 		state.errors.push(e);
@@ -304,14 +150,8 @@ const mutations = {
 	closeMessage(state) {
 		state.message.show = false;
 	},
-	showUpdateModal(state, id) {
-		state.model.value = { ...state.all.find(model => model.id == id)
-		};
-		state.modalMode = C.mode.UPDATE;
-		state.modalShow = true;
-	},
 	showCreateModal(state) {
-		state.modalMode = C.mode.CREATE;
+		state.modalMode = C.mode.SIGNUP;
 		state.modalShow = true;
 	},
 	showModal(state, show) {
