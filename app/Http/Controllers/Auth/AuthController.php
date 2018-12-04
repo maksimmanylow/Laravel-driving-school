@@ -11,9 +11,10 @@ use App\Notifications\SignupActivate;
 use Avatar;
 use Storage;
 
-
 class AuthController extends Controller
 {
+    const RECAPTCHA_SECRET = '6Le0hX4UAAAAADAnmPoT8L967BH4F4Jtr5pi9oQk';
+    const RECAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify';
     /**
         * Create user
         *
@@ -139,5 +140,30 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    public function verifyRecaptcha(Request $request, string $token)
+    {
+      $googleResponse = self::makeRequestToGoogle($token, $request->ip());
+
+      return response()->json($googleResponse, 200);
+    }
+
+    private static function makeRequestToGoogle($token, $clientIp = null)
+    {
+        $client = new \GuzzleHttp\Client();
+
+        $payload = [
+          'secret'   => self::RECAPTCHA_SECRET,
+          'response' => $token,
+        ];
+
+        if ($clientIp != '127.0.0.1')
+          $payload['remoteip'] = $clientIp;
+
+        $response = $client->post(self::RECAPTCHA_URL, ['json' => $payload]);
+        $body = $response->getBody();
+
+        return $body;
     }
 }

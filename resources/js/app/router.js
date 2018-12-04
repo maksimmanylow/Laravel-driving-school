@@ -31,6 +31,7 @@ export default new Router({
 		  // this generates a separate chunk (group.[hash].js) for this route
 		  // which is lazy-loaded when the route is visited.
 		  component: () => import(/* webpackChunkName: "group" */ './views/Login.vue')
-		},
+    },
+    { path: "*", redirect: '/404'}
 	]
 });

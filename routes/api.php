@@ -20,6 +20,7 @@ Route::group([
   Route::post('login', 'Auth\AuthController@login');
   Route::post('signup', 'Auth\AuthController@signup');
   Route::get('signup/activate/{token}', 'Auth\AuthController@signupActivate');
+  Route::get('recaptcha/{token}', 'Auth\AuthController@verifyRecaptcha');
 
   Route::group([
     'middleware' => 'auth:api'

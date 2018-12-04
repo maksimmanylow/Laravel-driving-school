@@ -7,15 +7,19 @@
         </div>
       </div>
     </div>
+    <GoogleReCaptcha
+      :page="'login'"/>
   </section>
 </template>
 <script>
 
 import LoginForm from '../components/LoginForm';
+import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
 
 export default {
 	components: {
 		LoginForm,
+		GoogleReCaptcha,
 	},
 };
 </script>

@@ -430,6 +430,7 @@
 
     <UserModal />
     <Message />
+    <GoogleReCaptcha/>
   </div>
 </template>
 
@@ -440,6 +441,7 @@ import UserModal from '../components/UserModal';
 import Message from '../components/Message';
 import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
+import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
 // Vuex
 import { mapState, mapMutations, mapActions } from 'vuex';
 
@@ -450,6 +452,7 @@ export default {
 		Message,
 		Map,
 		VkGroupsWidget,
+		GoogleReCaptcha,
 	},
 	data: function() {
 		return {
