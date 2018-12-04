@@ -192,15 +192,6 @@ const mutations = {
 	addErrors(state, e) {
 		state.errors.push(e);
 	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
-	},
 	showUpdateModal(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)};
 		state.modalMode = C.mode.UPDATE;

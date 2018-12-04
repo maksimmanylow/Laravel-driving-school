@@ -38,6 +38,7 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'group_id' => $request->group_id,
             'email' => $request->email,
+            'password' => bcrypt('vue'),
             'activation_token' => str_random(60)
         ]);
 
@@ -90,13 +91,14 @@ class AuthController extends Controller
     {
         $request->validate([
             // 'email' => 'nullable|sometimes|string|email',
-            'phone' => 'required|string',
+            'email' => 'required|string|email',
+            // 'phone' => 'required|string',
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);
-        $credentials = request(['phone', 'password']);
-        $credentials['active'] = 1;
-        $credentials['deleted_at'] = null;
+        $credentials = $request->only(['email', 'password']);
+        // $credentials['active'] = 1;
+        // $credentials['deleted_at'] = null;
 
         if (!Auth::attempt($credentials)) {
             return response()->json([

@@ -43,7 +43,8 @@ export default {
 			surname: null,
 			phone: null,
 			email: null,
-			group_id: null
+			group_id: null,
+			password: null,
 		};
 	},
 };

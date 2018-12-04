@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import VeeValidate from 'vee-validate';
+
 import phoneNumberValidator from '~/resources/js/helpers/phoneNumberValidator';
 VeeValidate.Validator.extend('phoneNumber', phoneNumberValidator);
 
@@ -13,6 +14,9 @@ VeeValidate.Validator.extend('phoneNumber', phoneNumberValidator);
  */
 
 require('./bootstrap');
+
+import interceptorsSetup from '../auth/interceptors';
+interceptorsSetup();
 
 window.Vue = require('vue');
 

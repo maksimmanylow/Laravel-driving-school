@@ -11,11 +11,11 @@
 |
 */
 
-// Route::group([
-//   'middleware' => 'auth:api'
-// ], function() {
+Route::group([
+  'middleware' => 'auth:api'
+], function() {
   Route::get('/export', 'ExportController@index');
   Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');
-// });
+});
 
 Route::view('/{vue?}', 'app')->where('vue', '[\/\w\.-]*');

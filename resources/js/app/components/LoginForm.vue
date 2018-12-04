@@ -3,9 +3,11 @@
     <div class="site-login">
       <h1 class="text-center">Вход</h1>
     </div>
-    <div class="form">
+    <form
+      class="form"
+      @submit.prevent="beforeLogin">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email или номер телефона</label>
+        <label for="exampleInputEmail1">Email</label>
         <input
           v-validate="'required'"
           v-model="email"
@@ -33,12 +35,15 @@
         </div>
       </div>
       <div class="text-right">
-        <a href="">Забыли пароль?</a>
+        <a
+          href="#"
+          @click="passReset"
+        >Забыли пароль?</a>
         <button
           class="btn btn--gray"
           @click="beforeLogin">Войти</button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 <script>
@@ -51,7 +56,7 @@ export default {
 				return this.$store.state.user.model.value.email;
 			},
 			set(val) {
-				this.$store.commit('user/setName', val);
+				this.$store.commit('user/setEmail', val);
 			},
 		},
 		password: {
@@ -59,19 +64,23 @@ export default {
 				return this.$store.state.user.model.value.password;
 			},
 			set(val) {
-				this.$store.commit('user/setSurname', val);
+				this.$store.commit('user/setPassword', val);
 			},
 		},
-		...mapState({
-			validationErrors: state => state.user.model.validationErrors,
-			constants: state => state.user.constants,
-		}),
 	},
 	methods: {
 		async beforeLogin () {
-			if (await this.$validator.validateAll())
-				this.$store.dispatch('user/login');
+			const allValid = await this.$validator.validateAll();
+			if (allValid) {
+				const loggedIn = await this.$store.dispatch('user/login');
+				if (loggedIn)
+					this.$router.go({path:'/dashboard'});
+			}
 		},
+		async passReset() {
+			if (await this.$validator.validate('email'))
+				this.$store.dispatch('user/passReset');
+		}
 	}
 };
 </script>

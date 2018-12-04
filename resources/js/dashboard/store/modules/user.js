@@ -81,10 +81,6 @@ const actions = {
 		commit,
 		dispatch
 	}) {
-		// commit('validateNotEmpty');
-		// if (state.model.validationErrors.length) {
-		// 	return;
-		// }
 		switch (state.modalMode) {
 		case C.mode.CREATE:
 			dispatch('create');
@@ -321,15 +317,6 @@ const mutations = {
 	addErrors(state, e) {
 		state.errors.push(e);
 		console.log(e);
-	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
 	},
 	showMessageOK(state, message) {
 		state.message = {

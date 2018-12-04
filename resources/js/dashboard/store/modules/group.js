@@ -109,10 +109,6 @@ const actions = {
 		}
 	},
 	save({state, getters, commit, dispatch}) {
-		// commit('validateNotEmpty');
-		// if (state.model.validationErrors.length) {
-		// 	return;
-		// }
 		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
 		state.model.value.status = state.model.value.status.key;
 		state.model.value.category = state.model.value.category.key;
@@ -312,15 +308,6 @@ const mutations = {
 	},
 	addErrors(state, e) {
 		state.errors.push(e);
-	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
 	},
 	showUpdateModal(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)};

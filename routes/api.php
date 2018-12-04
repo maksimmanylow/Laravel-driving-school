@@ -41,11 +41,11 @@ Route::group([
 });
 
 
-// Route::group([
-//   'middleware' => 'auth:api'
-// ], function() {
+Route::group([
+  'middleware' => 'auth:api'
+], function() {
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
-// });
+});
 
 Route::get('public-group', 'API\PublicGroupController@index');

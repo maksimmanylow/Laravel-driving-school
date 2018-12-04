@@ -4,11 +4,11 @@ namespace App;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Authenticatable// implements MustVerifyEmail
 {
     use Notifiable;
     use SoftDeletes;
@@ -20,10 +20,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'phone', 'password', 'group_id', 'active', 'activation_token', 'avatar'
+        'name', 'email', 'surname', 'phone', 'group_id', 'active', 'activation_token', 'avatar'
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.

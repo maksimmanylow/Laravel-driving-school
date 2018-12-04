@@ -3,6 +3,7 @@ import C from './constants';
 import {
 	Store
 } from 'vuex';
+import ls from '~/resources/js/helpers/localStorage';
 
 // initial state
 const state = {
@@ -46,23 +47,11 @@ const getters = {
 
 // actions
 const actions = {
-	save({
+	async signup({
 		state,
 		getters,
 		commit,
 		dispatch
-	}) {
-		// commit('validateNotEmpty');
-		// if (state.model.validationErrors.length) {
-		// 	return;
-		// }
-		dispatch('create');
-		commit('closeModal');
-	},
-	async create({
-		commit,
-		dispatch,
-		state
 	}) {
 		try {
 			const {
@@ -74,13 +63,56 @@ const actions = {
 					heading: 'Вы записаны!',
 					text: 'В ближайшее время мы свяжемся с Вами',
 				});
-				dispatch('getPage');
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+		commit('closeModal');
+	},
+	async login({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.login(state.model.value);
+			if (status == 200) {
+				ls.set('access', data);
+				return true;
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+
+		return false;
+	},
+	async passReset({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.passReset(state.model.value.email);
+			if (status == 201) {
+				dispatch('showMessageOK', {
+					heading: 'Запрос обрабатывается.',
+					text: 'В ближайшее время Вы получите сообщение на почту с инструкциями.',
+				});
 			}
 		} catch (error) {
 			dispatch('showMessageError');
 			commit('addErrors', error);
 		}
 	},
+
 	showMessageOK({
 		commit
 	}, message) {
@@ -116,6 +148,9 @@ const mutations = {
 	setPhone(state, val) {
 		state.model.value.phone = val;
 	},
+	setPassword(state, val) {
+		state.model.value.password = val;
+	},
 	setModelValue(state, id) {
 		state.model.value = { ...state.all.find(model => model.id == id)
 		};
@@ -123,15 +158,6 @@ const mutations = {
 	addErrors(state, e) {
 		state.errors.push(e);
 		console.log(e);
-	},
-	validateNotEmpty() {
-		state.model.validationErrors = [];
-		for (let key of state.model.required) {
-			if (!state.model.value[key] || state.model.value[key].length == 0) {
-				state.model.validationErrors.push(key);
-			}
-		}
-		return state.model.validationErrors.length === 0;
 	},
 	showMessageOK(state, message) {
 		state.message = {
@@ -166,7 +192,7 @@ const mutations = {
 	},
 	setFound(state, found) {
 		state.found = found;
-	}
+	},
 };
 
 export default {

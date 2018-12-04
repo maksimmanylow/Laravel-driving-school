@@ -428,7 +428,7 @@
       </div>
     </section>
 
-    <UserModal />
+    <SignupModal />
     <Message />
     <GoogleReCaptcha/>
   </div>
@@ -437,7 +437,7 @@
 <script>
 // Custom components
 import GroupCard from '../components/GroupCard';
-import UserModal from '../components/UserModal';
+import SignupModal from '../components/SignupModal';
 import Message from '../components/Message';
 import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
@@ -448,7 +448,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 export default {
 	components: {
 		GroupCard,
-		UserModal,
+		SignupModal,
 		Message,
 		Map,
 		VkGroupsWidget,
