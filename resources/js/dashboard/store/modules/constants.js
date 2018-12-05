@@ -42,6 +42,7 @@ export default {
 	get defaultGroup() {
 		return {
 			name: null,
+			description: null,
 			start_at: null,
 			timetable: null,
 			hours_start_at: null,

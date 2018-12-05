@@ -12054,6 +12054,10 @@ header.masthead .header-content .header-content__inner p {
   min-height: 3.25rem;
 }
 
+.list {
+  padding-left: 0;
+}
+
 .service-box {
   max-width: 400px;
   margin: 50px auto 0;

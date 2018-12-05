@@ -15,7 +15,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-      'name', 'start_at', 'timetable', 'hours_start_at', 'hours_finish_at', 'status', 'category', 'price', 'price_for_students', 'is_active'
+      'name', 'description', 'start_at', 'timetable', 'hours_start_at', 'hours_finish_at', 'status', 'category', 'price', 'price_for_students', 'is_active'
   ];
 
     const CATEGORY_B = 0;

@@ -26,6 +26,22 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="exampleInputEmail1">Описание</label>
+        <input
+          v-validate="'required|min:2|max:255'"
+          :class="{'is-invalid': errors.has('description')}"
+          v-model="description"
+          name="description"
+          maxlength="255"
+          class="form-control"
+          type="text"
+          aria-describedby="emailHelp"
+          placeholder="description">
+        <div class="invalid-feedback">
+          {{ errors.first('description') }}
+        </div>
+      </div>
+      <div class="form-group">
         <label>Статус</label>
         <multiselect
           v-validate="'required'"
@@ -88,7 +104,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
         <input
-          v-validate="'required|date_format:MM/DD/YYYY'"
+          v-validate="'required|date_format:YYYY-MM-DD'"
           v-model="start_at"
           :class="{'is-invalid': errors.has('start_at')}"
           name="start_at"
@@ -103,7 +119,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <input
-          v-validate="'date_format:MM/DD/YYYY'"
+          v-validate="'date_format:YYYY-MM-DD'"
           :class="{'is-invalid': errors.has('exam_date')}"
           v-model="exam_date"
           type="date"
@@ -201,6 +217,14 @@ export default {
 			},
 			set(val) {
 				this.$store.commit('group/setName', val);
+			},
+		},
+		description: {
+			get() {
+				return this.$store.state.group.model.value.description;
+			},
+			set(val) {
+				this.$store.commit('group/setModelAttribute', {'description': val});
 			},
 		},
 		status: {

@@ -12057,33 +12057,297 @@ h3 {
   text-decoration: underline;
 }
 
+.row--colors div {
+  height: 4rem;
+  max-width: 4rem;
+  border-radius: 0.5rem;
+  margin: .5rem;
+}
+
+.row .green-100 {
+  background-color: #c5f6d6;
+}
+
+.row .green-200 {
+  background-color: #99efb7;
+}
+
+.row .green-300 {
+  background-color: #6de898;
+}
+
+.row .green-400 {
+  background-color: #40e27a;
+}
+
+.row .green-500 {
+  background-color: #20CF5E;
+}
+
+.row .green-600 {
+  background-color: #19a34a;
+}
+
+.row .green-700 {
+  background-color: #127736;
+}
+
+.row .green-800 {
+  background-color: #0f612c;
+}
+
+.row .green-900 {
+  background-color: #0c4a22;
+}
+
+.row .pale-blue-100 {
+  background-color: #98ddf7;
+}
+
+.row .pale-blue-200 {
+  background-color: #69cef3;
+}
+
+.row .pale-blue-300 {
+  background-color: #39bff0;
+}
+
+.row .pale-blue-400 {
+  background-color: #12ace4;
+}
+
+.row .pale-blue-500 {
+  background-color: #0E88B5;
+}
+
+.row .pale-blue-600 {
+  background-color: #0a6486;
+}
+
+.row .pale-blue-700 {
+  background-color: #074156;
+}
+
+.row .pale-blue-800 {
+  background-color: #052f3f;
+}
+
+.row .pale-blue-900 {
+  background-color: #031d27;
+}
+
+.row .blue-100 {
+  background-color: #AAE7FF;
+}
+
+.row .blue-200 {
+  background-color: #0088d9;
+}
+
+.row .blue-300 {
+  background-color: #0078BF;
+}
+
+.row .blue-400 {
+  background-color: #006099;
+}
+
+.row .blue-500 {
+  background-color: #00507F;
+}
+
+.row .blue-600 {
+  background-color: #004066;
+}
+
+.row .blue-700 {
+  background-color: #2F697F;
+}
+
+.row .blue-800 {
+  background-color: #55747F;
+}
+
+.row .blue-900 {
+  background-color: #002840;
+}
+
+.row .red-100 {
+  background-color: #fef7f6;
+}
+
+.row .red-200 {
+  background-color: #facfc7;
+}
+
+.row .red-300 {
+  background-color: #f6a698;
+}
+
+.row .red-400 {
+  background-color: #f17e6a;
+}
+
+.row .red-500 {
+  background-color: #ed553b;
+}
+
+.row .red-600 {
+  background-color: #e03215;
+}
+
+.row .red-700 {
+  background-color: #b22810;
+}
+
+.row .red-800 {
+  background-color: #9a230e;
+}
+
+.row .red-900 {
+  background-color: #831d0c;
+}
+
+.row .yellow-100 {
+  background-color: #fffdcc;
+}
+
+.row .yellow-200 {
+  background-color: #fffa99;
+}
+
+.row .yellow-300 {
+  background-color: #fff866;
+}
+
+.row .yellow-400 {
+  background-color: #fff533;
+}
+
+.row .yellow-500 {
+  background-color: #FFF300;
+}
+
+.row .yellow-600 {
+  background-color: #ccc200;
+}
+
+.row .yellow-700 {
+  background-color: #999200;
+}
+
+.row .yellow-800 {
+  background-color: #807a00;
+}
+
+.row .yellow-900 {
+  background-color: #666100;
+}
+
+.row .slate-100 {
+  background-color: #cccbd6;
+}
+
+.row .slate-200 {
+  background-color: #b1aec0;
+}
+
+.row .slate-300 {
+  background-color: #9591aa;
+}
+
+.row .slate-400 {
+  background-color: #6d6986;
+}
+
+.row .slate-500 {
+  background-color: #4A475B;
+}
+
+.row .slate-600 {
+  background-color: #3e3c4d;
+}
+
+.row .slate-700 {
+  background-color: #33313e;
+}
+
+.row .slate-800 {
+  background-color: #272530;
+}
+
+.row .slate-900 {
+  background-color: #1b1a22;
+}
+
+.row .gray-100 {
+  background-color: #f8f9fa;
+}
+
+.row .gray-200 {
+  background-color: #e9ecef;
+}
+
+.row .gray-300 {
+  background-color: #dee2e6;
+}
+
+.row .gray-400 {
+  background-color: #ced4da;
+}
+
+.row .gray-500 {
+  background-color: #adb5bd;
+}
+
+.row .gray-600 {
+  background-color: #6c757d;
+}
+
+.row .gray-700 {
+  background-color: #495057;
+}
+
+.row .gray-800 {
+  background-color: #343a40;
+}
+
+.row .gray-900 {
+  background-color: #212529;
+}
+
 .card {
-  border-radius: 1rem !important;
+  border-radius: 1rem;
   overflow: hidden;
-  background-color: #333333;
-}
-
-.card li {
-  background-color: #333333;
-}
-
-.card--button {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  font-family: Jura;
   cursor: pointer;
 }
 
 .card__header {
-  text-align: center;
-  color: white;
-  padding: 1rem;
+  padding-bottom: 0.5rem;
 }
 
-.card__header h3 {
-  display: inline-block;
-  margin: 0;
+.card__title {
+  font-family: Lobster !important;
 }
 
 .card__body {
-  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.card__body li {
+  background-color: #333333;
+}
+
+.card__footer {
+  padding-top: .5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card p {
+  margin: 0;
 }
 
 .row--colors div {

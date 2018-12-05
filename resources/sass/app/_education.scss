@@ -35,7 +35,7 @@
 
 .timetable {
     color: white;
-    display: flex; 
+    display: flex;
     // Medium devices (tablets, less than 992px)
     @media (max-width: 991px) {
         flex-flow: column nowrap;
@@ -45,7 +45,7 @@
     margin: 2rem;
 
     .timetable-section{
-        padding: 1rem;        
+        padding: 1rem;
     }
     .section-1 {
         flex-basis: 60%;
@@ -68,4 +68,8 @@
         }
         margin-bottom: 2rem;
     }
+}
+
+.list {
+  padding-left: 0;
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Nav>
+    <!-- <Nav>
       <template slot="title">
         <small>ВОЕНМЕХ</small> АВТОШКОЛА
       </template>
@@ -13,14 +13,6 @@
         >
           <a class="nav-link">Главная</a>
         </router-link>
-        <!-- <router-link
-          :to="{name: 'sign-up'}"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">Запись</a>
-        </router-link> -->
         <router-link
           :to="{name: 'login'}"
           tag="li"
@@ -30,7 +22,7 @@
           <a class="nav-link">Вход</a>
         </router-link>
       </template>
-    </Nav>
+    </Nav> -->
     <transition
       name="fade"
       mode="out-in"

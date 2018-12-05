@@ -64,6 +64,9 @@ const actions = {
 			if (status == 200) {
 				commit('setAll', data.data.map((model) => ({
 					...model,
+					start_at: model.start_at.split('-').reverse().join('/'),
+					hours_start_at: model.hours_start_at.slice(0,5),
+					hours_finish_at: model.hours_finish_at.slice(0,5),
 					timetable: JSON.parse(model.timetable),
 					status: C.groupStatuses.find(item => item.key == model.status),
 					category: C.groupCategories.find(item => item.key == model.category),
@@ -272,6 +275,9 @@ const actions = {
 const mutations = {
 	setAll(state, groups) {
 		state.all = groups;
+	},
+	setModelAttribute(state, payload) {
+		state.model.value = {...state.model.value, ...payload};
 	},
 	setModel(state, value) {
 		state.model.value = value;

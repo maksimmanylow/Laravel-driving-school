@@ -8,13 +8,13 @@ export default new Router({
 	mode: 'history',
 	routes: [
 		{
-			path: '/dashboard',
+			path: '/dashboard/app',
 			name: 'home',
       component: Home,
       meta: { transitionName: 'slide' },
 		},
 		{
-		  path: '/dashboard/user',
+		  path: '/dashboard/app/user',
 		  name: 'user',
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route
@@ -23,7 +23,7 @@ export default new Router({
       meta: { transitionName: 'slide' },
 		},
 		{
-		  path: '/dashboard/group',
+		  path: '/dashboard/app/group',
 		  name: 'group',
 		  // route level code-splitting
 		  // this generates a separate chunk (group.[hash].js) for this route

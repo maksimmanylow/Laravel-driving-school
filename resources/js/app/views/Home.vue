@@ -1,13 +1,6 @@
 <template>
   <div>
     <header class="masthead">
-      <div class="glitch">
-        <div class="glitch__img" />
-        <div class="glitch__img" />
-        <div class="glitch__img" />
-        <div class="glitch__img" />
-        <div class="glitch__img" />
-      </div>
       <div class="header-content">
         <div class="header-content__inner">
           <h1
@@ -100,17 +93,17 @@
       </div>
     </section>
 
-    <section
-      id="portfolio"
-      class="p-0"
-    >
+    <section class="bg-light">
       <div class="container-fluid">
+
+        <div class="row justify-content-center">
+          <h2 class="section-heading">Инструкторы</h2>
+        </div>
         <div class="row no-gutter popup-gallery-cars">
 
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/izmaylov.JPG"
             >
               <img
                 class="img-fluid"
@@ -127,12 +120,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
+
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/savinyh.JPG"
             >
               <img
                 class="img-fluid"
@@ -149,13 +142,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/vishnyakov.JPG"
             >
               <img
                 class="img-fluid"
@@ -172,13 +164,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/sigaev.JPG"
             >
               <img
                 class="img-fluid"
@@ -195,13 +186,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/vishnyakovav.JPG"
             >
               <img
                 class="img-fluid"
@@ -218,13 +208,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <a
+            <div
               class="portfolio-box"
-              href="/img/team/fall-winter-2017/chechetkin.JPG"
             >
               <img
                 class="img-fluid"
@@ -241,13 +230,12 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
-
 
     <section
       id="education"
@@ -431,6 +419,7 @@
     <SignupModal />
     <Message />
     <GoogleReCaptcha/>
+    <VkChatWidget />
   </div>
 </template>
 
@@ -441,6 +430,7 @@ import SignupModal from '../components/SignupModal';
 import Message from '../components/Message';
 import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
+import VkChatWidget from '../components/VkChatWidget.vue';
 import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
 // Vuex
 import { mapState, mapMutations, mapActions } from 'vuex';
@@ -452,6 +442,7 @@ export default {
 		Message,
 		Map,
 		VkGroupsWidget,
+		VkChatWidget,
 		GoogleReCaptcha,
 	},
 	data: function() {
@@ -468,31 +459,7 @@ export default {
 		this.$store.dispatch('group/getPage', 1);
 	},
 	mounted: function() {
-		// Magnific popup calls
-		const mp_config = {
-			delegate: 'a',
-			type: 'image',
-			tLoading: 'Loading image #%curr%...',
-			mainClass: 'mfp-img-mobile',
-			gallery: {
-				enabled: true,
-				navigateByImgClick: true,
-				preload: [0, 1]
-			},
-			image: {
-				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.'
-			}
-		};
 
-		if (window.innerWidth >= 960) {
-			$('.popup-gallery-room').magnificPopup(mp_config);
-			$('.popup-gallery-ploshadka').magnificPopup(mp_config);
-			$('.popup-gallery-cars').magnificPopup(mp_config);
-		} else {
-			$('.popup-gallery-cars').find('a').click(function(e) {e.preventDefault();});
-			$('.popup-gallery-ploshadka').find('a').click(function(e) {e.preventDefault();});
-			$('.popup-gallery-cars').find('a').click(function(e) {e.preventDefault();});
-		}
 	},
 	methods: {
 		selectGroup: function(group_id) {
