@@ -24,5 +24,9 @@ Route::group([
 
 Route::redirect('/dashboard', '/dashboard/app')->middleware('dashboard');
 
-Route::view('/{vue?}', 'app')->where('vue', '[\/\w\.-]*')->name('home');
 
+Route::get('/file/css/{filename}', 'FileController@getCSS')->where('filename', '^(.+)/([^/]+)$');
+Route::get('/file/js/{filename}', 'FileController@getJS')->where('filename', '^(.+)/([^/]+)$');
+// Route::get('file', 'FileController@getFile');
+
+Route::view('{vue?}', 'app')->where('vue', '[\/\w\.-]*')->name('home');

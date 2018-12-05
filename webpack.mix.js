@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+mix.setPublicPath('./');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -22,7 +22,7 @@ mix.js('resources/js/dashboard/login.js', 'public/js/dashboard-login.js')
 // dashboard section
 // TODO: make private (staff only)
 
-mix.js('resources/js/dashboard/app.js', 'public/js/dashboard.js')
+mix.js('resources/js/dashboard/app.js', 'storage/js/dashboard.js')
 	.sourceMaps()
 	.version();
-mix.sass('resources/sass/dashboard/dashboard.scss', 'public/css');
+mix.sass('resources/sass/dashboard/dashboard.scss', 'storage/css/dashboard.css');
