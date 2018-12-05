@@ -15,9 +15,6 @@ VeeValidate.Validator.extend('phoneNumber', phoneNumberValidator);
 
 require('./bootstrap');
 
-import interceptorsSetup from '../auth/interceptors';
-interceptorsSetup();
-
 window.Vue = require('vue');
 
 Vue.use(VeeValidate);

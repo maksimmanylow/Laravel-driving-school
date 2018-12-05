@@ -5,7 +5,8 @@ import store from './store';
 import VeeValidate from 'vee-validate';
 import phoneNumberValidator from '~/resources/js/helpers/phoneNumberValidator';
 VeeValidate.Validator.extend('phoneNumber', phoneNumberValidator);
-
+import interceptorsSetup from '../auth/interceptors';
+interceptorsSetup();
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when

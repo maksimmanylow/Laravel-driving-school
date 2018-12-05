@@ -10,7 +10,7 @@
         <label for="exampleInputEmail1">Email</label>
         <input
           v-validate="'required'"
-          v-model="email"
+          v-model.trim="email"
           :class="{'is-invalid': errors.has('email')}"
           name="email"
           type="email"
@@ -73,8 +73,8 @@ export default {
 			const allValid = await this.$validator.validateAll();
 			if (allValid) {
 				const loggedIn = await this.$store.dispatch('user/login');
-				if (loggedIn)
-					this.$router.go({path:'/dashboard'});
+				// if (loggedIn)
+			  	// this.$router.go({path:'/resources'});
 			}
 		},
 		async passReset() {

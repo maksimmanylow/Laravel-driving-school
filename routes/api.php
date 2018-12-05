@@ -17,16 +17,16 @@ Route::group([
   'prefix' => 'auth'
 ], function () {
 
-  Route::post('login', 'Auth\AuthController@login');
-  Route::post('signup', 'Auth\AuthController@signup');
-  Route::get('signup/activate/{token}', 'Auth\AuthController@signupActivate');
-  Route::get('recaptcha/{token}', 'Auth\AuthController@verifyRecaptcha');
+  Route::post('login', 'API\AuthController@login');
+  Route::post('signup', 'API\AuthController@signup');
+  Route::get('signup/activate/{token}', 'API\AuthController@signupActivate');
+  Route::get('recaptcha/{token}', 'API\AuthController@verifyRecaptcha');
 
   Route::group([
     'middleware' => 'auth:api'
   ], function() {
-    Route::get('logout', 'Auth\AuthController@logout');
-    Route::get('user', 'Auth\AuthController@user');
+    Route::get('logout', 'API\AuthController@logout');
+    Route::get('user', 'API\AuthController@user');
   });
 });
 
@@ -46,6 +46,7 @@ Route::group([
 ], function() {
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
+  Route::get('export', 'API\ExportController@index');
 });
 
 Route::get('public-group', 'API\PublicGroupController@index');

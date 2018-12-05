@@ -8,5 +8,11 @@ export default {
 			value = JSON.parse(value);
 			return value;
 		}
-	}
+	},
+	remove(key) {
+		let value = localStorage.getItem(key);
+		if(value) {
+			localStorage.removeItem(key);
+		}
+	},
 };

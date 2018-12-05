@@ -1,25 +1,29 @@
-  <!DOCTYPE html>
-  <html lang="@yield('language')">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <head>
-    @include('includes.head')
-  </head>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <body id="page-top">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-    {{-- @if (env('APP_ENV' === 'production')) --}}
-    @env('production')
-      @include('counters.ya_counter');
-      @include('counters.analyticstracking');
-      @include('includes.vk_chat');
-    @endenv
-    {{-- @endif --}}
+    <!-- Scripts -->
+    <script src="{{ asset('js/dashboard-login.js') }}" defer></script>
 
-    @include('includes.navbar')
-    
-    @yield('content')
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
-    @include('includes.footer')          
-  </body>
-  </html>
-  
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
+</html>

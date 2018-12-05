@@ -1,7 +1,8 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
+|-----------
+---------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -12,10 +13,16 @@
 */
 
 Route::group([
-  'middleware' => 'auth:api'
-], function() {
-  Route::get('/export', 'ExportController@index');
-  Route::view('/dashboard/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*');
+  'prefix' => 'dashboard'
+], function () {
+  Route::get('login', 'Auth\LoginController@showLoginForm');
+  Route::post('login', 'Auth\LoginController@login')->name('login');
+  Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+  Route::view('app/{vue?}', 'dashboard')->where('vue', '[\/\w\.-]*')->name('dashboard')->middleware('dashboard');
 });
 
-Route::view('/{vue?}', 'app')->where('vue', '[\/\w\.-]*');
+Route::redirect('/dashboard', '/dashboard/app')->middleware('dashboard');
+
+Route::view('/{vue?}', 'app')->where('vue', '[\/\w\.-]*')->name('home');
+

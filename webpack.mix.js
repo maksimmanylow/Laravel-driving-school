@@ -16,6 +16,9 @@ mix.js('resources/js/app/app.js', 'public/js/app.js')
 	.version();
 mix.sass('resources/sass/app/app.scss', 'public/css');
 
+mix.js('resources/js/dashboard/login.js', 'public/js/dashboard-login.js')
+	.sourceMaps()
+	.version();
 // dashboard section
 // TODO: make private (staff only)
 

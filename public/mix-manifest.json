@@ -1,7 +1,8 @@
 {
-    "/group.js": "/group.js?id=a7df3fbe79148a4b3e9a",
-    "/js/app.js": "/js/app.js?id=b0324ab712ddde86a232",
+    "/group.js": "/group.js?id=84cd868ecb1535a1b16b",
+    "/js/app.js": "/js/app.js?id=81d4d1f742674eb21a07",
     "/css/app.css": "/css/app.css?id=3ef874b87e8adf8a8d07",
     "/css/dashboard.css": "/css/dashboard.css?id=01885f97d0b3ec9a8b0f",
-    "/js/dashboard.js": "/js/dashboard.js?id=0027e3409f9339cc466e"
+    "/js/dashboard.js": "/js/dashboard.js?id=ad1a4ce6e326db7d7fcc",
+    "/js/dashboard-login.js": "/js/dashboard-login.js?id=ec634e1208bed366965c"
 }

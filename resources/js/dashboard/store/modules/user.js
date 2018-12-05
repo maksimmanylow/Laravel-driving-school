@@ -3,6 +3,7 @@ import C from './constants';
 import {
 	Store
 } from 'vuex';
+import ls from '~/resources/js/helpers/localStorage';
 
 // initial state
 const state = {
@@ -53,6 +54,48 @@ const getters = {
 
 // actions
 const actions = {
+	async login({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.login(state.model.value);
+			if (status == 200) {
+				ls.set('access', data);
+				return true;
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+
+		return false;
+	},
+	async logout({
+		commit,
+		dispatch,
+		state
+	}) {
+		try {
+			const {
+				data,
+				status
+			} = await API.logout();
+			if (status == 200) {
+				ls.remove('access');
+				return true;
+			}
+		} catch (error) {
+			dispatch('showMessageError');
+			commit('addErrors', error);
+		}
+
+		return false;
+	},
 	async getPage({
 		commit,
 		dispatch,
