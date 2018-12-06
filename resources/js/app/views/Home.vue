@@ -416,7 +416,7 @@ import Message from '../components/Message';
 import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
 import VkChatWidget from '../components/VkChatWidget.vue';
-import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
+import GoogleReCaptcha from '~/resources/js/sharedComponents/GoogleReCaptcha';
 import { Carousel, Slide } from 'vue-carousel';
 // Vuex
 import { mapState, mapMutations, mapActions } from 'vuex';

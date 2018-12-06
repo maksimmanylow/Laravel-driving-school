@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <Navbar>
+    <Navbar
+      v-show="login"
+    >
       <router-link
         :to="{name: 'home'}"
         tag="li"
@@ -30,7 +32,7 @@
       name="fade"
       mode="out-in"
       appear
-      @after-enter="afterEnter">
+    >
       <router-view/>
     </transition>
   </div>
@@ -38,11 +40,17 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
 	components: {
 		Navbar
-	}
+	},
+	computed: {
+		...mapState({
+			login: state => state.user.login,
+		}),
+	},
 };
 </script>
 

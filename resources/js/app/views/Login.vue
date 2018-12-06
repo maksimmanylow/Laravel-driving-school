@@ -14,7 +14,7 @@
 <script>
 
 import LoginForm from '../components/LoginForm';
-import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
+import GoogleReCaptcha from '~/resources/js/sharedComponents/GoogleReCaptcha';
 
 export default {
 	components: {

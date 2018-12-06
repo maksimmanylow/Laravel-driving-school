@@ -41,7 +41,7 @@
         >Забыли пароль?</a>
         <button
           class="btn btn--gray"
-          @click="beforeLogin">Войти</button>
+        >Войти</button>
       </div>
     </form>
   </div>

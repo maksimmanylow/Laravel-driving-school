@@ -13,6 +13,7 @@ const state = {
 	query: null,
 	errors: [],
 	constants: C,
+	login: false,
 	model: {
 		value: C.defaultUser,
 		required: ['name', 'phone', 'group_id'],
@@ -66,6 +67,7 @@ const actions = {
 			} = await API.login(state.model.value);
 			if (status == 200) {
 				ls.set('access', data);
+				commit('login', true);
 				return true;
 			}
 		} catch (error) {
@@ -87,6 +89,7 @@ const actions = {
 			} = await API.logout();
 			if (status == 200) {
 				ls.remove('access');
+				commit('login', false);
 				return true;
 			}
 		} catch (error) {
@@ -321,6 +324,9 @@ const actions = {
 
 // mutations
 const mutations = {
+	setPassword(state, val) {
+		state.model.value.password = val;
+	},
 	setEmail(state, val) {
 		state.model.value.email = val;
 	},
@@ -401,7 +407,10 @@ const mutations = {
 	},
 	setFound(state, found) {
 		state.found = found;
-	}
+	},
+	login(state, val) {
+		state.login = val;
+	},
 };
 
 export default {

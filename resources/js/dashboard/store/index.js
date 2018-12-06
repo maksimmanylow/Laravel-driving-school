@@ -4,6 +4,7 @@ import user from './modules/user';
 import group from './modules/group';
 import actions from './actions';
 import mutations from './mutations';
+import getters from './getters';
 // import createLogger from '../../../src/plugins/logger';
 
 Vue.use(Vuex);
@@ -17,7 +18,8 @@ const store = new Vuex.Store({
 	},
 	strict: debug,
 	actions,
-	mutations
+	mutations,
+	getters,
 	// plugins: debug ? [createLogger()] : []
 });
 
