@@ -15,7 +15,8 @@
 ## Deploy
 
 ```
-composer dump-autoload
+composer install
+yarn install
 php artisan migrate:fresh
 php artisan db:seed
 php artisan passport:install
@@ -25,7 +26,7 @@ php artisan passport:install
 
 ### Установка Redis
 
-Весь процесс отлично описан в (статье)[https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04] от Mark Drake на DigitlOcean.
+Весь процесс отлично описан в [статье](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04) от Mark Drake на DigitlOcean.
 
 Здесь заметки для себя, пока проект не вышел в релиз.
 
