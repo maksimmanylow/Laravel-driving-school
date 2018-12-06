@@ -102,9 +102,7 @@
         <div class="row no-gutter popup-gallery-cars">
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/izmaylov.JPG"
@@ -124,9 +122,7 @@
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/savinyh.JPG"
@@ -146,9 +142,7 @@
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/vishnyakov.JPG"
@@ -168,9 +162,7 @@
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/sigaev.JPG"
@@ -190,9 +182,7 @@
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/vishnyakovav.JPG"
@@ -212,9 +202,7 @@
           </div>
 
           <div class="col-lg-4 col-sm-6">
-            <div
-              class="portfolio-box"
-            >
+            <div class="portfolio-box">
               <img
                 class="img-fluid"
                 src="/images/team/fall-winter-2017/chechetkin.JPG"
@@ -239,7 +227,8 @@
 
     <section
       id="education"
-      class="bg-light">
+      class="bg-light"
+    >
       <div class="container">
 
         <h2 class="section-heading">площадка</h2>
@@ -248,65 +237,55 @@
         <div class="row justify-content-center">
           <div class="col-md-10 card p-0">
 
-            <div
-              id="carouselExampleControls"
-              class="carousel slide"
-              data-ride="carousel">
+            <carousel
+              :scroll-per-page="true"
+              :per-page-custom="[[480, 1], [768, 3]]"
+              :autoplay="true"
+              :navigation-enabled="true"
+              class="p-0"
+            >
 
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img
-                    class="d-block w-100"
-                    src="/images/platform/1.JPG"
-                    alt="First slide">
-                </div>
-                <div class="carousel-item ">
-                  <img
-                    class="d-block w-100"
-                    src="/images/platform/2.JPG"
-                    alt="Second slide">
-                </div>
-                <div class="carousel-item ">
-                  <img
-                    class="d-block w-100"
-                    src="/images/platform/3.JPG"
-                    alt="Third slide">
-                </div>
-                <div class="carousel-item ">
-                  <img
-                    class="d-block w-100"
-                    src="/images/platform/4.JPG"
-                    alt="Fourth slide">
-                </div>
-                <div class="carousel-item ">
-                  <img
-                    class="d-block w-100"
-                    src="/images/platform/5.JPG"
-                    alt="Fifth slide">
-                </div>
-              </div>
+              <slide>
+                <img
+                  class="d-block w-100"
+                  src="/images/platform/1.JPG"
+                  alt="First slide"
+                >
+              </slide>
 
-              <a
-                class="carousel-control-prev"
-                href="#carouselExampleControls"
-                role="button"
-                data-slide="prev">
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"/>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a
-                class="carousel-control-next"
-                href="#carouselExampleControls"
-                role="button"
-                data-slide="next">
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"/>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
+              <slide>
+                <img
+                  class="d-block w-100"
+                  src="/images/platform/2.JPG"
+                  alt="Second slide"
+                >
+              </slide>
+
+              <slide>
+                <img
+                  class="d-block w-100"
+                  src="/images/platform/3.JPG"
+                  alt="Third slide"
+                >
+              </slide>
+
+              <slide>
+                <img
+                  class="d-block w-100"
+                  src="/images/platform/4.JPG"
+                  alt="Third slide"
+                >
+              </slide>
+
+              <slide>
+                <img
+                  class="d-block w-100"
+                  src="/images/platform/5.JPG"
+                  alt="Third slide"
+                >
+              </slide>
+
+            </carousel>
 
           </div>
         </div>
@@ -316,7 +295,8 @@
 
     <section
       id="groups"
-      class="bg-dark">
+      class="bg-dark"
+    >
       <div class="container">
 
         <h2 class="section-heading">запись</h2>
@@ -325,7 +305,8 @@
           <div
             v-for="group in groups"
             :key="group.id"
-            class="col-lg-4 col-md-6">
+            class="col-lg-4 col-md-6"
+          >
             <GroupCard
               :key="group.id"
               :group="group"
@@ -338,16 +319,15 @@
 
     <section
       id="contacts"
-      class="bg-light">
+      class="bg-light"
+    >
       <div class="container">
 
         <h2 class="section-heading">контакты</h2>
         <br>
         <div class="card p-0">
 
-          <Map
-            :markers="markers"
-          />
+          <Map :markers="markers" />
 
           <br>
           <div class="row">
@@ -359,7 +339,7 @@
               <br>
               <div class="row">
                 <div class="col-md-6 text-center">
-                  <i class="fa fa-phone fa-3x sr-contact"/>
+                  <i class="fa fa-phone fa-3x sr-contact" />
                   <h4>Олег Владимирович</h4>
                   <h6 class="text-muted">руководитель автошколы</h6>
                   <p>+7 (911) 740 6422</p>
@@ -370,7 +350,7 @@
                   <p>+7 (999) 028-28-96</p>
                 </div>
                 <div class="col-md-6 text-center">
-                  <VkGroupsWidget/>
+                  <VkGroupsWidget />
                 </div>
               </div>
             </div>
@@ -381,10 +361,10 @@
       </div>
     </section>
 
-
     <section
       id="partners"
-      class="bg-dark">
+      class="bg-dark"
+    >
       <div class="container">
         <h2 class="section-heading">Партнеры</h2>
         <br>
@@ -394,9 +374,11 @@
             <div class="partner card text-center p-3">
               <a
                 href="http://megapolis-car.ru/"
-                class="partner-logo"><img
-                  class="img-fluid sr-button"
-                  src="/images/logos/megapolis.png"></a>
+                class="partner-logo"
+              ><img
+                class="img-fluid sr-button"
+                src="/images/logos/megapolis.png"
+              ></a>
               <div class="partner-title h3">Атошкола "Мегаполис"</div>
             </div>
           </div>
@@ -405,9 +387,11 @@
             <div class="partner card text-center p-3">
               <a
                 href="http://auto.igps.ru/"
-                class="partner-logo"><img
-                  class="img-fluid sr-button"
-                  src="/images/logos/logo_ugps.png"></a>
+                class="partner-logo"
+              ><img
+                class="img-fluid sr-button"
+                src="/images/logos/logo_ugps.png"
+              ></a>
               <div class="partner-title h3">Государственная автошкола МЧС</div>
             </div>
           </div>
@@ -418,7 +402,7 @@
 
     <SignupModal />
     <Message />
-    <GoogleReCaptcha/>
+    <GoogleReCaptcha />
     <VkChatWidget />
   </div>
 </template>
@@ -432,6 +416,7 @@ import Map from '../components/Map/Map';
 import VkGroupsWidget from '../components/VkGroupsWidget.vue';
 import VkChatWidget from '../components/VkChatWidget.vue';
 import GoogleReCaptcha from '../components/GoogleReCaptcha.vue';
+import { Carousel, Slide } from 'vue-carousel';
 // Vuex
 import { mapState, mapMutations, mapActions } from 'vuex';
 
@@ -444,11 +429,13 @@ export default {
 		VkGroupsWidget,
 		VkChatWidget,
 		GoogleReCaptcha,
+		Carousel,
+		Slide,
 	},
-	data: function() {
+	data: function () {
 		return {
 			markers: [
-				{lat: 59.9163774, lng: 30.3136526}
+				{ lat: 59.9163774, lng: 30.3136526 }
 			]
 		};
 	},
@@ -458,11 +445,11 @@ export default {
 	created () {
 		this.$store.dispatch('group/getPage', 1);
 	},
-	mounted: function() {
+	mounted: function () {
 
 	},
 	methods: {
-		selectGroup: function(group_id) {
+		selectGroup: function (group_id) {
 			this.$store.commit('user/setGroup', group_id);
 			this.$store.commit('user/showCreateModal');
 		},
