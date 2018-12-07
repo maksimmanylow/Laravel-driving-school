@@ -8,6 +8,10 @@
   font-family: Jura;
   cursor: pointer;
 
+  &--dark {
+    background-color: $theme-primary;
+  }
+
   &__header {
     padding-bottom: 0.5rem;
   }

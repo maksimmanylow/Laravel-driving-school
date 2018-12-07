@@ -12325,6 +12325,10 @@ h3 {
   cursor: pointer;
 }
 
+.card--dark {
+  background-color: #222222;
+}
+
 .card__header {
   padding-bottom: 0.5rem;
 }

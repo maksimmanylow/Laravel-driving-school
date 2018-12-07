@@ -1,49 +1,51 @@
 <template>
-  <div class="card p-3">
-    <div class="site-login">
-      <h1 class="text-center">Вход</h1>
+  <div class="site-login">
+    <div class="text-center">
+      <h3>Sign In</h3>
     </div>
-    <form
-      class="form"
-      @submit.prevent="beforeLogin">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
-        <input
-          v-validate="'required'"
-          v-model.trim="email"
-          :class="{'is-invalid': errors.has('email')}"
-          name="email"
-          type="email"
-          class="form-control"
-          aria-describedby="emailHelp">
-        <div class="invalid-feedback">
-          {{ errors.first('email') }}
+    <div class="card card--dark p-3">
+      <form
+        class="form"
+        @submit.prevent="beforeLogin">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input
+            v-validate="'required'"
+            v-model.trim="email"
+            :class="{'is-invalid': errors.has('email')}"
+            name="email"
+            type="email"
+            class="form-control"
+            aria-describedby="emailHelp">
+          <div class="invalid-feedback">
+            {{ errors.first('email') }}
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Пароль</label>
-        <input
-          v-validate="'required|min:2|max:255'"
-          v-model="password"
-          :class="{'is-invalid': errors.has('password')}"
-          name="password"
-          type="password"
-          class="form-control"
-          aria-describedby="emailHelp">
-        <div class="invalid-feedback">
-          {{ errors.first('password') }}
+        <div class="form-group">
+          <label for="exampleInputEmail1">Пароль</label>
+          <input
+            v-validate="'required|min:2|max:255'"
+            v-model="password"
+            :class="{'is-invalid': errors.has('password')}"
+            name="password"
+            type="password"
+            class="form-control"
+            aria-describedby="emailHelp">
+          <div class="invalid-feedback">
+            {{ errors.first('password') }}
+          </div>
         </div>
-      </div>
-      <div class="text-right">
-        <a
-          href="#"
-          @click="passReset"
-        >Забыли пароль?</a>
-        <button
-          class="btn btn-primary"
-        >Войти</button>
-      </div>
-    </form>
+        <div class="text-right">
+          <a
+            href="#"
+            @click="passReset"
+          >Забыли пароль?</a>
+          <button
+            class="btn btn-primary"
+          >Войти</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 <script>
