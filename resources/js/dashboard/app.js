@@ -14,6 +14,8 @@ window.Vue = require('vue');
 
 Vue.use(VeeValidate);
 
+store.commit('initialiseStore');
+
 new Vue({
 	router,
 	store,
