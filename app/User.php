@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable// implements MustVerifyEmail
 {
@@ -34,7 +35,7 @@ class User extends Authenticatable// implements MustVerifyEmail
       'password', 'remember_token', 'activation_token'
     ];
 
-    protected $appends = ['avatar_url'];
+    // protected $appends = ['avatar_url'];
 
     public function getAvatarUrlAttribute()
     {

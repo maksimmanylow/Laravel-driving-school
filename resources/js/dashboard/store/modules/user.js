@@ -335,7 +335,7 @@ const mutations = {
 	},
 	setFilterByGroup(state, val) {
 		state.search.group = val;
-		state.search.exportLink = `/export?group_id=${val.id}`;
+		state.search.exportLink = `/api/export?group_id=${val.id}`;
 	},
 	setSurname(state, val) {
 		state.model.value.surname = val;
