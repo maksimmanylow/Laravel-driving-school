@@ -20,7 +20,7 @@ class GroupController extends Controller
     {
       $query = $request->query('q');
 
-      return GroupResource::collection(Group::where('name', 'like', "%$query%")
+      return GroupResource::collection(Group::where('name', 'ilike', "%$query%")
       ->orderBy('created_at', 'desc')
       ->paginate(self::PAGE_SIZE));
     }
