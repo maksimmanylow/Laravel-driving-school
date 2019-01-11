@@ -14,12 +14,13 @@ let router = new Router({
       component: Login,
       meta: { requiresAuth: false },
 		},
-		{
-			path: '/dashboard/',
-			name: 'home',
-		  component: () => import(/* webpackChunkName: "group" */ './views/Home.vue'),
-      meta: { requiresAuth: true },
-		},
+		// {
+		// 	path: '/dashboard/',
+		// 	name: 'home',
+		//   component: () => import(/* webpackChunkName: "group" */ './views/Home.vue'),
+    //   meta: { requiresAuth: true },
+		// },
+		{ path: '/dashboard', redirect: '/dashboard/user' },
 		{
 		  path: '/dashboard/user',
 		  name: 'user',
