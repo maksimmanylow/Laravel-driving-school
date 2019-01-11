@@ -27,6 +27,19 @@
       >
         <a class="nav-link">Группы</a>
       </router-link>
+      <!-- <router-link
+        :to="{name: 'logout'}"
+        tag="li"
+        class="nav-item"
+        active-class="active"
+      >
+        <a @click="logout" class="nav-link">Logout</a>
+      </router-link> -->
+
+      <li class="nav-item">
+        <a @click="logout" href="#" class="nav-link">Logout</a>
+      </li>
+
     </Navbar>
     <transition
       name="fade"
@@ -50,7 +63,12 @@ export default {
 		...mapState({
 			login: state => state.user.login,
 		}),
-	},
+  },
+  methods: {
+    ...mapActions('user', [
+      'logout'
+    ])
+  },
 };
 </script>
 

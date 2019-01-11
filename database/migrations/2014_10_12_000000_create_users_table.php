@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('mail_exists')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->boolean('active')->default(false);
             $table->string('activation_token')->nullable();
             $table->string('avatar')->default('avatar.png');

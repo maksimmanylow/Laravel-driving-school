@@ -90,6 +90,8 @@ const actions = {
 			if (status == 200) {
 				ls.remove('access');
 				commit('login', false);
+				location.reload(true);
+
 				return true;
 			}
 		} catch (error) {
