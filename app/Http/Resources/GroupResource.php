@@ -17,6 +17,7 @@ class GroupResource extends JsonResource
       return [
         'id' => $this->id,
         'name' => $this->name,
+        'description' => $this->description,
         'start_at' => $this->start_at,
         'timetable' => $this->timetable,
         'hours_start_at' => $this->hours_start_at,
