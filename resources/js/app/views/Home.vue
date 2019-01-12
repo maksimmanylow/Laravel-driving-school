@@ -241,7 +241,7 @@
               :scroll-per-page="true"
               :per-page="1"
               :per-page-custom="[[480, 1], [768, 2]]"
-              :autoplay="true"
+              :autoplay="false"
               :navigation-enabled="true"
               class="p-0 card"
             >

@@ -65,7 +65,10 @@ const actions = {
 				});
 			}
 		} catch (error) {
-			dispatch('showMessageError');
+			dispatch('showMessageError', {
+				heading: 'Ошибка', 
+				text: 'Возникла внутрення ошибка сервера. Пожалуйста, позвоните по номеру внизу страницы.'
+			});
 			commit('addErrors', error);
 		}
 		commit('closeModal');
@@ -121,9 +124,9 @@ const actions = {
 	},
 	showMessageError({
 		commit
-	}, message) {
-		commit('showMessageError', message);
-		setTimeout(() => commit('closeMessage'), 2000);
+	}, {heading, text}) {
+		commit('showMessageError', {heading, text});
+		setTimeout(() => commit('closeMessage'), 4000);
 	},
 };
 
@@ -166,9 +169,10 @@ const mutations = {
 			show: true,
 		};
 	},
-	showMessageError(state, message) {
+	showMessageError(state, {heading, text}) {
 		state.message = {
-			text: message,
+			heading, 
+			text,
 			type: C.message.type.ERROR,
 			show: true,
 		};
