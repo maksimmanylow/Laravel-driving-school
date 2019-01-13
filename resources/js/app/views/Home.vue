@@ -405,6 +405,7 @@
     <Message />
     <GoogleReCaptcha />
     <VkChatWidget />
+    <YandexMetrika />
   </div>
 </template>
 
