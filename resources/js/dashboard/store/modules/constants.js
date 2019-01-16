@@ -69,7 +69,7 @@ export default {
 		'name': 'Имя',
 		'phone': 'Телефон',
 		'email': 'Email',
-		'group_id': 'Группа',
+		'group': 'Группа',
 	},
 	groupLabels: {
 		name: 'Название',

@@ -311,7 +311,7 @@ const actions = {
       } = await API.getPage({
         page: 1,
         q: state.search.query,
-        group_id: group.id,
+        group_id: group ? group.id : null,
       });
       if (status == 200) {
         commit('setAll', data.data);

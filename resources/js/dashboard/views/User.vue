@@ -21,6 +21,7 @@
             :options="groups"
             class="filter-dropdown"
             label="name"
+						:allow-empty="true"
             track-by="name" />
           <ExportLink
             :link="exportLink"
@@ -76,15 +77,15 @@ export default {
 	},
 	computed: {
 		userWGroupNames: function () {
-			let groups = {};
+			let groups = [];
 
 			for(let group in this.$store.state.group.all) {
-				groups[group.id] = group.name;
+				groups.push({id: group.id, name: group.name});
 			}
 
 			return this.$store.state.user.all.map(user => ({
 				...user,
-				group_id: groups[user.group_id]
+				group: groups.filter(group => group.id == user.group_id)
 			}));
 		},
 		...mapState({
