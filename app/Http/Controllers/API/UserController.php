@@ -21,6 +21,10 @@ class UserController extends Controller
         $queryString = $request->query('q');
         $groupId = (int) $request->query('group_id');
 
+        return UserResource::collection($this->getSearchQuery($queryString, $groupId));
+    }
+
+    private function getSearchQuery(string $queryString = null, int $groupId = null) {
         $Query = DB::table('users');
         $Query->whereNull('deleted_at');
 
@@ -37,7 +41,7 @@ class UserController extends Controller
             });
         }
 
-        return UserResource::collection($Query->orderBy('created_at', 'desc')->paginate(self::PAGE_SIZE));
+        return $Query->orderBy('created_at', 'desc')->paginate(self::PAGE_SIZE);
     }
 
     /**
