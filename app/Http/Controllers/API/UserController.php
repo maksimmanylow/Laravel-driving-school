@@ -22,6 +22,7 @@ class UserController extends Controller
         $groupId = (int) $request->query('group_id');
 
         $Query = DB::table('users');
+        $Query->whereNull('deleted_at');
 
         if ($groupId) {
             $Query->where('group_id', $groupId);
