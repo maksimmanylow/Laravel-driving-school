@@ -54,20 +54,22 @@ class UserController extends Controller
     {
       $request->validate([
         'name' => 'required|string',
+        'surname' => 'required|string',
         'phone' => 'required|string',
         'email' => 'string|email|unique:users',
         'password' => 'required|string|confirmed'
       ]);
       $user = new User([
           'name' => $request->name,
+          'surname' => $request->surname,
           'email' => $request->email,
           'password' => bcrypt($request->password),
           'phone' => $request->phone
       ]);
       $user->save();
-        $User = User::create($request->all());
+        // $User = User::create($request->all());
 
-        return new UserResource($User);
+        return new UserResource($user);
     }
 
     /**

@@ -29,12 +29,14 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string',
+            'surname' => 'required|string',
             'phone' => 'required|string',
             'group_id' => 'required|integer',
             'email' => 'nullable|sometimes|string|email|unique:users',
         ]);
         $user = new User([
             'name' => $request->name,
+            'surname' => $request->surname,
             'phone' => $request->phone,
             'group_id' => $request->group_id,
             'email' => $request->email,

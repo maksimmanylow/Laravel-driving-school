@@ -77,15 +77,11 @@ export default {
 	},
 	computed: {
 		userWGroupNames: function () {
-			let groups = [];
-
-			for(let group in this.$store.state.group.all) {
-				groups.push({id: group.id, name: group.name});
-			}
+			let groups = this.$store.state.group.all;
 
 			return this.$store.state.user.all.map(user => ({
 				...user,
-				group: groups.filter(group => group.id == user.group_id)
+				group: groups.filter(group => user.group_id == group.id)['name']
 			}));
 		},
 		...mapState({
