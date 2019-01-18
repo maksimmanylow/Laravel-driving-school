@@ -3,6 +3,7 @@
     <div
       v-show="show"
       class="modal__mask"
+      :class="{'loading': loading}"
       @click="close">
       <div class="modal__wrapper">
         <div class="container-fluid">
@@ -44,7 +45,8 @@
 <script>
 export default {
 	props: {
-		show: { type: Boolean, default: false }
+		show: { type: Boolean, default: false },
+		loading: { type: Boolean, default: false }
 	},
 	mounted: function () {
 		document.addEventListener('keydown', (e) => {

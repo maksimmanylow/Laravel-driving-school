@@ -9,6 +9,7 @@ import ls from '~/resources/js/helpers/localStorage';
 const state = {
 	all: [],
 	modalShow: false,
+	modalLoading: false,
 	modalMode: null,
 	query: null,
 	errors: [],
@@ -54,17 +55,20 @@ const actions = {
 		dispatch
 	}) {
 		try {
+			commit('setModalLoading', true);
 			const {
 				data,
 				status
 			} = await API.signup(state.model.value);
 			if (status == 201) {
+				commit('setModalLoading', false);
 				dispatch('showMessageOK', {
 					heading: 'Вы записаны!',
 					text: 'В ближайшее время мы свяжемся с Вами',
 				});
 			}
 		} catch (error) {
+			commit('setModalLoading', false);
 			dispatch('showMessageError', {
 				heading: 'Ошибка', 
 				text: 'Возникла внутрення ошибка сервера. Пожалуйста, позвоните по номеру внизу страницы.'
@@ -132,6 +136,9 @@ const actions = {
 
 // mutations
 const mutations = {
+	setModalLoading(state, val) {
+		state.modalLoading = val;
+	},
 	setEmail(state, val) {
 		state.model.value.email = val;
 	},

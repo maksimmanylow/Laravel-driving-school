@@ -81,7 +81,7 @@ export default {
 
 			return this.$store.state.user.all.map(user => ({
 				...user,
-				group: groups.filter(group => user.group_id == group.id)['name']
+				group: groups.find(group => user.group_id == group.id).name
 			}));
 		},
 		...mapState({
