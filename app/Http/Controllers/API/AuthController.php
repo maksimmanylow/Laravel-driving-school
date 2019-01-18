@@ -75,7 +75,7 @@ class AuthController extends Controller
         $user->activation_token = '';
         $user->save();
 
-        return $user;
+        return "Email подтвержден!";
     }
 
     /**
