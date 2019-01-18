@@ -43,10 +43,11 @@ class SignupActivate extends Notification
       $url = url('/api/auth/signup/activate/'.$notifiable->activation_token);
 
       return (new MailMessage)
-          ->subject('Confirm your account')
-          ->line('Thanks for signup! Please before you begin, you must confirm your account.')
-          ->action('Confirm Account', url($url))
-          ->line('Thank you for using our application!');
+          ->subject('[Автошкола ВОЕНМЕХ] Подтвердите Ваш email')
+          ->line('Вы успешно записались в автошколу!')
+          ->line('Пожалуйста, подтвердите Ваш адрес электронной почты, чтобы мы могли уведомлять Вас об изменениях в учебном процессе.')
+          ->action('Подтвердить email', url($url))
+          ->line('Спасибо за выбор наших услуг!');
     }
 
     /**
