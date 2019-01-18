@@ -1,6 +1,7 @@
 <template>
   <Modal
     :show="modalShow"
+    :loading="modalLoading"
     @close="closeModal"
     @save="beforeSave"
   >
@@ -51,7 +52,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Телефон*</label>
+        <label for="exampleInputEmail1">Телефон<sup>1</sup></label>
         <input
           v-validate="'required|phoneNumber'"
           v-model="phone"
@@ -64,6 +65,7 @@
         </div>
       </div>
       <p class="text-muted">*обязательные для заполнения поля</p>
+      <p class="text-muted"><sup>1</sup>номер телефона необходимо писать с "+7"</p>
     </template>
     <template slot="footer">
       <span
@@ -121,7 +123,8 @@ export default {
 		...mapState({
 			validationErrors: state => state.user.model.validationErrors,
 			groups: state => state.group.all,
-			modalShow: state => state.user.modalShow,
+      modalShow: state => state.user.modalShow,
+      modalLoading: state => state.user.modalLoading,
 			modalMode: state => state.user.modalMode,
 			constants: state => state.user.constants,
 		}),
