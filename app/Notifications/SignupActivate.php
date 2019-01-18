@@ -43,7 +43,7 @@ class SignupActivate extends Notification
       $url = url('/api/auth/signup/activate/'.$notifiable->activation_token);
 
       return (new MailMessage)
-          ->subject('[Автошкола ВОЕНМЕХ] Подтвердите Ваш email')
+          ->subject('[Автошкола БГТУ "ВОЕНМЕХ"] Подтвердите Ваш email')
           ->line('Вы успешно записались в автошколу!')
           ->line('Пожалуйста, подтвердите Ваш адрес электронной почты, чтобы мы могли уведомлять Вас об изменениях в учебном процессе.')
           ->action('Подтвердить email', url($url))
