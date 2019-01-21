@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Телефон<sup>1</sup></label>
+        <label for="exampleInputEmail1">Телефон*<sup>1</sup></label>
         <input
           v-validate="'required|phoneNumber'"
           v-model="phone"
