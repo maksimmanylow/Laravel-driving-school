@@ -1,14 +1,14 @@
 {
-    "/group.js": "/group.js?id=57714818648314545e95",
-    "/group.js.map": "/group.js.map?id=5e97c283c1e4c6f8b6cd",
-    "/js/app.js": "/js/app.js?id=64d4c9eb0d78e53bb3c3",
-    "/css/app.css": "/css/app.css?id=57a36a717a41cea628a3",
-    "/css/dashboard.css": "/css/dashboard.css?id=730f9aab2c51fb10b93c",
-    "/js/app.js.map": "/js/app.js.map?id=102983b2359cd2864aa7",
-    "/css/app.css.map": "/css/app.css.map?id=0b712c27328247623ba2",
-    "/css/dashboard.css.map": "/css/dashboard.css.map?id=8ce36b877193585d0cea",
-    "/js/dashboard.js": "/js/dashboard.js?id=35def9079323db2a0a75",
-    "/js/dashboard.js.map": "/js/dashboard.js.map?id=98a2b311934ae611cbfe",
-    "/js/dashboard-login.js": "/js/dashboard-login.js?id=14e671bc4a3b34e361c8",
-    "/js/dashboard-login.js.map": "/js/dashboard-login.js.map?id=33474a6938c2350c9f3b"
+    "/group.js": "/group.js",
+    "/group.js.map": "/group.js.map",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/dashboard.css": "/css/dashboard.css",
+    "/js/app.js.map": "/js/app.js.map",
+    "/css/app.css.map": "/css/app.css.map",
+    "/css/dashboard.css.map": "/css/dashboard.css.map",
+    "/js/dashboard.js": "/js/dashboard.js",
+    "/js/dashboard.js.map": "/js/dashboard.js.map",
+    "/js/dashboard-login.js": "/js/dashboard-login.js",
+    "/js/dashboard-login.js.map": "/js/dashboard-login.js.map"
 }

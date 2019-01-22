@@ -5,6 +5,8 @@
 
 export default {
 	mounted: function () {
+		if (window.innerWidth <= 992)
+			return;
 		let vkScript = document.createElement('script');
 		vkScript.setAttribute('src', 'https://vk.com/js/api/openapi.js?160');
 		document.head.appendChild(vkScript);

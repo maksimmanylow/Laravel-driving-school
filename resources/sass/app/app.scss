@@ -23,3 +23,9 @@
 .grecaptcha-badge {
   top: 14px !important;
 }
+
+#vk_community_messages {
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
