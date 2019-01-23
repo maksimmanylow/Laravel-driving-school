@@ -1,14 +1,8 @@
 {
     "/group.js": "/group.js",
-    "/group.js.map": "/group.js.map",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/dashboard.css": "/css/dashboard.css",
-    "/js/app.js.map": "/js/app.js.map",
-    "/css/app.css.map": "/css/app.css.map",
-    "/css/dashboard.css.map": "/css/dashboard.css.map",
     "/js/dashboard.js": "/js/dashboard.js",
-    "/js/dashboard.js.map": "/js/dashboard.js.map",
-    "/js/dashboard-login.js": "/js/dashboard-login.js",
-    "/js/dashboard-login.js.map": "/js/dashboard-login.js.map"
+    "/js/dashboard-login.js": "/js/dashboard-login.js"
 }

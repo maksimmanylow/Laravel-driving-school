@@ -11,12 +11,12 @@
     height: 100%;
     overflow: hidden;
     background-color: rgba(0, 0, 0, .7);
-    display: table;
+    // display: table;
     transition: opacity .5s ease;
   }
 
   &__wrapper {
-    display: table-cell;
+    // display: table-cell;
     vertical-align: middle;
     position: absolute;
     overflow: auto;
