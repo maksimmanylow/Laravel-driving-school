@@ -343,12 +343,13 @@
                   <i class="fa fa-phone fa-3x sr-contact" />
                   <h4>Олег Владимирович</h4>
                   <h6 class="text-muted">руководитель автошколы</h6>
-                  <p>+7 (911) 740 6422</p>
-                  <a href="mailto:volovik_ov@bstu.spb.su">volovik_ov@bstu.spb.su</a>
+                  <a href="tel:+79117406422">+7 (911) 740-64-22</a>
+                  <br>
+                  <p>volovik_ov@bstu.spb.su</p>
                   <hr>
                   <h4>Анатолий Сергеевич</h4>
                   <h6 class="text-muted">зам. руководителя</h6>
-                  <p>+7 (999) 028-28-96</p>
+                  <a href="tel:+79990282896">+7 (999) 028-28-96</a>
                 </div>
                 <div class="col-md-6 text-center">
                   <VkGroupsWidget />
