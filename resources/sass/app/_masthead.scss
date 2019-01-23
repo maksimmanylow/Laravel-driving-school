@@ -2,7 +2,7 @@
 header.masthead {
   position: relative;
   width: 100%;
-  min-height: auto;
+  height: 100vh;
   text-align: center;
   color: white;
   background-image: url('/images/bg.jpg');
@@ -44,8 +44,6 @@ header.masthead {
   }
 
   @media (min-width: 768px) {
-    height: 100%;
-    min-height: 600px;
 
     .header-content {
       position: absolute;
