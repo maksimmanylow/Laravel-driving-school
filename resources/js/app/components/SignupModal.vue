@@ -10,9 +10,9 @@
     </template>
     <template slot="body">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email</label>
+        <label for="exampleInputEmail1">Email*</label>
         <input
-          v-validate="'email'"
+          v-validate="'email|required'"
           v-model="email"
           :class="{'is-invalid': errors.has('email')}"
           name="email"
