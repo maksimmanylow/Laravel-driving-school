@@ -27,6 +27,7 @@ class UserController extends Controller
     private function getSearchQuery(string $queryString = null, int $groupId = null) {
         $Query = DB::table('users');
         $Query->whereNull('deleted_at');
+        $Query->where('id', '!=', 1);// admin user
 
         if ($groupId) {
             $Query->where('group_id', $groupId);
