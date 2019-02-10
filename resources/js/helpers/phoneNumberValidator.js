@@ -4,7 +4,7 @@ const phoneNumberValidator = {
 	getMessage: field => `${field} is not a valid phone number`,
 	validate (value) {
 		return new Promise(resolve => {
-			let phone = new PhoneNumber(value);
+			let phone = new PhoneNumber(value, 'RU');
 			resolve({ valid: phone.isValid() });
 		});
 	}

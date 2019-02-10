@@ -90,7 +90,7 @@ export default {
 		Modal,
   },
   mounted() {
-    let im = new Inputmask("+7\(999\)999 9999").mask(document.getElementById('input-phone'));
+    let im = new Inputmask("+7 \(999\) 999 9999").mask(document.getElementById('input-phone'));
   },
 	computed: {
 		name: {
