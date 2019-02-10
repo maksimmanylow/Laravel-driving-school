@@ -7,7 +7,7 @@
   // @include sans-serif-font;
   @include transition-all;
   .navbar-brand {
-    font-family: Jura;
+    font-family: 'Open Sans', sans-serif !important;
     font-weight: 700;
     text-transform: uppercase;
     color: map-get($blues, "500");
