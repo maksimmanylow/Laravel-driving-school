@@ -70,6 +70,7 @@ export default {
 		'phone': 'Телефон',
 		'email': 'Email',
 		'group': 'Группа',
+		'created_at': 'Записан',
 	},
 	groupLabels: {
 		name: 'Название',

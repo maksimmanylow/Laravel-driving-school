@@ -1,14 +1,8 @@
 {
-    "/group.js": "/group.js?id=57714818648314545e95",
-    "/group.js.map": "/group.js.map?id=5e97c283c1e4c6f8b6cd",
-    "/js/app.js": "/js/app.js?id=e22149caa60fda6d487a",
-    "/css/app.css": "/css/app.css?id=f8ad1e9eae2b5f5565c7",
-    "/css/dashboard.css": "/css/dashboard.css?id=730f9aab2c51fb10b93c",
-    "/js/app.js.map": "/js/app.js.map?id=afcbb11105f9792e3259",
-    "/css/app.css.map": "/css/app.css.map?id=1065d50a44e859dec34c",
-    "/css/dashboard.css.map": "/css/dashboard.css.map?id=8ce36b877193585d0cea",
-    "/js/dashboard.js": "/js/dashboard.js?id=35def9079323db2a0a75",
-    "/js/dashboard.js.map": "/js/dashboard.js.map?id=ae1a160635c60d74a1dc",
-    "/js/dashboard-login.js": "/js/dashboard-login.js?id=14e671bc4a3b34e361c8",
-    "/js/dashboard-login.js.map": "/js/dashboard-login.js.map?id=84d20b275fbee72eeaa3"
+    "/group.js": "/group.js?id=9a5bab214f777f3db8ec",
+    "/js/app.js": "/js/app.js?id=83df7da3d45e925a32c8",
+    "/css/app.css": "/css/app.css?id=fca200bd8a4941a85314",
+    "/css/dashboard.css": "/css/dashboard.css?id=1d9e409ec97c36a5fcd4",
+    "/js/dashboard.js": "/js/dashboard.js?id=b8f26d7d2fee7de38804",
+    "/js/dashboard-login.js": "/js/dashboard-login.js?id=40659252fec20a60a150"
 }
