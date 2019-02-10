@@ -59,6 +59,7 @@
           :class="{'is-invalid': errors.has('phone')}"
           name="phone"
           type="text"
+          id="input-phone"
           class="form-control">
         <div class="invalid-feedback">
           {{ errors.first('phone') }}
@@ -80,13 +81,17 @@
 
 <script>
 import Modal from '~/resources/js/sharedComponents/Modal/Modal';
+import Inputmask from 'inputmask';
 
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
 	components: {
 		Modal,
-	},
+  },
+  mounted() {
+    let im = new Inputmask("+7\(999\)999 9999").mask(document.getElementById('input-phone'));
+  },
 	computed: {
 		name: {
 			get() {
