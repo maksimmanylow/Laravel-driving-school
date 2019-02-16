@@ -7,7 +7,8 @@ const constants = {
 			user: '/api/auth/user',
 		},
 		user: '/api/user',
-		group: '/api/group'
+		group: '/api/group',
+		personalTraining: '/api/personal-training',
 	}
 };
 

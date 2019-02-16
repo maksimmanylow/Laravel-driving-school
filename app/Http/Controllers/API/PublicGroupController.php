@@ -22,6 +22,7 @@ class PublicGroupController extends Controller
     public function index(Request $request)
     {
       return GroupResource::collection(Group::where('status', '<>', self::STATUS_CLOSED)
+      ->whereNull('deleted_at')
       ->orderBy('created_at', 'desc')
       ->paginate(self::PAGE_SIZE));
     }

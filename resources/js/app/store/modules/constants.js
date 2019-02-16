@@ -1,6 +1,7 @@
 export default {
 	mode: {
 		SIGNUP: 'signup',
+		SIGNUP_PERSONAL: 'signupPersonal',
 	},
 	message: {
 		type: {

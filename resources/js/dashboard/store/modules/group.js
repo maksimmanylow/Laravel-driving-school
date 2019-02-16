@@ -174,7 +174,7 @@ const actions = {
 				status
 			} = await API.delete(state.model.value.id);
 			if (status == 204) {
-				commit('setUsers', state.all.filter(model => model.id != state.model.value.id));
+				commit('setAll', state.all.filter(model => model.id != state.model.value.id));
 				dispatch('showMessageOK', 'Группа удалена!');
 			}
 		} catch (error) {

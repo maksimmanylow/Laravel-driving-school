@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import user from './modules/user';
 import group from './modules/group';
+import personalTraining from './modules/personalTraining';
 import actions from './actions';
 import mutations from './mutations';
 import getters from './getters';
@@ -14,7 +15,8 @@ const debug = process.env.NODE_ENV !== 'production';
 const store = new Vuex.Store({
 	modules: {
 		user,
-		group
+		group,
+		personalTraining
 	},
 	strict: debug,
 	actions,

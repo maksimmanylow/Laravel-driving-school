@@ -62,6 +62,7 @@ export default {
 			email: null,
 			group_id: null,
 			password: null,
+			group_type: null,
 		};
 	},
 	userLabels: {
@@ -78,4 +79,8 @@ export default {
 		category: 'Категория',
 		start_at: 'Начало занятий',
 	},
+	groupTypes: {
+		regular: 'обычная',
+		personal: 'персональная'
+	}
 };

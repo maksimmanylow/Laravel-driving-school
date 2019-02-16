@@ -39,6 +39,15 @@ let router = new Router({
 		  component: () => import(/* webpackChunkName: "group" */ './views/Group.vue'),
       meta: { requiresAuth: true },
 		},
+		{
+		  path: '/dashboard/personal-training',
+		  name: 'personalTraining',
+		  // route level code-splitting
+		  // this generates a separate chunk (group.[hash].js) for this route
+		  // which is lazy-loaded when the route is visited.
+		  component: () => import(/* webpackChunkName: "group" */ './views/PersonalTraining.vue'),
+      meta: { requiresAuth: true },
+		},
 	]
 });
 

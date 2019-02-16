@@ -46,7 +46,9 @@ Route::group([
 ], function() {
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
+  Route::apiResource('personal-training', 'API\PersonalTrainingController');
   Route::get('export', 'API\ExportController@index');
 });
 
 Route::get('public-group', 'API\PublicGroupController@index');
+Route::get('personal-training-public', 'API\PublicPersonalTrainingController@index');

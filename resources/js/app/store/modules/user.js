@@ -46,36 +46,53 @@ const state = {
 const getters = {
 };
 
+async function _signup ({
+	state,
+	getters,
+	commit,
+	dispatch
+},
+mode=C.SIGNUP,) {
+	switch (mode) {
+	case C.mode.SIGNUP:
+		method = 'signup';
+		break;
+	case C.mode.SIGNUP_PERSONAL:
+		method = 'signupPersonal';
+		break;
+	}
+
+	try {
+		commit('setModalLoading', true);
+		const {
+			data,
+			status
+		} = await API[method](state.model.value);
+		if (status == 201) {
+			commit('setModalLoading', false);
+			dispatch('showMessageOK', {
+				heading: 'Вы записаны!',
+				text: 'В ближайшее время мы свяжемся с Вами',
+			});
+		}
+	} catch (error) {
+		commit('setModalLoading', false);
+		dispatch('showMessageError', {
+			heading: 'Ошибка', 
+			text: 'Возникла внутрення ошибка сервера. Пожалуйста, позвоните по номеру внизу страницы.'
+		});
+		commit('addErrors', error);
+	}
+	commit('closeModal');
+}
+
 // actions
 const actions = {
-	async signup({
-		state,
-		getters,
-		commit,
-		dispatch
-	}) {
-		try {
-			commit('setModalLoading', true);
-			const {
-				data,
-				status
-			} = await API.signup(state.model.value);
-			if (status == 201) {
-				commit('setModalLoading', false);
-				dispatch('showMessageOK', {
-					heading: 'Вы записаны!',
-					text: 'В ближайшее время мы свяжемся с Вами',
-				});
-			}
-		} catch (error) {
-			commit('setModalLoading', false);
-			dispatch('showMessageError', {
-				heading: 'Ошибка', 
-				text: 'Возникла внутрення ошибка сервера. Пожалуйста, позвоните по номеру внизу страницы.'
-			});
-			commit('addErrors', error);
-		}
-		commit('closeModal');
+	async signUpPersonal(kwargs) {
+		_signup(kwargs, mode=C.mode.SIGNUP_PERSONAL);
+	},
+	async signup(kwargs) {
+		_signup(kwargs, mode=C.mode.SIGNUP);
 	},
 	async login({
 		commit,

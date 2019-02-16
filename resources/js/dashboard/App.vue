@@ -27,6 +27,14 @@
       >
         <a class="nav-link">Группы</a>
       </router-link>
+      <router-link
+        :to="{name: 'personalTraining'}"
+        tag="li"
+        class="nav-item"
+        active-class="active"
+      >
+        <a class="nav-link">Перс. группы</a>
+      </router-link>
       <!-- <router-link
         :to="{name: 'logout'}"
         tag="li"

@@ -6,7 +6,8 @@ const constants = {
 			logout: '/api/auth/logout',
 			user: '/api/auth/user',
 		},
-		group: '/api/public-group'
+		group: '/api/public-group',
+		personalTraining: '/api/personal-training-public',
 	}
 };
 
