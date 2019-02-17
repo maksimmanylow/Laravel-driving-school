@@ -59,7 +59,7 @@ class ExportController extends Controller
     private static function getUserArrayTable($groupId) {
 
       $Users = DB::table('users')
-      >join('groups', 'users.group_id', '=', 'groups.id')
+      ->join('groups', 'users.group_id', '=', 'groups.id')
       ->select('surname', 'users.name name', 'phone', 'email', 'created_at', 'groups.name group_name')
       ->where('users.id', '!=', 1)// admin user
       ->where('groups.group_id', $groupId)
