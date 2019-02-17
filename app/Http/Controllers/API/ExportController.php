@@ -67,8 +67,7 @@ class ExportController extends Controller
       ->get();
 
       $users = $Users->toArray();
-
-      $tableHeaderConnector = [
+      $tableHeaderConnector = (object) [
         "surname" => "Фамилия",
         "name" => "Имя",
         "phone" => "Телефон",
@@ -78,7 +77,8 @@ class ExportController extends Controller
       ];
 
       $table = array_merge([$tableHeaderConnector], $users);
-      // dd($table);
+      
+      $table = json_decode(json_encode($table), true);
       return $table;
     }
 }
