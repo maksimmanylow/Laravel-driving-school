@@ -57,19 +57,23 @@ class ExportController extends Controller
 
     private static function getUserArrayTable($groupId) {
 
-      $Users = \App\User::select('surname', 'name', 'phone', 'email', 'created_at')
-      ->where('id', '!=', 1)// admin user
-      ->where('group_id', $groupId)
+      $Users = DB::table('users')
+      >join('groups', 'users.group_id', '=', 'groups.id')
+      ->select('surname', 'users.name name', 'phone', 'email', 'created_at', 'groups.name group_name')
+      ->where('users.id', '!=', 1)// admin user
+      ->where('groups.group_id', $groupId)
       ->orderBy('surname', 'desc')
       ->get();
 
       $users = $Users->toArray();
+
       $tableHeaderConnector = [
         "surname" => "Фамилия",
         "name" => "Имя",
         "phone" => "Телефон",
         "email" => "Email",
         "created_at" => "Записан",
+        "group_name" => "Группа",
       ];
 
       $table = array_merge([$tableHeaderConnector], $users);
