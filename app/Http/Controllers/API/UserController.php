@@ -34,12 +34,15 @@ class UserController extends Controller
         }
 
         if ($queryString) {
-            $Query->where(function ($query) use ($queryString) {
-                $query->orWhere('name', 'ilike', "%$queryString%")
-                ->orWhere('surname', 'ilike', "%$queryString%")
-                ->orWhere('phone', 'ilike', "%$queryString%")
-                ->orWhere('email', 'ilike', "%$queryString%");
-            });
+            $queryWords = explode(' ', $queryString);
+            foreach ($queryWord as $queryWords) {
+                $Query->where(function ($query) use ($queryWord) {
+                    $query->orWhere('name', 'ilike', "%$queryWord%")
+                    ->orWhere('surname', 'ilike', "%$queryWord%")
+                    ->orWhere('phone', 'ilike', "%$queryWord%")
+                    ->orWhere('email', 'ilike', "%$queryWord%");
+                });
+            }
         }
 
         return $Query->orderBy('created_at', 'desc')->paginate(self::PAGE_SIZE);
