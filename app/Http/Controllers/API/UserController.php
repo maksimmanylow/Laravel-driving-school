@@ -35,7 +35,7 @@ class UserController extends Controller
 
         if ($queryString) {
             $queryWords = explode(' ', $queryString);
-            foreach ($queryWord as $queryWords) {
+            foreach ($queryWords as $queryWord) {
                 $Query->where(function ($query) use ($queryWord) {
                     $query->orWhere('name', 'ilike', "%$queryWord%")
                     ->orWhere('surname', 'ilike', "%$queryWord%")
