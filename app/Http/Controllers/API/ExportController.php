@@ -62,7 +62,7 @@ class ExportController extends Controller
       ->join('groups', 'users.group_id', '=', 'groups.id')
       ->select('surname', 'users.name as name', 'phone', 'email', 'users.created_at as created_at', 'groups.name as group_name')
       ->where('users.id', '!=', 1)// admin user
-      ->where('groups.group_id', $groupId)
+      ->where('users.group_id', $groupId)
       ->orderBy('surname', 'desc')
       ->get();
 
