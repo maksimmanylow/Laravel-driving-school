@@ -3,6 +3,7 @@ const constants = {
 		auth: {
 			login: '/api/auth/login',
 			signup: '/api/auth/signup',
+			signupPersonal: '/api/auth/signup-personal',
 			logout: '/api/auth/logout',
 			user: '/api/auth/user',
 		},

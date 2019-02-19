@@ -52,15 +52,10 @@ async function _signup ({
 	commit,
 	dispatch
 },
-mode=C.SIGNUP,) {
-	switch (mode) {
-	case C.mode.SIGNUP:
-		method = 'signup';
-		break;
-	case C.mode.SIGNUP_PERSONAL:
+mode=C.mode.SIGNUP,) {
+	let method = 'signup';
+	if (mode === C.mode.SIGNUP_PERSONAL)
 		method = 'signupPersonal';
-		break;
-	}
 
 	try {
 		commit('setModalLoading', true);
@@ -89,10 +84,10 @@ mode=C.SIGNUP,) {
 // actions
 const actions = {
 	async signUpPersonal(kwargs) {
-		_signup(kwargs, mode=C.mode.SIGNUP_PERSONAL);
+		await _signup(kwargs, C.mode.SIGNUP_PERSONAL);
 	},
 	async signup(kwargs) {
-		_signup(kwargs, mode=C.mode.SIGNUP);
+		await _signup(kwargs, C.mode.SIGNUP);
 	},
 	async login({
 		commit,
