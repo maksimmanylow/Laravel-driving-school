@@ -314,7 +314,7 @@
               @select="selectGroup(group.id)"
             />
           </div>
-          <div
+          <!-- <div
             v-for="group in personalTrainingGroups"
             :key="group.id"
             class="col-lg-4 col-md-6"
@@ -324,7 +324,7 @@
               :group="group"
               @select="selectPersonalTrainingGroup(group.id)"
             />
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -423,7 +423,7 @@
 <script>
 // Custom components
 import GroupCard from '../components/GroupCard';
-import PersonalTrainingCard from '../components/PersonalTrainingCard';
+// import PersonalTrainingCard from '../components/PersonalTrainingCard';
 import SignupModal from '../components/SignupModal';
 import Message from '../components/Message';
 import Map from '../components/Map/Map';
@@ -455,11 +455,11 @@ export default {
 	},
 	computed: mapState({
 		groups: state => state.group.all,
-		personalTrainingGroups: state => state.personalTraining.all,
+		// personalTrainingGroups: state => state.personalTraining.all,
 	}),
 	created () {
 		this.$store.dispatch('group/getPage', 1);
-		this.$store.dispatch('personalTraining/getPage', 1);
+		// this.$store.dispatch('personalTraining/getPage', 1);
 	},
 	mounted: function () {
 
@@ -469,10 +469,10 @@ export default {
 			this.$store.commit('user/setGroup', group_id);
 			this.$store.commit('user/showCreateModal');
     },
-    selectPersonalTrainingGroup: function() {},
-		...mapActions('user', [
-			'signUpPersonal',
-		]),
+    // selectPersonalTrainingGroup: function() {},
+		// ...mapActions('user', [
+		// 	'signUpPersonal',
+		// ]),
 	}
 };
 </script>
