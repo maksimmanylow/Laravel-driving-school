@@ -67,9 +67,9 @@ class AuthController extends Controller
 
         Mail::send('mails.new_user', $service_mail_data, function($message) {
             $message
-                ->to(env(MAIL_CLONE_TO_ADDRESS))
+                ->to(env('MAIL_CLONE_TO_ADDRESS'))
                 ->subject('Новая регистрация')
-                ->from(env(MAIL_FROM_ADDRESS));
+                ->from(env('MAIL_FROM_ADDRESS'));
          });
 
         $admin->notify(new SignupActivate($user));
