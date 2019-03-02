@@ -54,12 +54,12 @@ class AuthController extends Controller
 
         $user->notify(new SignupActivate($user));
 
-        Mail::send('mails.new_user', $service_mail_data, function($message) {
-            $message
-                ->to(env('MAIL_CLONE_TO_ADDRESS'))
-                ->subject('Новая регистрация')
-                ->from(env('MAIL_FROM_ADDRESS'));
-         });
+        // Mail::send('mails.new_user', $service_mail_data, function($message) {
+        //     $message
+        //         ->to(env('MAIL_CLONE_TO_ADDRESS'))
+        //         ->subject('Новая регистрация')
+        //         ->from(env('MAIL_FROM_ADDRESS'));
+        //  });
         //  $Group = \App\Group::find($request->group_id);
         //  $groupName = $Group->name;
  
