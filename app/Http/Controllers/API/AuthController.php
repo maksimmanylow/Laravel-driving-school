@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API;
 
 use Avatar;
 use Storage;
+use Mail;
 use Carbon\Carbon;
 use App\User;
+use App\Group;
 use App\Notifications\SignupActivate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +36,10 @@ class AuthController extends Controller
             'group_id' => 'required|integer',
             'email' => 'nullable|sometimes|string|email|unique:users',
         ]);
+
+      $Group = \App\Group::find($groupId);
+      $groupName = $Group->name;
+
         $user = new User([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -44,12 +50,29 @@ class AuthController extends Controller
             'activation_token' => str_random(60)
         ]);
 
+        $service_mail_data = [
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'phone' => $request->phone,
+            'group' => $groupName,
+            'email' => $request->email,
+        ];
+
         $user->save();
 
         $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         $user->notify(new SignupActivate($user));
+
+        Mail::send('new_user', ['text' => $service_mail_data], $service_mail_data, function($message) {
+            $message
+                ->to(env(MAIL_CLONE_TO_ADDRESS))
+                ->subject('Новая регистрация')
+                ->from(env(MAIL_FROM_ADDRESS));
+         });
+
+        $admin->notify(new SignupActivate($user));
 
         return response()->json([
             'message' => 'Successfully created user!'
