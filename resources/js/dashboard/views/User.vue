@@ -7,6 +7,7 @@
         <div class="col-lg-5">
           <h3>Учащиеся</h3>
           <Paginator
+					  :v-if="total"
             :from="from"
             :to="to"
             :total="total"
@@ -23,6 +24,7 @@
             label="name"
 						:allow-empty="true"
             track-by="name" />
+
           <ExportLink
             :link="exportLink"
             :show="exportLink.length > 0"
@@ -30,7 +32,13 @@
           </ExportLink>
           <br v-show="exportLink.length == 0">
         </div>
-        <div class="col-lg-4 text-right">
+				<div class="col-lg-1">
+					<BinButton 
+					:label="binLabel" 
+					@triggerBin="triggerBin"
+					/>
+				</div>
+        <div class="col-lg-3 text-right">
           <SearchInput
             :value="query"
             @input="search" />
@@ -62,6 +70,7 @@ import SearchInput from '../components/SearchInput';
 import Paginator from '../components/Paginator';
 import TableComponent from '../components/DataTable/TableComponent';
 import ExportLink from '../components/ExportLink';
+import BinButton from '../components/BinButton';
 import { mapState, mapMutations, mapActions } from 'vuex';
 import debounce from '~/resources/js/helpers/debounce';
 
@@ -74,6 +83,7 @@ export default {
 		SearchInput,
 		Paginator,
 		ExportLink,
+		BinButton,
 	},
 	computed: {
 		userWGroupNames: function () {
@@ -93,6 +103,8 @@ export default {
 			current_page: state => state.user.paginator.current_page,
 			last_page: state => state.user.paginator.last_page,
 			query: state => state.user.search.query,
+			binFlag: state => state.user.search.binFlag,
+			binLabel: state => state.user.search.binLabel,
 			exportLink: state => state.user.search.exportLink,
 			userLabels: state => state.user.userLabels,
 		}),
@@ -131,6 +143,7 @@ export default {
 		...mapActions('user', [
 			'goToNextPage',
 			'goToPrevPage',
+			'triggerBin',
 		]),
 	}
 };

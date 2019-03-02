@@ -1,6 +1,9 @@
 <template>
-  <div class="pagintor">
-    <div class="pagintor__current-page">{{ from }}-{{ to }}&nbsp;из&nbsp;{{ total }}</div>
+  <div
+		class="pagintor">
+    <div class="pagintor__current-page">
+			{{ from }}-{{ to }}&nbsp;из&nbsp;{{ total }}
+		</div>
     <div class="pagintor__controls">
       <div
         :class="{disabled: noPrevPage}"

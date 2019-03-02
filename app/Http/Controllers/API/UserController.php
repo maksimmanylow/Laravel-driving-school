@@ -18,19 +18,25 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $queryString = $request->query('q');
-        $groupId = (int) $request->query('group_id');
+        $queryString = $request->query('q', null);
+        $groupId = (int) $request->query('group_id', 0);
+        $trashed = $request->query('trashed', false) === 'true'? true: false;
 
-        return UserResource::collection($this->getSearchQuery($queryString, $groupId));
+        return UserResource::collection($this->getSearchQuery($queryString, $groupId, $trashed));
     }
 
-    private function getSearchQuery(string $queryString = null, int $groupId = null) {
+    private function getSearchQuery(string $queryString = null, int $groupId = null, bool $trashed = false) {
         $Query = DB::table('users');
-        $Query->whereNull('deleted_at');
         $Query->where('id', '!=', 1);// admin user
 
         if ($groupId) {
             $Query->where('group_id', $groupId);
+        }
+
+        if ($trashed) {
+            $Query->whereNotNull('deleted_at');
+        } else {
+            $Query->whereNull('deleted_at');
         }
 
         if ($queryString) {

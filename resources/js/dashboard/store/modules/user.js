@@ -29,7 +29,9 @@ const state = {
     query: '',
     debounceTimeout: 500,
     group: null,
-    exportLink: ''
+    exportLink: '',
+    binFlag: false,
+    binLabel: "В корзину",
   },
   paginator: {
     from: 0,
@@ -197,8 +199,8 @@ const actions = {
         status
       } = await API.delete(state.model.value.id);
       if (status == 204) {
-		  dispatch('showMessageOK', 'Учащийся удален!');
-		  dispatch('getPage');
+        dispatch('showMessageOK', 'Учащийся удален!');
+        dispatch('getPage');
       }
     } catch (error) {
       dispatch('showMessageError');
@@ -245,6 +247,30 @@ const actions = {
     }
     commit('closeModal');
   },
+  async triggerBin({
+    commit,
+    dispatch,
+    state
+  }) {
+    try {
+      const {
+        data,
+        status
+      } = await API.getPage({
+        trashed: !state.search.binFlag
+      });
+      if (status == 200) {
+        commit('triggerBin');
+        commit('setGroup', null);
+        commit('setAll', data.data);
+        commit('setPaginator', data.meta);
+        commit('setSearchQuery', null);
+      }
+    } catch (error) {
+      dispatch('showMessageError');
+      commit('addErrors', error);
+    }
+  },
   async goToNextPage({
     commit,
     dispatch,
@@ -260,6 +286,7 @@ const actions = {
         status
       } = await API.getPage({
         page: nextPageNumber,
+        trashed: state.search.binLabel,
         q: state.search.query,
         group_id: state.search.group ? state.search.group.id : null,
       });
@@ -287,6 +314,7 @@ const actions = {
         status
       } = await API.getPage({
         page: prevPageNumber,
+        trashed: state.search.binLabel,
         q: state.search.query,
         group_id: state.search.group ? state.search.group.id : null,
       });
@@ -349,7 +377,8 @@ const mutations = {
     state.model.value.phone = val;
   },
   setModelValue(state, id) {
-    state.model.value = { ...state.all.find(model => model.id == id)
+    state.model.value = {
+      ...state.all.find(model => model.id == id)
     };
   },
   setAll(state, users) {
@@ -387,7 +416,8 @@ const mutations = {
     state.message.show = false;
   },
   showUpdateModal(state, id) {
-    state.model.value = { ...state.all.find(model => model.id == id)
+    state.model.value = {
+      ...state.all.find(model => model.id == id)
     };
     state.modalMode = C.mode.UPDATE;
     state.modalShow = true;
@@ -406,6 +436,10 @@ const mutations = {
     // }
     state.modalShow = false;
     state.model.validationErrors = [];
+  },
+  triggerBin(state) {
+    state.search.binFlag = !state.search.binFlag;
+    state.search.binLabel = state.search.binFlag ? 'Назад' : 'В корзину';
   },
   setFound(state, found) {
     state.found = found;

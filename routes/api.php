@@ -40,12 +40,12 @@ Route::group([
   Route::post('reset', 'PasswordResetController@reset');
 });
 
-
 Route::group([
   'middleware' => 'auth:api'
 ], function() {
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
+  Route::get('user/trashed', 'API\UserController@trashed');
   Route::apiResource('personal-training', 'API\PersonalTrainingController');
   Route::get('export', 'API\ExportController@index');
 });
