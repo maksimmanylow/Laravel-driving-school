@@ -72,7 +72,7 @@ class AuthController extends Controller
                 ->from(env('MAIL_FROM_ADDRESS'));
          });
 
-        $admin->notify(new SignupActivate($user));
+        // $admin->notify(new SignupActivate($user));
 
         return response()->json([
             'message' => 'Successfully created user!'
