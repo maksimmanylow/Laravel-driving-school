@@ -37,9 +37,6 @@ class AuthController extends Controller
             'email' => 'nullable|sometimes|string|email|unique:users',
         ]);
 
-      $Group = \App\Group::find($groupId);
-      $groupName = $Group->name;
-
         $user = new User([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -49,6 +46,9 @@ class AuthController extends Controller
             'password' => bcrypt('vue'),
             'activation_token' => str_random(60)
         ]);
+
+        $Group = \App\Group::find($request->group_id);
+        $groupName = $Group->name;
 
         $service_mail_data = [
             'name' => $request->name,
