@@ -47,21 +47,10 @@ class AuthController extends Controller
             'activation_token' => str_random(60)
         ]);
 
-        $Group = \App\Group::find($request->group_id);
-        $groupName = $Group->name;
-
-        $service_mail_data = [
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'phone' => $request->phone,
-            'group' => $groupName,
-            'email' => $request->email,
-        ];
-
         $user->save();
 
-        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
-        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+        // $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        // Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         $user->notify(new SignupActivate($user));
 
@@ -71,7 +60,16 @@ class AuthController extends Controller
                 ->subject('Новая регистрация')
                 ->from(env('MAIL_FROM_ADDRESS'));
          });
-
+        //  $Group = \App\Group::find($request->group_id);
+        //  $groupName = $Group->name;
+ 
+        //  $service_mail_data = [
+        //      'name' => $request->name,
+        //      'surname' => $request->surname,
+        //      'phone' => $request->phone,
+        //      'group' => $groupName,
+        //      'email' => $request->email,
+        //  ];
         // $admin->notify(new SignupActivate($user));
 
         return response()->json([
