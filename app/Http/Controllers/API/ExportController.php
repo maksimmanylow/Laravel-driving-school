@@ -63,7 +63,7 @@ class ExportController extends Controller
       ->select('surname', 'users.name as name', 'phone', 'email', 'users.created_at as created_at', 'groups.name as group_name')
       ->where('users.id', '!=', 1)// admin user
       ->where('users.group_id', $groupId)
-      ->whereNull('deleted_at')
+      ->whereNull('users.deleted_at')
       ->orderBy('surname', 'desc')
       ->get();
 
