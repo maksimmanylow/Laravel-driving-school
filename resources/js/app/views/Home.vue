@@ -374,45 +374,6 @@
       </div>
     </section>
 
-    <section
-      id="partners"
-      class="bg-dark"
-    >
-      <div class="container">
-        <h2 class="section-heading">Партнеры</h2>
-        <br>
-        <div class="row justify-content-center">
-
-          <div class="col-md-4">
-            <div class="partner card text-center p-3">
-              <a
-                href="http://megapolis-car.ru/"
-                class="partner-logo"
-              ><img
-                class="img-fluid sr-button"
-                src="/images/logos/megapolis.png"
-              ></a>
-              <div class="partner-title h3">Атошкола "Мегаполис"</div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="partner card text-center p-3">
-              <a
-                href="http://auto.igps.ru/"
-                class="partner-logo"
-              ><img
-                class="img-fluid sr-button"
-                src="/images/logos/logo_ugps.png"
-              ></a>
-              <div class="partner-title h3">Государственная автошкола МЧС</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <SignupModal />
     <Message />
     <GoogleReCaptcha />
