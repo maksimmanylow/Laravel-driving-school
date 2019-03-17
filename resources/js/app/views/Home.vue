@@ -105,13 +105,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/izmaylov.JPG"
+                src="/images/team/1.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Измайлов Сергей Андреевич
+                    Сергей Андреевич
                   </div>
                   <div class="project-category text-faded">
                     Volkswagen Polo
@@ -125,13 +125,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/savinyh.JPG"
+                src="/images/team/2.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Савиных Павел Вячеславович
+                    Павел
                   </div>
                   <div class="project-category text-faded">
                     Volkswagen Polo
@@ -145,13 +145,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/vishnyakov.JPG"
+                src="/images/team/3.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Вишняков Сергей Валерьевич
+                    Сергей Валерьевич
                   </div>
                   <div class="project-category text-faded">
                     Volkswagen Polo
@@ -165,13 +165,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/sigaev.JPG"
+                src="/images/team/4.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Сигаев Вячеслав Иванович
+                    Вячеслав
                   </div>
                   <div class="project-category text-faded">
                     Hyundai Solaris
@@ -185,13 +185,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/vishnyakovav.JPG"
+                src="/images/team/5.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Вишняков Андрей Владимирович
+                    Андрей
                   </div>
                   <div class="project-category text-faded">
                     Peugeot 408
@@ -205,13 +205,13 @@
             <div class="portfolio-box">
               <img
                 class="img-fluid"
-                src="/images/team/fall-winter-2017/chechetkin.JPG"
+                src="/images/team/6.JPG"
                 alt=""
               >
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-name">
-                    Чечеткин Виталий Николаевич
+                    Виталий
                   </div>
                   <div class="project-category text-faded">
                     Chevrolet Cruze
