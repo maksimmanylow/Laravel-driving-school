@@ -3,9 +3,10 @@
     class="card text-center"
   >
     <div class="card__header">
-      <div
-        :class="group.status.class"
-      />
+      <div class="card__indicator-badge">
+        <div :class="group.status.class" />
+        <span class="text-muted">{{ group.status.value }}</span>
+      </div>
       <h4 class="card__title">{{ group.name }}</h4>
       <h6 class="card__description text-muted">{{ group.description || "Группа воскресного обучения" }}</h6>
     </div>

@@ -64,6 +64,7 @@ const actions = {
 					hours_finish_at: model.hours_finish_at.slice(0,5),
 					timetable: JSON.parse(model.timetable),
 					status: C.groupStatuses.find(item => item.key == model.status),
+					statusName: C.groupStatuses.find(item => item.key == model.value),
 					category: C.groupCategories.find(item => item.key == model.category),
 				})));
 				commit('setPaginator', data.meta);
