@@ -339,9 +339,9 @@
         <br>
         <div class="card p-0">
 
-          <Map :markers="markers" />
+          <!-- <Map :markers="markers" /> -->
 
-          <br>
+          <!-- <br> -->
           <div class="row">
             <div class="col-md-10 mx-auto">
               <br>
