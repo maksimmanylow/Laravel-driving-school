@@ -1,4 +1,3 @@
 export default {
-	API_KEY: 'AIzaSyDhPTjafebZ5cnM8Zh_qRjUInH4li4IyIc',
-
+	API_KEY: 'AIzaSyAy3B-aU3yT9WHdyam68yV1RlvWt4mByIE',
 };
