@@ -105,7 +105,9 @@ const actions = {
 				status
 			} = await API.get(id);
 			if (status == 200) {
-				commit('setModel', data.data);
+				model = data.data;
+				model.timetable = JSON.parse(model.timetable)
+				commit('setModel', model);
 			}
 		} catch (error) {
 			mutations.addErrors(error);
