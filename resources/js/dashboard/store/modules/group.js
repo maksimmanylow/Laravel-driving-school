@@ -10,6 +10,8 @@ const state = {
 	constants: C,
 	model: {
 		value: C.defaultGroup,
+		status: C.groupStatuses[0],
+		category: C.groupCategories[0],
 		required: C.defaultGroup.keys,
 		validationErrors: [],
 	},
@@ -114,17 +116,13 @@ const actions = {
 		}
 	},
 	save({state, getters, commit, dispatch}) {
-		state.model.value.timetable = JSON.stringify(state.model.value.timetable);
-		state.model.value.status = state.model.value.status.key;
-		state.model.value.category = state.model.value.category.key;
-
 		switch (state.modalMode) {
-		case C.mode.CREATE:
-			dispatch('create');
-			break;
-		case C.mode.UPDATE:
-			dispatch('update');
-			break;
+			case C.mode.CREATE:
+				dispatch('create');
+				break;
+			case C.mode.UPDATE:
+				dispatch('update');
+				break;
 		}
 		commit('closeModal');
 	},
@@ -278,9 +276,6 @@ const mutations = {
 	setAll(state, groups) {
 		state.all = groups;
 	},
-	setModelAttribute(state, payload) {
-		state.model.value = {...state.model.value, ...payload};
-	},
 	setModel(state, value) {
 		state.model.value = value;
 	},
@@ -288,16 +283,21 @@ const mutations = {
 		state.model.value.name = value;
 	},
 	setStatus(state, value) {
-		state.model.value.status = value;
+		state.model.status = value;
+		state.model.value.status = value.key;
 	},
 	setPrice(state, value) {
 		state.model.value.price = value;
+	},
+	setDescription(state, value){
+		state.model.value.description = value;
 	},
 	setPriceForStudents(state, value) {
 		state.model.value.price_for_students = value;
 	},
 	setCategory(state, value) {
-		state.model.value.category = value;
+		state.model.category = value;
+		state.model.value.category = value.key;
 	},
 	setStartAt(state, value) {
 		state.model.value.start_at = value;

@@ -104,7 +104,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
         <input
-          v-validate="'required|date_format:YYYY-MM-DD'"
+          v-validate="'required|date_format:yyyy-mm-dd'"
           v-model="start_at"
           :class="{'is-invalid': errors.has('start_at')}"
           name="start_at"
@@ -119,7 +119,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <input
-          v-validate="'date_format:YYYY-MM-DD'"
+          v-validate="'date_format:yyyy-mm-dd'"
           :class="{'is-invalid': errors.has('exam_date')}"
           v-model="exam_date"
           type="date"
@@ -224,12 +224,12 @@ export default {
 				return this.$store.state.group.model.value.description;
 			},
 			set(val) {
-				this.$store.commit('group/setModelAttribute', {'description': val});
+				this.$store.commit('group/setDescription', val);
 			},
 		},
 		status: {
 			get() {
-				return this.$store.state.group.model.value.status;
+				return this.$store.state.group.model.status;
 			},
 			set(val) {
 				this.$store.commit('group/setStatus', val);
@@ -253,7 +253,7 @@ export default {
 		},
 		category: {
 			get() {
-				return this.$store.state.group.model.value.category;
+				return this.$store.state.group.model.category;
 			},
 			set(val) {
 				this.$store.commit('group/setCategory', val);
