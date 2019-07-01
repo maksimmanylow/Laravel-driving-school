@@ -16,8 +16,8 @@
           <p>{{ group.price }} рублей</p>
           <p class="text-muted">{{ group.price_for_students }} рублей - для студентов</p>
         </li>
-        <li class="list-group-item"><div class="text-muted">дни</div>{{ group.timetable.length > 1 ? group.timetable.join(', ') : group.timetable[0]}}</li>
-        <li class="list-group-item"><div class="text-muted">часы</div>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</li>
+        <li class="list-group-item"><div class="text-muted">дни занятий</div>{{ group.timetable.length > 1 ? group.timetable.join(', ') : group.timetable[0]}}</li>
+        <li class="list-group-item"><div class="text-muted">часы обучения</div>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</li>
         <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ group.start_at }}</li>
       </ul>
     </div>
