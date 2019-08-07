@@ -79,7 +79,7 @@ export default {
     userWGroupNames: function() {
       let getGroupName = function(group_id, groups) {
           let group = groups.find(group => group_id == group.id);
-          return group ? group.name : 'данные отсутсвуют';
+          return group ? group.name : 'данные отсутствуют';
       }
       let groups = this.$store.state.group.all;
 
