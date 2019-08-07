@@ -2,8 +2,8 @@
   <div>
     <Message />
     <GroupModal />
-    <div class="container">
-      <div class="row">
+    <div class="container mt-4">
+      <div class="row mb-4">
         <div class="col-lg-4">
           <h3>Группы</h3>
 

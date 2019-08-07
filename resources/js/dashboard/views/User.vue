@@ -2,7 +2,7 @@
   <div>
     <Message />
     <UserModal />
-    <div class="container-fluid">
+    <div class="container-fluid mt-4">
       <div class="row mx-0">
         <div class="col-lg-5">
           <h3>Учащиеся</h3>
