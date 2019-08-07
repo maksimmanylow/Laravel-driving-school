@@ -4,9 +4,11 @@
     @click="update(group.id)"
   >
     <div class="card__header">
-      <div
-        :class="group.status.class"
-      />
+      <div class="card__indicator-badge">
+        <div
+          :class="group.status.class"
+        />
+      </div>
       <h4 class="card__title">{{ group.name }}</h4>
       <h6 class="card__description text-muted">{{ group.description }}</h6>
     </div>
