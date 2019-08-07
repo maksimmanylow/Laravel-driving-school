@@ -77,11 +77,15 @@ export default {
   },
   computed: {
     userWGroupNames: function() {
+      let getGroupName = function(group_id, groups) {
+          let group = groups.find(group => group_id == group.id);
+          return group ? group.name : 'данные отсутсвуют';
+      }
       let groups = this.$store.state.group.all;
 
       return this.$store.state.user.all.map(user => ({
         ...user,
-        group: groups.find(group => user.group_id == group.id).name
+        group: getGroupName(user.group_id, groups)
       }));
     },
     ...mapState({
