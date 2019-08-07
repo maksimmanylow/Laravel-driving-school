@@ -22,6 +22,7 @@ class GroupController extends Controller
 
       return GroupResource::collection(Group::where('name', 'ilike', "%$query%")
       // ->whereNull('deleted_at')
+      ->orderBy('status', 'asc')
       ->orderBy('created_at', 'desc')
       ->paginate(self::PAGE_SIZE));
     }
