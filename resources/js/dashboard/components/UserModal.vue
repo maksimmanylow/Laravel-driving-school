@@ -41,7 +41,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Фамилия</label>
         <input
-          v-validate="'min:2|max:255'"
+          v-validate="'required|min:2|max:255'"
           v-model="surname"
           :class="{'is-invalid': errors.has('surname')}"
           name="surname"

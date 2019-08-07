@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    const PAGE_SIZE = 12;
+    const PAGE_SIZE = 20;
     /**
      * Display a listing of the resource.
      *
@@ -66,15 +66,17 @@ class UserController extends Controller
         'name' => 'required|string',
         'surname' => 'required|string',
         'phone' => 'required|string',
-        'email' => 'string|email|unique:users',
-        'password' => 'required|string|confirmed'
+        'group_id' => 'required|integer',
+        'email' => 'nullable|string|email|unique:users',
+        // 'password' => 'required|string|confirmed'
       ]);
       $user = new User([
           'name' => $request->name,
           'surname' => $request->surname,
           'email' => $request->email,
-          'password' => bcrypt($request->password),
-          'phone' => $request->phone
+        //   'password' => bcrypt($request->password),
+          'phone' => $request->phone,
+          'group_id' => $request->group_id,
       ]);
       $user->save();
         // $User = User::create($request->all());

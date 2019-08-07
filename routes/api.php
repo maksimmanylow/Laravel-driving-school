@@ -43,6 +43,7 @@ Route::group([
 Route::group([
   'middleware' => 'auth:api'
 ], function() {
+  Route::get('group/all', 'API\GroupController@all');
   Route::apiResource('group', 'API\GroupController');
   Route::apiResource('user', 'API\UserController');
   Route::get('user/trashed', 'API\UserController@trashed');

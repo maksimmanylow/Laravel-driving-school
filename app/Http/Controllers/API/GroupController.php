@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 100;
 
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class GroupController extends Controller
       $query = $request->query('q');
 
       return GroupResource::collection(Group::where('name', 'ilike', "%$query%")
-      ->whereNull('deleted_at')
+      // ->whereNull('deleted_at')
       ->orderBy('created_at', 'desc')
       ->paginate(self::PAGE_SIZE));
     }
