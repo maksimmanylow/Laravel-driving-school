@@ -20,7 +20,7 @@
         </li>
         <li class="list-group-item"><div class="text-muted">дни</div>{{ group.timetable.join(', ') }}</li>
         <li class="list-group-item"><div class="text-muted">часы</div>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</li>
-        <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ group.start_at }}</li>
+        <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ group.start_at.toDateString() }}</li>
       </ul>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import API from '../../api/group';
 import C from './constants';
+import { isObject } from 'util';
 
 // initial state
 const state = {
@@ -48,6 +49,18 @@ const getters = {
 	}
 };
 
+
+
+function getDate(dateTimeString) {
+	let res = null
+	if (dateTimeString !== null && typeof dateTimeString === 'object'){
+		dateTimeString = dateTimeString.date
+	}
+	if (dateTimeString)
+		res = new Date(dateTimeString);
+	return res;
+  }
+
 // actions
 const actions = {
 	async getPage({
@@ -66,7 +79,8 @@ const actions = {
 			if (status == 200) {
 				commit('setAll', data.data.map((model) => ({
 					...model,
-					start_at: model.start_at.split('-').reverse().join('/'),
+					start_at: getDate(model.start_at),
+					exam_date: getDate(model.exam_date),
 					hours_start_at: model.hours_start_at.slice(0,5),
 					hours_finish_at: model.hours_finish_at.slice(0,5),
 					timetable: JSON.parse(model.timetable),
@@ -123,10 +137,15 @@ const actions = {
 	},
 	async create({commit, dispatch, state}) {
 		try {
+			let group = state.model.value;
 			const {
 				data,
 				status
-			} = await API.create(state.model.value);
+			} = await API.create(group.map((model) => ({
+				...model,
+				category: model.category.key,
+				status: model.status.key,
+			})));
 			if (status == 201) {
 				dispatch('showMessageOK', 'Группа добавлена!');
 				dispatch('getPage');
@@ -140,10 +159,15 @@ const actions = {
 	},
 	async update({commit, dispatch, state}) {
 		try {
+			let group = state.model.value;
 			const {
 				data,
 				status
-			} = await API.update(state.model.value);
+			} = await API.update(group.map((model) => ({
+				...model,
+				category: model.category.key,
+				status: model.status.key,
+			})));
 			if (status == 200) {
 				dispatch('showMessageOK', 'Группа обновлена!');
 				commit('setAll', state.all.map(model => {

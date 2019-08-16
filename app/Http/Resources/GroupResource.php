@@ -19,6 +19,7 @@ class GroupResource extends JsonResource
         'name' => $this->name,
         'description' => $this->description,
         'start_at' => $this->start_at,
+        'exam_date' => $this->exam_date,
         'timetable' => $this->timetable,
         'hours_start_at' => $this->hours_start_at,
         'hours_finish_at' => $this->hours_finish_at,

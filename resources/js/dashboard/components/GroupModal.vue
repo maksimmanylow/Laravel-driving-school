@@ -103,31 +103,24 @@
     <template slot="body-right">
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
-        <input
-          v-validate="'required|date_format:yyyy-mm-dd'"
-          v-model="start_at"
-          :class="{'is-invalid': errors.has('start_at')}"
-          name="start_at"
-          type="date"
+        <datepicker
+          format="dd-MM-yyyy"          
           class="form-control"
-          aria-describedby="emailHelp"
-          placeholder="Начало занятий">
+          placeholder="Начало занятий"
+          v-model="start_at"
+        ></datepicker>
         <div class="invalid-feedback">
           {{ errors.first('start_at') }}
         </div>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
-        <input
-          v-validate="'date_format:yyyy-mm-dd'"
-          :class="{'is-invalid': errors.has('exam_date')}"
-          v-model="exam_date"
-          type="date"
-          name="exam_date"
-          maxlength="255"
+        <datepicker
+          format="dd-MM-yyyy"          
           class="form-control"
-          aria-describedby="emailHelp"
-          placeholder="Экзамен">
+          placeholder="Экзамен"
+          v-model="exam_date"
+        ></datepicker>
         <div class="invalid-feedback">
           {{ errors.first('exam_date') }}
         </div>
@@ -204,11 +197,13 @@
 import TwoColumnsModal from './Modal/TwoColumnsModal';
 import Multiselect from 'vue-multiselect';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import Datepicker from 'vuejs-datepicker';
 
 export default {
 	components: {
 		TwoColumnsModal,
-		Multiselect
+    Multiselect,
+    Datepicker
 	},
 	computed: {
 		name: {
@@ -261,7 +256,7 @@ export default {
 		},
 		start_at: {
 			get() {
-				return this.$store.state.group.model.value.start_at;
+        return this.$store.state.group.model.value.start_at;
 			},
 			set(val) {
 				this.$store.commit('group/setStartAt', val);

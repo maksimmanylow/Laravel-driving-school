@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 class Group extends Model
 {
@@ -15,7 +16,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-      'name', 'description', 'start_at', 'timetable', 'hours_start_at', 'hours_finish_at', 'status', 'category', 'price', 'price_for_students', 'is_active'
+      'name', 'description', 'start_at', 'exam_date', 'timetable', 'hours_start_at', 'hours_finish_at', 'status', 'category', 'price', 'price_for_students', 'is_active'
     ];
 
      /**
@@ -23,7 +24,7 @@ class Group extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+    protected $dates = ['deleted_at', 'created_at', 'updated_at', 'start_at', 'exam_date'];
 
     const CATEGORY_B = 0;
     const CATEGORY_BC = 1;

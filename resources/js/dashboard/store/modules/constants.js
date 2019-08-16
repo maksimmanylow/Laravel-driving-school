@@ -44,6 +44,7 @@ export default {
 			name: null,
 			description: null,
 			start_at: null,
+			exam_date: null,
 			timetable: null,
 			hours_start_at: null,
 			hours_finish_at: null,

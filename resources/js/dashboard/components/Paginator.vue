@@ -1,6 +1,6 @@
 <template>
   <div
-		class="pagintor">
+		class="pagintor noselect">
     <div class="pagintor__current-page">
 			{{ from }}-{{ to }}&nbsp;из&nbsp;{{ total }}
 		</div>
