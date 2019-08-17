@@ -18,15 +18,23 @@
           <p>{{ group.price }} рублей</p>
           <p class="text-muted">{{ group.price_for_students }} рублей - для студентов</p>
         </li>
-        <li class="list-group-item"><div class="text-muted">дни</div>{{ group.timetable.join(', ') }}</li>
+        <li class="list-group-item"><div class="text-muted">дни</div>{{ timetable }}</li>
         <li class="list-group-item"><div class="text-muted">часы</div>{{ group.hours_start_at }} - {{ group.hours_finish_at }}</li>
-        <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ group.start_at.toDateString() }}</li>
+        <li class="list-group-item"><div class="text-muted">начало обучения</div>{{ start_at }}</li>
       </ul>
     </div>
   </div>
 </template>
 <script>
 export default {
+  computed: {
+    timetable: function () {
+      return typeof Array.isArray(this.group.timetable) ? this.group.timetable.join(', ') : this.group.timetable;
+    },
+    start_at: function() {
+      return this.group.start_at instanceof Date ? this.group.start_at.toDateString() : '';
+    }
+  },
 	props: {
 		group: { type: Object, default: () => [] },
 	},
