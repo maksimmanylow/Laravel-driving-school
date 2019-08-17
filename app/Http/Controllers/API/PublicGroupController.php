@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class PublicGroupController extends Controller
 {
-  const PAGE_SIZE = 6;
+  const PAGE_SIZE = 20;
   const STATUS_OPEN = 1;
   const STATUS_FILLING = 2;
   const STATUS_CLOSED = 3;
