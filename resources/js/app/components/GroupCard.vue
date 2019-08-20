@@ -29,13 +29,15 @@
   </div>
 </template>
 <script>
+import moment from 'moment';
+
 export default {
   computed: {
     timetable: function () {
       return typeof Array.isArray(this.group.timetable) ? this.group.timetable.join(', ') : this.group.timetable;
     },
     start_at: function() {
-      return this.group.start_at instanceof Date ? this.group.start_at.toDateString() : '';
+      return this.group.start_at instanceof Date ? moment(this.group.start_at).format('DD/MM/YYYY') : '';
     }
   },
 	props: {

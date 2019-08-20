@@ -41,6 +41,18 @@ const getters = {
 	}
 };
 
+
+
+function getDate(dateTimeString) {
+	let res = null
+	if (dateTimeString !== null && typeof dateTimeString === 'object'){
+		dateTimeString = dateTimeString.date
+	}
+	if (dateTimeString)
+		res = new Date(dateTimeString);
+	return res;
+  }
+
 // actions
 const actions = {
 	async getPage({
@@ -59,6 +71,8 @@ const actions = {
 			if (status == 200) {
 				commit('setAll', data.data.map((model) => ({
 					...model,
+					start_at: getDate(model.start_at),
+					exam_date: getDate(model.exam_date),
 					hours_start_at: model.hours_start_at.slice(0,5),
 					hours_finish_at: model.hours_finish_at.slice(0,5),
 					timetable: JSON.parse(model.timetable),
