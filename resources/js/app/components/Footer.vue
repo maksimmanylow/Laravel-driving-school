@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col col-md-8">БГТУ «ВОЕНМЕХ»</div>
-          <div class="col col-md-4">Сделано <a target="_blank" href="https://maksimmanylow.com">Маныловым Максимом</a></div>
+          <div class="col col-md-4">Сделано <a target="_blank" href="https://maximmanylov.com">Маныловым Максимом</a></div>
         </div>
       </div>
     </div>
