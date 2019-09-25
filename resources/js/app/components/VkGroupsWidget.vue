@@ -16,7 +16,7 @@ export default {
 				mode: 0,
 				width: 300,
 				height: 160,
-				color1: 'FFFFFF',
+				color1: 'f3f3f3',
 				color2: '2B587A',
 				color3: '5B7FA6'
 			}, 108946337);
