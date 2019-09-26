@@ -267,6 +267,9 @@
           <div v-for="group in groups" :key="group.id" class="col-lg-4 col-md-6">
             <GroupCard :key="group.id" :group="group" @select="selectGroup(group.id)" />
           </div>
+          <div v-if="groups.length === 0" class="col-md-12 text-center">
+              <p>На данный момент запись закрыта.</p>
+          </div>
           <!-- <div
             v-for="group in personalTrainingGroups"
             :key="group.id"
