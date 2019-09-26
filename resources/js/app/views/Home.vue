@@ -11,11 +11,18 @@
           </h3>
         </div>
       </div>
+      <transition name="fade">
+        <div v-show="!scrolled" class="scroll-downs">
+          <div class="mousey">
+            <div class="scroller"></div>
+          </div>
+        </div>
+      </transition>
     </header>
 
-    <section id="about" class="bg-light">
+    <section id="about" class="bg-dark">
       <div class="container">
-        <h2 class="section-heading">о нас</h2>
+        <h1 class="section-heading text-center">о нас</h1>
         <br />
         <div class="row justify-content-center">
           <div class="col-md-7">
@@ -60,11 +67,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="education" class="bg-dark">
-      <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-10 card p-3">
             <ul class="list">
@@ -254,8 +257,12 @@
 
     <section id="groups" class="bg-dark">
       <div class="container">
-        <h2 class="section-heading">запись</h2>
-        <br />
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="section-heading text-center">запись</h1>
+            <br />
+          </div>
+        </div>
         <div class="row justify-content-center">
           <div v-for="group in groups" :key="group.id" class="col-lg-4 col-md-6">
             <GroupCard :key="group.id" :group="group" @select="selectGroup(group.id)" />
@@ -277,21 +284,23 @@
 
     <section id="contacts" class="bg-light">
       <div class="container">
-        <h2 class="section-heading">контакты</h2>
+        <h1 class="section-heading text-center">контакты</h1>
         <br />
-        <div class="card p-0">
+        <div class="card p-0 pb-4">
           <Map :markers="markers" />
 
           <br />
           <div class="row">
             <div class="col-md-10 mx-auto">
               <br />
-              <p class="h3">Адрес: 1-я Красноармейская ул. 1, Санкт-Петербург.</p>
-              <p class="h4 text-muted">Открыто по будням с 10 до 17 часов.</p>
+              <div class="px-3">
+                <p class="h3">Адрес: 1-я Красноармейская ул. 1, Санкт-Петербург.</p>
+                <p class="h4 text-muted">Открыто по будням с 10 до 17 часов.</p>
+              </div>
 
               <br />
               <div class="row">
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 text-center mb-4">
                   <i class="fa fa-phone fa-3x sr-contact" />
                   <h4>Олег Владимирович</h4>
                   <h6 class="text-muted">руководитель автошколы</h6>
@@ -350,7 +359,8 @@ export default {
   },
   data: function() {
     return {
-      markers: [{ lat: 59.9163774, lng: 30.3136526 }]
+      markers: [{ lat: 59.9163774, lng: 30.3136526 }],
+      scrolled: false,
     };
   },
   computed: mapState({
@@ -361,8 +371,16 @@ export default {
     this.$store.dispatch("group/getPage", 1);
     // this.$store.dispatch('personalTraining/getPage', 1);
   },
-  mounted: function() {},
+  mounted () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    handleScroll: function() {
+      this.scrolled = window.scrollY > 0;
+    },
     selectGroup: function(group_id) {
       this.$store.commit("user/setGroup", group_id);
       this.$store.commit("user/showCreateModal");
