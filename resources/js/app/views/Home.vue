@@ -196,7 +196,7 @@
       </div>
     </section>
 
-    <section id="education" class="bg-light">
+    <section id="education" class="bg-dark">
       <div class="container">
         <h2 class="section-heading">площадка</h2>
         <br />
@@ -233,12 +233,20 @@
             </carousel>
           </div>
         </div>
+      </div>
+    </section>
 
-        <h2 class="section-heading">свой блог</h2>
-        <br />
-        <div class="row justify-content-center">
-          <div class="col-md-10 card">
-            <VkArticleWidget />
+    <section class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2 class="section-heading">свой блог</h2>
+            <br />
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <VkArticleWidget />
+              </div>
+            </div>
           </div>
         </div>
       </div>
