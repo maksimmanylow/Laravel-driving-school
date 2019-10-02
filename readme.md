@@ -1,12 +1,12 @@
 # laravel-vue-dschool
 
-Это репозиторий сайта автошколы, переписываемого на стек Laravel + Vue. 
+Это репозиторий сайта автошколы, переписанного на стек Laravel + Vue.
 
-Первая версия была написана на CodeIgniter, а текущая - на Yii2 (см. https://github.com/maksimmanylow/yii2-driving-school). 
-Сайт переписывается раз в год (только фронт или весь стек). В качестве серверного стека используется LEMP. Хостинг dev сервера - droplet на DigitalOcean, cdn - cloudlfare.
+Первая версия была написана на CodeIgniter, а вторая - на Yii2 (см. https://github.com/maximalist777/yii2-driving-school). 
+Сайт переписывается раз в два года. В качестве серверного стека используется LEMP. Хостинг dev сервера - droplet на DigitalOcean, cdn - Сloudlfare.
 
-Публичная часть сайта доступна по ссылке http://dev.voenmeh-avtoshkola.ru.
-Админка http://dev.voenmeh-avtoshkola.ru/dashboard.
+Публичная часть сайта доступна по ссылке https://voenmeh-avtoshkola.ru.
+Админка https://voenmeh-avtoshkola.ru/dashboard.
 
 Сайт все еще находится в стадии разработки и тестирования.
 
