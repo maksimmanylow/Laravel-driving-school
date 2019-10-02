@@ -8,7 +8,7 @@
         <!-- <span class="text-muted">{{ group.status.value }}</span> -->
       </div>
       <h4 class="card__title">{{ group.name }}</h4>
-      <h6 class="card__description text-muted">{{ group.description || "Группа воскресного обучения" }}</h6>
+      <h6 class="card__description text-muted">{{ group.description || "" }}</h6>
     </div>
     <div class="card__body">
       <ul class="list-group list-group-flush">
