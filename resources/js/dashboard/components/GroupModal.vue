@@ -104,7 +104,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
         <datepicker
-          format="dd-MM-yyyy"          
+          format="dd/MM/yyyy"          
           class="form-control"
           placeholder="Начало занятий"
           v-model="start_at"
@@ -116,7 +116,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <datepicker
-          format="dd-MM-yyyy"          
+          format="dd/MM/yyyy"          
           class="form-control"
           placeholder="Экзамен"
           v-model="exam_date"
@@ -307,9 +307,10 @@ export default {
 	},
 	methods: {
 		async saveGroup() {
-			let allValid = await this.$validator.validateAll();
-			if (allValid)
+      let allValid = await this.$validator.validateAll();
+			if (allValid) {
 				this.$store.dispatch('group/save');
+      }
 		},
 		...mapActions('group', {
 			deleteGroup: 'delete',

@@ -24,7 +24,10 @@ class Group extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'created_at', 'updated_at', 'start_at', 'exam_date'];
+    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+    protected $casts = [
+        'timetable' => 'array',
+    ];
 
     const CATEGORY_B = 0;
     const CATEGORY_BC = 1;

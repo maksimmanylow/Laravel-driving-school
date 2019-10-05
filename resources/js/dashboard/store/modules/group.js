@@ -1,6 +1,7 @@
 import API from '../../api/group';
 import C from './constants';
 import { isObject } from 'util';
+import moment from 'moment';
 
 // initial state
 const state = {
@@ -11,8 +12,8 @@ const state = {
 	constants: C,
 	model: {
 		value: C.defaultGroup,
-		status: C.groupStatuses[0],
-		category: C.groupCategories[0],
+		status: null,
+		category: null,
 		required: C.defaultGroup.keys,
 		validationErrors: [],
 	},
@@ -83,9 +84,9 @@ const actions = {
 					exam_date: getDate(model.exam_date),
 					hours_start_at: model.hours_start_at.slice(0,5),
 					hours_finish_at: model.hours_finish_at.slice(0,5),
-					timetable: JSON.parse(model.timetable),
-					status: C.groupStatuses.find(item => item.key == model.status),
-					category: C.groupCategories.find(item => item.key == model.category),
+					// timetable: JSON.parse(model.timetable),
+					status: C.groupStatuses.find(item => item.key === model.status),
+					category: C.groupCategories.find(item => item.key === model.category),
 				})));
 				commit('setPaginator', data.meta);
 			}
@@ -117,7 +118,7 @@ const actions = {
 			} = await API.get(id);
 			if (status == 200) {
 				model = data.data;
-				model.timetable = JSON.parse(model.timetable)
+				// model.timetable = JSON.parse(model.timetable)
 				commit('setModel', model);
 			}
 		} catch (error) {
@@ -137,15 +138,18 @@ const actions = {
 	},
 	async create({commit, dispatch, state}) {
 		try {
-			let group = state.model.value;
+			let model = state.model.value,
+				group = {
+					...model,
+					start_at: model.start_at instanceof Date ? moment(model.start_at).format('YYYY-MM-DD') : null,
+					exam_date: model.exam_date instanceof Date ? moment(model.exam_date).format('YYYY-MM-DD') : null,
+					category: model.category.key,
+					status: model.status.key,
+				};
 			const {
 				data,
 				status
-			} = await API.create(group.map((model) => ({
-				...model,
-				category: model.category.key,
-				status: model.status.key,
-			})));
+			} = await API.create(group);
 			if (status == 201) {
 				dispatch('showMessageOK', 'Группа добавлена!');
 				dispatch('getPage');
@@ -158,16 +162,19 @@ const actions = {
 		}
 	},
 	async update({commit, dispatch, state}) {
+		let model = state.model.value,
+			group = {
+			...model,
+			start_at: model.start_at instanceof Date ? moment(model.start_at).format('YYYY-MM-DD') : null,
+			exam_date: model.exam_date instanceof Date ? moment(model.exam_date).format('YYYY-MM-DD') : null,
+			category: model.category.key,
+			status: model.status.key,
+		};
 		try {
-			let group = state.model.value;
 			const {
 				data,
 				status
-			} = await API.update(group.map((model) => ({
-				...model,
-				category: model.category.key,
-				status: model.status.key,
-			})));
+			} = await API.update(group);
 			if (status == 200) {
 				dispatch('showMessageOK', 'Группа обновлена!');
 				commit('setAll', state.all.map(model => {
@@ -334,6 +341,7 @@ const mutations = {
 		state.model.value.hours_finish_at = value;
 	},
 	addErrors(state, e) {
+		console.log(e)
 		state.errors.push(e);
 	},
 	showUpdateModal(state, id) {
