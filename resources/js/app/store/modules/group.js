@@ -60,7 +60,6 @@ const actions = {
 		dispatch,
 		state
 	}, page) {
-		try {
 			const {
 				data,
 				status
@@ -75,16 +74,13 @@ const actions = {
 					exam_date: getDate(model.exam_date),
 					hours_start_at: model.hours_start_at.slice(0,5),
 					hours_finish_at: model.hours_finish_at.slice(0,5),
-					timetable: JSON.parse(model.timetable),
+					timetable: model.timetable,
 					status: C.groupStatuses.find(item => item.key == model.status),
 					statusName: C.groupStatuses.find(item => item.key == model.value),
 					category: C.groupCategories.find(item => item.key == model.category),
 				})));
 				commit('setPaginator', data.meta);
 			}
-		} catch (error) {
-			mutations.addErrors(error);
-		}
 	},
 	// async getAll({
 	// 	commit

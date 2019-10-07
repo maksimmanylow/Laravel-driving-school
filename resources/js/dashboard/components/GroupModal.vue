@@ -103,11 +103,13 @@
     <template slot="body-right">
       <div class="form-group">
         <label for="exampleInputEmail1">Начало занятий</label>
+        <input v-model="start_at" v-validate="'required'" display="none" />
         <datepicker
           format="dd/MM/yyyy"          
           class="form-control"
           placeholder="Начало занятий"
           v-model="start_at"
+          :class="{'is-invalid': errors.has('start_at')}"
         ></datepicker>
         <div class="invalid-feedback">
           {{ errors.first('start_at') }}
@@ -116,7 +118,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Экзамен</label>
         <datepicker
-          format="dd/MM/yyyy"          
+          format="dd/MM/yyyy" 
           class="form-control"
           placeholder="Экзамен"
           v-model="exam_date"
