@@ -238,7 +238,7 @@
         </div>
       </div>
     </section>
-
+<!-- 
     <section class="bg-light">
       <div class="container">
         <div class="row">
@@ -253,7 +253,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section id="groups" class="bg-dark">
       <div class="container">
