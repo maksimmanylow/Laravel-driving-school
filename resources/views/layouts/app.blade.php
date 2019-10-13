@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="yandex-verification" content="33cb7abff98ae1b3" />
+    <meta name="google-site-verification" content="GjVZz4SnbCBkdH_xhmEJuKfDJ-XjW92vL0tizdWJByw" />
 
 
     <title>
