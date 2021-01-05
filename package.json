@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "awesome-phonenumber": "^2.2.6",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-root-import": "^6.1.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-vue-app": "^2.0.0",
